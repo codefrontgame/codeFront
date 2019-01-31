@@ -6,6 +6,7 @@
 </template>
 
 <script>
+
 export default {
   name: "app",
   data() {
@@ -15,7 +16,7 @@ export default {
   },
   methods: {
     run() {
-      console.log(this.userCode)
+      console.log(esper.eval(this.userCode))
     }
   }
 };
