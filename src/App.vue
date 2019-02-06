@@ -1,22 +1,34 @@
 <template>
   <div id="app">
-    <input type="text" v-model="userCode">
-    <input type="button" @click="run" value="knapptext">
+    <editor :code.sync="userCode"></editor>
+    <input type="button" @click="run" value="Run code">
   </div>
 </template>
 
 <script>
 
+import Editor from "./components/Editor";
 export default {
   name: "app",
+  components: {Editor},
   data() {
     return {
-      userCode: ""
+      userCode: "function a (value) {\n" +
+              "    return value + 2;\n" +
+              "}\n" +
+              "\n" +
+              "let arr = [2, 6, 1];\n" +
+              "\n" +
+              "arr.map(a).join(', ');"
     }
   },
   methods: {
     run() {
-      console.log(esper.eval(this.userCode))
+      try{
+        console.log(esper.eval(this.userCode))
+      } catch (e) {
+        console.log(e)
+      }
     }
   }
 };
