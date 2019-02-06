@@ -7,31 +7,31 @@
 
 <script>
 
-import Editor from "./components/Editor";
+import Editor from './components/Editor'
 export default {
-  name: "app",
-  components: {Editor},
-  data() {
+  name: 'App',
+  components: { Editor },
+  data () {
     return {
-      userCode: "function a (value) {\n" +
-              "    return value + 2;\n" +
-              "}\n" +
-              "\n" +
-              "let arr = [2, 6, 1];\n" +
-              "\n" +
-              "arr.map(a).join(', ');"
+      userCode: 'function a (value) {\n' +
+              '    return value + 2;\n' +
+              '}\n' +
+              '\n' +
+              'let arr = [2, 6, 1];\n' +
+              '\n' +
+              'arr.map(a).join(\', \');',
     }
   },
   methods: {
-    run() {
-      try{
+    run () {
+      try {
         console.log(esper.eval(this.userCode))
       } catch (e) {
         console.log(e)
       }
-    }
-  }
-};
+    },
+  },
+}
 </script>
 
 <style lang="scss">
