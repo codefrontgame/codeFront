@@ -1,39 +1,25 @@
 <template>
 <div class="game">
-  <editor :code.sync="userCode"></editor>
-  <input type="button" @click="run" value="Run code">
+  <game-board></game-board>
+  <i-d-e></i-d-e>
 </div>
 </template>
 
 <script>
-
-import Editor from '@/components/Editor'
+import IDE from '@/components/IDE'
+import GameBoard from '@/components/GameBoard'
 export default {
   name: 'Game',
-  components: { Editor },
-  data () {
-    return {
-      userCode: 'function a (value) {\n' +
-        '    return value + 2;\n' +
-        '}\n' +
-        '\n' +
-        'let arr = [2, 6, 1];\n' +
-        '\n' +
-        'arr.map(a).join(\', \');',
-    }
-  },
-  methods: {
-    run () {
-      try {
-        console.log(esper.eval(this.userCode))
-      } catch (e) {
-        console.log(e)
-      }
-    },
-  },
+  components: { GameBoard, IDE },
 }
 </script>
 
 <style scoped lang="scss">
-
+.game {
+  display: grid;
+  @media (max-width: 1100px) {
+    display: block;
+  }
+  grid-template-columns: 900px auto;
+}
 </style>
