@@ -14,6 +14,8 @@
 <script>
 import Editor from '@/enteties/Editor'
 import CharacterSelector from '@/components/CharacterSelector'
+import esper from 'esper.js/dist/esper'
+
 export default {
   name: 'IDE',
   components: { CharacterSelector, Editor },
