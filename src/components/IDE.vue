@@ -1,7 +1,7 @@
 <template>
 <div class="ide">
   <div>
-    <function-editor description="Move" function-name="move" :parameters="['x', 'y']"></function-editor>
+    <function-editor description="Move" function-name="move" :userCode.sync="userCode" :parameters="['x', 'y']"></function-editor>
     Shoot
     <input type="button" @click="run" value="Run code">
     <br>
@@ -23,6 +23,7 @@ export default {
   data () {
     return {
       lastResult: '',
+      userCode: '\t// Skriv din kod här',
     }
   },
   methods: {

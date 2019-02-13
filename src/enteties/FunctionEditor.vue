@@ -1,7 +1,7 @@
 <template>
   <div>
     <label class="description">{{description}}</label>
-    <editor :code.sync="userCode"></editor>
+    <editor :code.sync="functionCode"></editor>
   </div>
 </template>
 
@@ -15,13 +15,25 @@ export default {
     description: String,
     functionName: String,
     parameters: Array,
+    userCode: String,
   },
-  data () {
-    return {
-      userCode: 'function ' + this.functionName + '(' + this.parameters.join(', ') + ') {\n' +
-                '  // Skriv din kod här\n' +
-                '}',
-    }
+  computed: {
+    functionCode: {
+      get () {
+        let s = `function ${this.functionName} (${this.parameters.join(', ')}) {\n` +
+            this.userCode +
+            '\n}'
+        return s
+      },
+      set (val, old) {
+        if (val !== old) {
+          let v = val.split('\n')
+          v.splice(0, 1)
+          v.splice(-1, 1)
+          this.$emit('update:userCode', v.join('\n'))
+        }
+      },
+    },
   },
 }
 </script>
