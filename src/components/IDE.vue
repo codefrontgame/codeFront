@@ -1,7 +1,8 @@
 <template>
 <div class="ide">
   <div>
-    <editor :code.sync="userCode"></editor>
+    <function-editor description="Move" function-name="move" :parameters="['x', 'y']"></function-editor>
+    Shoot
     <input type="button" @click="run" value="Run code">
     <br>
     <span v-if="lastResult != ''">Resultat: {{ lastResult }}</span>
@@ -12,22 +13,15 @@
 </template>
 
 <script>
-import Editor from '@/enteties/Editor'
 import CharacterSelector from '@/components/CharacterSelector'
 import esper from 'esper.js/dist/esper'
+import FunctionEditor from '@/enteties/FunctionEditor'
 
 export default {
   name: 'IDE',
-  components: { CharacterSelector, Editor },
+  components: { CharacterSelector, FunctionEditor },
   data () {
     return {
-      userCode: 'function a (value) {\n' +
-        '    return value + 2;\n' +
-        '}\n' +
-        '\n' +
-        'let arr = [2, 6, 1];\n' +
-        '\n' +
-        'arr.map(a).join(\', \');',
       lastResult: '',
     }
   },

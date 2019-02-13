@@ -17,7 +17,8 @@ export default {
         minLines: 10,
         value: this.code,
         mode: 'ace/mode/javascript',
-        theme: 'ace/theme/solarized_dark',
+        theme: 'ace/theme/monokai',
+        fontSize: '18pt',
       },
     }
   },
