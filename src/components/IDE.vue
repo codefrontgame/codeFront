@@ -1,13 +1,20 @@
 <template>
 <div class="ide">
   <div>
-    <function-editor description="Move" function-name="move" :userCode.sync="userCode" :parameters="['x', 'y']"></function-editor>
-    Shoot
-    <input type="button" @click="run" value="Run code">
+    <div v-for="(func, id) in characters[selectedCharacterId].functions" :key="id">
+      <function-editor
+              :description="func.description"
+              :function-name="func.name"
+              :userCode.sync="func.userCode"
+              :parameters="func.parameters"
+              :shown="func.shown"
+              v-on:toggle="onToggle"></function-editor>
+    </div>
+    <button @click="run">Run code</button>
     <br>
-    <span v-if="lastResult != ''">Resultat: {{ lastResult }}</span>
+    <span v-if="lastResult !== ''">Resultat: {{ lastResult }}</span>
   </div>
-  <character-selector></character-selector>
+  <character-selector :characters="characters" v-on:selectCharacter="this.onSelectCharacter"></character-selector>
 </div>
 
 </template>
@@ -24,15 +31,68 @@ export default {
     return {
       lastResult: '',
       userCode: '\t// Skriv din kod här',
+      characters: [
+        {
+          id: 0,
+          name: 'Gurgy',
+          functions: [
+            {
+              name: 'move',
+              description: 'Move',
+              parameters: ['x', 'y'],
+              userCode: '\t// Skriv din kod här',
+              shown: false,
+            },
+            {
+              name: 'shoot',
+              description: 'Shoot',
+              parameters: ['entity'],
+              userCode: '\t// Skriv din kod här',
+              shown: false,
+            },
+            {
+              name: 'heal',
+              description: 'Heal',
+              parameters: ['entity'],
+              userCode: '\t// Skriv din kod här',
+              shown: false,
+            },
+          ],
+        },
+        {
+          id: 1,
+          name: 'Mårdhor',
+          functions: [
+            {
+              name: 'move',
+              description: 'Move',
+              parameters: ['x', 'y'],
+              userCode: '\t// Skriv din kod här',
+              shown: false,
+            },
+          ],
+        },
+      ],
+      selectedCharacterId: 0,
     }
   },
   methods: {
     run () {
       try {
-        this.lastResult = esper.eval(this.userCode)
+        let code = this.functions.map(f => f.userCode).join('\n')
+        this.lastResult = esper.eval(code)
       } catch (e) {
         console.log(e)
       }
+    },
+    onToggle (functionName) {
+      for (let i = 0; i < this.characters[this.selectedCharacterId].functions.length; i++) {
+        this.characters[this.selectedCharacterId].functions[i].shown = this.characters[this.selectedCharacterId].functions[i].name === functionName
+      }
+    },
+    onSelectCharacter (id) {
+      console.log(id)
+      this.selectedCharacterId = id
     },
   },
 }
