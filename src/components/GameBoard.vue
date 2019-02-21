@@ -16,7 +16,7 @@ export default {
   },
   methods: {
     setup (sketch) {
-      sketch.createCanvas(400, 400)
+      sketch.createCanvas(895, sketch.windowHeight)
       sketch.background(220)
     },
   },
