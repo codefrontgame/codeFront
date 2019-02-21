@@ -13,6 +13,7 @@ export default {
 <style lang="scss">
 body {
   margin: 0px;
+  min-height: 100vh;
 }
 
 </style>

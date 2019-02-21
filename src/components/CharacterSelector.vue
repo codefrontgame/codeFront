@@ -1,7 +1,7 @@
 <template>
 <div class="character-selector">
   <div :key="char.name" v-for="char in characters" @click="$emit('selectCharacter', char.id)">
-    <character-selector-symbol :name="char.name"/>
+    <character-selector-symbol :name="char.name" :image="char.image"/>
   </div>
 </div>
 </template>
@@ -18,5 +18,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
+  .character-selector {
+    background-color: burlywood;
+  }
 </style>

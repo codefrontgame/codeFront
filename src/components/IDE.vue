@@ -34,7 +34,8 @@ export default {
       characters: [
         {
           id: 0,
-          name: 'Gurgy',
+          name: 'firebat',
+          image: 'assets/firebat.png',
           functions: [
             {
               name: 'move',
@@ -61,7 +62,8 @@ export default {
         },
         {
           id: 1,
-          name: 'Mårdhor',
+          name: 'zombie',
+          image: 'assets/zombie.png',
           functions: [
             {
               name: 'move',
@@ -87,7 +89,10 @@ export default {
     },
     onToggle (functionName) {
       for (let i = 0; i < this.characters[this.selectedCharacterId].functions.length; i++) {
-        this.characters[this.selectedCharacterId].functions[i].shown = this.characters[this.selectedCharacterId].functions[i].name === functionName
+        let characterFunction = this.characters[this.selectedCharacterId].functions[i]
+        if (characterFunction.name === functionName) {
+          characterFunction.shown = !characterFunction.shown
+        }
       }
     },
     onSelectCharacter (id) {
