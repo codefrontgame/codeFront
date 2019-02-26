@@ -10,7 +10,7 @@
               :shown="func.shown"
               v-on:toggle="onToggle"></function-editor>
     </div>
-    <button @click="run">Run code</button>
+    <button @click="run" class="button">Run code</button>
     <br>
     <span v-if="lastResult !== ''">Resultat: {{ lastResult }}</span>
   </div>
@@ -104,8 +104,21 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.ide {
-  display: grid;
-  grid-template-columns: auto 100px;
-}
+  .ide {
+    display: grid;
+    grid-template-columns: auto 100px;
+  }
+  .button { // Lägger knappen längst ner till höger
+    background-color: forestgreen;
+    border: none;
+    color: white;
+    padding: 12px 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    position: absolute;
+    bottom: 5px;
+    right: 5px;
+  }
 </style>

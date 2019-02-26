@@ -20,5 +20,6 @@ export default {
 <style lang="scss" scoped>
   .character-selector {
     background-color: burlywood;
+    width: 100px; //Kanske bra? Bör göra så att denna sitter fast i högerkansten dock
   }
 </style>
