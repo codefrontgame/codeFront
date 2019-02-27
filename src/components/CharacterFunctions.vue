@@ -20,7 +20,7 @@ export default {
   data () {
     return {
       expanded: [],
-      defaultExpansion: false,
+      defaultExpansion: true,
     }
   },
   props: {
