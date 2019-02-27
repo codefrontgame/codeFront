@@ -42,15 +42,6 @@ export default {
         console.log(e)
       }
     },
-    onToggle (functionName) {
-      for (let i = 0; i < this.characters[this.selectedCharacterId].functions.length; i++) {
-        this.characters[this.selectedCharacterId].functions[i].shown = this.characters[this.selectedCharacterId].functions[i].name === functionName
-      }
-    },
-    onSelectCharacter (id) {
-      console.log(id)
-      this.selectedCharacterId = id
-    },
   },
 }
 </script>
