@@ -1,7 +1,7 @@
 <template>
 <div class="character-selector">
-  <div :key="char.name" v-for="char in characters" @click="$emit('selectCharacter', char.id)">
-    <character-selector-symbol :name="char.name"/>
+  <div :key="key" v-for="(character, key) in characters" @click="$emit('update:selected', key)">
+    <character-selector-symbol :name="character.name"/>
   </div>
 </div>
 </template>
@@ -11,7 +11,12 @@ import CharacterSelectorSymbol from '@/enteties/CharacterSelectorSymbol'
 export default {
   name: 'CharacterSelector',
   props: {
-    characters: Array,
+    selected: String, // Name
+  },
+  computed: {
+    characters () {
+      return this.$store.getters['getCharacters']
+    },
   },
   components: { CharacterSelectorSymbol },
 }

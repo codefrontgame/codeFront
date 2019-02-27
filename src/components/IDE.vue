@@ -8,7 +8,7 @@
     <br>
     <span v-if="lastResult !== ''">Resultat: {{ lastResult }}</span>
   </div>
-  <!--<character-selector :characters="characters" v-on:selectCharacter="this.onSelectCharacter"></character-selector>-->
+  <character-selector :selected.sync="selectedCharacterId" />
 </div>
 
 </template>
@@ -17,56 +17,14 @@
 import esper from 'esper.js/dist/esper'
 import { mapGetters } from 'vuex'
 import CharacterFunctions from './CharacterFunctions'
+import CharacterSelector from './CharacterSelector'
 
 export default {
   name: 'IDE',
-  components: { CharacterFunctions },
+  components: { CharacterFunctions, CharacterSelector },
   data () {
     return {
       lastResult: '',
-      userCode: '\t// Skriv din kod här',
-      characterss: [
-        {
-          id: 0,
-          name: 'Gurgy',
-          functions: [
-            {
-              name: 'move',
-              description: 'Move',
-              parameters: ['x', 'y'],
-              userCode: '\t// Skriv din kod här',
-              shown: false,
-            },
-            {
-              name: 'shoot',
-              description: 'Shoot',
-              parameters: ['entity'],
-              userCode: '\t// Skriv din kod här',
-              shown: false,
-            },
-            {
-              name: 'heal',
-              description: 'Heal',
-              parameters: ['entity'],
-              userCode: '\t// Skriv din kod här',
-              shown: false,
-            },
-          ],
-        },
-        {
-          id: 1,
-          name: 'Mårdhor',
-          functions: [
-            {
-              name: 'move',
-              description: 'Move',
-              parameters: ['x', 'y'],
-              userCode: '\t// Skriv din kod här',
-              shown: false,
-            },
-          ],
-        },
-      ],
       selectedCharacterId: 'zombie',
     }
   },
@@ -76,7 +34,7 @@ export default {
     }),
   },
   methods: {
-    run () {
+    run () { // legacy example
       try {
         let code = this.functions.map(f => f.userCode).join('\n')
         this.lastResult = esper.eval(code)

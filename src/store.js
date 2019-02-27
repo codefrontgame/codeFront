@@ -6,21 +6,41 @@ Vue.use(Vuex)
 class Character {
   x = 0
   y = 0
+  constructor (x, y) {
+    this.x = x
+    this.y = y
+  }
 }
 
 class Zombie extends Character {
   update ({ userFunctions, board, entities, ticks }) {}
   draw ({ board, sketch }) {}
-  constructor (x, y) {
-    super()
-    this.x = x
-    this.y = y
-  }
   static userFunctions = {
     move: {
       cn: 'Move',
       name: 'move',
       description: 'Move the zombie',
+      parameters: ['x', 'y'],
+      userCode: '\t// Skriv din kod här',
+    },
+  }
+}
+
+class FireBat extends Character {
+  update ({ userFunctions, board, entities, ticks }) {}
+  draw ({ board, sketch }) {}
+  static userFunctions = {
+    move: {
+      cn: 'Move',
+      name: 'move',
+      description: 'Move the zombie',
+      parameters: ['x', 'y'],
+      userCode: '\t// Skriv din kod här',
+    },
+    shoot: {
+      cn: 'Skjut',
+      name: 'shoot',
+      description: 'Shoot over the zombie',
       parameters: ['x', 'y'],
       userCode: '\t// Skriv din kod här',
     },
@@ -34,6 +54,7 @@ export default new Vuex.Store({
     ],
     characters: {
       zombie: Zombie,
+      fireBat: FireBat,
     },
   },
   getters: {
