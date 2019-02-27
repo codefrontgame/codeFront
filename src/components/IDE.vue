@@ -1,37 +1,31 @@
 <template>
 <div class="ide">
   <div>
-    <div v-for="(func, id) in characters[selectedCharacterId].functions" :key="id">
-      <function-editor
-              :description="func.description"
-              :function-name="func.name"
-              :userCode.sync="func.userCode"
-              :parameters="func.parameters"
-              :shown="func.shown"
-              v-on:toggle="onToggle"></function-editor>
-    </div>
+    <character-functions
+      :character-key="selectedCharacterId"
+    />
     <button @click="run">Run code</button>
     <br>
     <span v-if="lastResult !== ''">Resultat: {{ lastResult }}</span>
   </div>
-  <character-selector :characters="characters" v-on:selectCharacter="this.onSelectCharacter"></character-selector>
+  <!--<character-selector :characters="characters" v-on:selectCharacter="this.onSelectCharacter"></character-selector>-->
 </div>
 
 </template>
 
 <script>
-import CharacterSelector from '@/components/CharacterSelector'
 import esper from 'esper.js/dist/esper'
-import FunctionEditor from '@/enteties/FunctionEditor'
+import { mapGetters } from 'vuex'
+import CharacterFunctions from './CharacterFunctions'
 
 export default {
   name: 'IDE',
-  components: { CharacterSelector, FunctionEditor },
+  components: { CharacterFunctions },
   data () {
     return {
       lastResult: '',
       userCode: '\t// Skriv din kod här',
-      characters: [
+      characterss: [
         {
           id: 0,
           name: 'Gurgy',
@@ -73,8 +67,13 @@ export default {
           ],
         },
       ],
-      selectedCharacterId: 0,
+      selectedCharacterId: 'zombie',
     }
+  },
+  computed: {
+    ...mapGetters({
+      characters: 'getCharacters',
+    }),
   },
   methods: {
     run () {

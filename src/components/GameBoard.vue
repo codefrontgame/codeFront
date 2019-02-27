@@ -7,7 +7,7 @@
 </template>
 
 <script>
-import VueP5 from "vue-p5"
+import VueP5 from 'vue-p5'
 
 export default {
   name: 'GameBoard',
