@@ -20,6 +20,10 @@ export default {
       board: {
         xTiles: 10,
         yTiles: 15,
+        closeHCover: 0.9,
+        farHCover: 0.7,
+        start: 0,
+        end: 0.9,
       },
     }
   },

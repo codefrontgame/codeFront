@@ -1,6 +1,7 @@
 import Character from './character'
 import esper from 'esper.js/dist/esper'
 import { objectDefinition, functionDefinition, callDefinition } from '@/utility/esper.js'
+import { displayCoordinates } from '@/utility/graphics'
 
 class Zombie extends Character {
   update ({ ticks, board }) {
@@ -47,19 +48,10 @@ class Zombie extends Character {
   }
   draw ({ sketch, assets, board }) {
     let img = assets['zombie']
-    let xTiles = board.xTiles
-    let yTiles = board.yTiles
-    let closeCover = 0.8
-    let farCover = 0.4
-    let start = 0
-    let end = 0.9
+    let coordinates = displayCoordinates(sketch, board, this.x, this.y)
 
-    let realY = sketch.height - (this.y * (end - start) * (sketch.height / yTiles))
-    let realX = ((this.x - (xTiles / 2)) * (closeCover + (((farCover - closeCover) / yTiles) * this.y)) + ((xTiles / 2))) * (sketch.width / xTiles)
-    let perspectiveSize = this.size * (closeCover + (((farCover - closeCover) / yTiles) * this.y))
-    let changeFactor = perspectiveSize / img.width
-
-    sketch.image(img, realX - (this.size / 2), realY - (img.height * changeFactor), img.width * changeFactor, img.height * changeFactor)
+    let changeFactor = this.size * coordinates.perspective / img.width
+    sketch.image(img, coordinates.x - (this.size / 2), coordinates.y - (img.height * changeFactor), img.width * changeFactor, img.height * changeFactor)
   }
   static userFunctions = {
     move: {
