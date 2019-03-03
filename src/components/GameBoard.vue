@@ -20,10 +20,10 @@ export default {
       board: {
         xTiles: 10,
         yTiles: 15,
-        closeHCover: 0.9,
-        farHCover: 0.7,
-        start: 0,
-        end: 0.9,
+        closeHCover: 0.91,
+        farHCover: 0.55,
+        start: 0.085,
+        end: 0.71,
       },
     }
   },
@@ -38,6 +38,7 @@ export default {
   methods: {
     preload (sketch) {
       this.assets['zombie'] = sketch.loadImage('assets/test.svg', () => console.log('yay'), (err) => console.log(err))
+      this.assets['background'] = sketch.loadImage('assets/background.png', () => console.log('yay'), (err) => console.log(err))
     },
     setup (sketch) {
       sketch.setFrameRate(this.fr)
@@ -46,7 +47,7 @@ export default {
     },
     draw (sketch) {
       // Reset canvas
-      sketch.background(200)
+      sketch.background(this.assets['background'])
       let fr = sketch.getFrameRate()
       fr = fr === 0 ? this.fr : fr
 

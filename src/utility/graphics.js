@@ -4,7 +4,7 @@ export function displayCoordinates (sketch, board, boardX, boardY) {
   // y coordinates progression on the board (in percentage of the board)
   let yBoardPercentage = boardY / board.yTiles
   // y coordinates progression on the board (in percentage of the screen)
-  let yPercentage = yBoardPercentage * yBoardSize
+  let yPercentage = board.start + (yBoardPercentage * yBoardSize)
   // y in pixels on the screen (reversed coordninate system)
   let y = sketch.height - (sketch.height * yPercentage)
 
