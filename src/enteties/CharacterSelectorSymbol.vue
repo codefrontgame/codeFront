@@ -7,7 +7,7 @@ export default {
   name: 'CharacterSelectorSymbol',
   props: {
     name: String,
-  }
+  },
 }
 </script>
 
