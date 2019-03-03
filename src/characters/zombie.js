@@ -1,5 +1,6 @@
 import Character from './character'
 import esper from 'esper.js/dist/esper'
+import { objectDefinition, functionDefinition, callDefinition } from '@/utility/esper.js'
 
 class Zombie extends Character {
   update ({ ticks, board }) {
@@ -71,19 +72,17 @@ class Zombie extends Character {
         '\t} else {\n' +
         '\t  return response.east;\n' +
         '\t}',
-      execute ({ me, entities, board }) { // TODO
-        let code = 'let response = {\n' +
-          '          north: \'north\',\n' +
-          '          south: \'south\',\n' +
-          '          west: \'west\',\n' +
-          '          east: \'east\',\n' +
-          '          stop: \'stop\',\n' +
-          '          rotate: \'rotate\'\n' +
-          '        };\n' +
-          '        let a = function (x, y) {\n' +
-          '          ' + this.userCode + '\n' +
-          '        };\n' +
-          '        a(' + me.x + ', ' + me.y + ');'
+      execute ({ me, entities, board }) {
+        let code = objectDefinition('response', {
+          north: 'north',
+          south: 'south',
+          west: 'west',
+          east: 'east',
+          stop: 'stop',
+          rotate: 'rotate',
+        })
+        code += functionDefinition(this.name, this.parameters, this.userCode)
+        code += callDefinition(this.name, me.x, me.y)
         let result = esper.eval(code)
         if (result == null) return 'stop'
         return result
