@@ -1,7 +1,7 @@
 <template>
 <div class="character-selector">
   <div :key="key" v-for="(character, key) in characters" @click="$emit('update:selected', key)">
-    <character-selector-symbol :name="character.name"/>
+    <character-selector-symbol :name="character.name" :image="character.image"/>
   </div>
 </div>
 </template>
@@ -23,5 +23,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
+  .character-selector {
+    background-color: burlywood;
+    width: 100px; //Kanske bra? Bör göra så att denna sitter fast i högerkansten dock
+  }
 </style>

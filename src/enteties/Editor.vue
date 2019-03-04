@@ -14,7 +14,7 @@ export default {
       editor: null,
       editorOptions: {
         maxLines: 50,
-        minLines: 10,
+        minLines: 5,
         value: this.code,
         mode: 'ace/mode/javascript',
         theme: 'ace/theme/monokai',

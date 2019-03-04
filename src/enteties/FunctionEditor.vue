@@ -36,8 +36,17 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.editor {
+.description {
+  font-family: "DejaVu Sans", sans-serif;
+  font-size: 18pt;
   margin-top: 5px;
-  margin-bottom: 5px;
+  margin-bottom: 0px;
+  margin-right: 5px;
+  background: lightgray;
+  width: 675px; //Denna är inte najs, bör vara något som anpassar sig
+}
+.editor {
+  margin-top: 0px;
+  margin-bottom: 0px;
 }
 </style>

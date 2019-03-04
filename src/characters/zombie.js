@@ -81,6 +81,7 @@ class Zombie extends Character {
       },
     },
   }
+  static image = 'assets/zombie.png'
 }
 
 export default Zombie

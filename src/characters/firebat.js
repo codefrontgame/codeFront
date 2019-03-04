@@ -19,6 +19,7 @@ class FireBat extends Character {
       userCode: '\t// Skriv din kod här',
     },
   }
+  static image = 'assets/firebat.png'
 }
 
 export default FireBat

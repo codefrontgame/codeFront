@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+  <div id="app" class="app">
     <router-view></router-view>
   </div>
 </template>
@@ -14,6 +14,10 @@ export default {
 body {
   margin: 0px;
   font-family: "Ubuntu", "DejaVu Sans", sans-serif;
+  min-height: 100vh;
 }
+  .app{
+    height: 100vh;
+  }
 
 </style>

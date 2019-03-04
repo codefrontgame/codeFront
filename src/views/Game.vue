@@ -20,6 +20,6 @@ export default {
   @media (max-width: 1100px) {
     display: block;
   }
-  grid-template-columns: 900px auto;
+  grid-template-columns: 60% auto;
 }
 </style>
