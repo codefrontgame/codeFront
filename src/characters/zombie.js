@@ -4,6 +4,7 @@ import { objectDefinition, functionDefinition, callDefinition } from '@/utility/
 import { displayCoordinates } from '@/utility/graphics'
 
 class Zombie extends Character {
+  isAttacker = true
   update ({ ticks, board, level }) {
     let result = Zombie.userFunctions(level).move.execute({
       me: this,
