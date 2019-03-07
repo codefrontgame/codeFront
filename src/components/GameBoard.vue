@@ -46,6 +46,7 @@ export default {
       sketch.background(200)
     },
     draw (sketch) {
+      //  TODO win condition
       // Reset canvas
       sketch.background(this.assets['background'])
       let fr = sketch.getFrameRate()
