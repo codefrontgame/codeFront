@@ -45,25 +45,38 @@ export default {
       sketch.createCanvas(sketch.windowHeight * 0.86, sketch.windowHeight)
       sketch.background(200)
     },
+    /*
+    * Reset position of all entities
+    */
     resetPos () {
       for (let i = 0; i < this.entities.length; i++) {
         this.entities[i].resetPos()
       }
     },
+    /*
+    *   Method for evaluating if conditions for a win are met
+    *   (Checking if all attackers are at the "goal")
+    */
+    checkWinningPos () {
+      let attackers = 0
+      let reachedGoal = 0
+      for (let i = 0; i < this.entities.length; i++) {
+        if (this.entities[i].isAttacker === true) {
+          attackers++
+        }
+        if (this.entities[i].y >= 15) {
+          reachedGoal++
+        }
+      }
+      return attackers === reachedGoal
+    },
     draw (sketch) {
-      //  TODO win condition
       // Reset canvas
       sketch.background(this.assets['background'])
       let fr = sketch.getFrameRate()
       fr = fr === 0 ? this.fr : fr
 
       // console.log(fr)
-      for (let i = 0; i < this.entities.length; i++) {
-        if (this.entities[i].isAttacker === true && this.entities[i].y === 15) {
-          alert('Winner!')
-          this.resetPos()
-        }
-      }
       for (let i = 0; i < this.entities.length; i++) {
         this.entities[i].update({
           sketch: sketch,
@@ -78,6 +91,10 @@ export default {
           ticks: 1 / fr,
           board: this.board,
         })
+      }
+      if (this.checkWinningPos()) {
+        alert('Winner!')
+        this.resetPos()
       }
     },
   },

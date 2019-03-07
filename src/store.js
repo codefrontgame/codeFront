@@ -10,6 +10,7 @@ export default new Vuex.Store({
   state: {
     entities: [
       new Zombie(3, 0, true),
+      new Zombie(6, 2, true),
     ],
     characters: {
       zombie: Zombie,
