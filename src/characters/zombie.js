@@ -59,7 +59,7 @@ class Zombie extends Character {
       name: 'move',
       description: 'Move the zombie',
       parameters: ['x', 'y'],
-      userCode: '\tif (y < 7) {\n' +
+      userCode: '\tif (y < 70) {\n' +
         '\t  return response.north;\n' +
         '\t} else {\n' +
         '\t  return response.east;\n' +

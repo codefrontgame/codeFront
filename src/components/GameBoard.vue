@@ -45,6 +45,11 @@ export default {
       sketch.createCanvas(sketch.windowHeight * 0.86, sketch.windowHeight)
       sketch.background(200)
     },
+    resetPos () {
+      for (let i = 0; i < this.entities.length; i++) {
+        this.entities[i].resetPos()
+      }
+    },
     draw (sketch) {
       //  TODO win condition
       // Reset canvas
@@ -53,6 +58,12 @@ export default {
       fr = fr === 0 ? this.fr : fr
 
       // console.log(fr)
+      for (let i = 0; i < this.entities.length; i++) {
+        if (this.entities[i].isAttacker === true && this.entities[i].y === 15) {
+          alert('Winner!')
+          this.resetPos()
+        }
+      }
       for (let i = 0; i < this.entities.length; i++) {
         this.entities[i].update({
           sketch: sketch,
