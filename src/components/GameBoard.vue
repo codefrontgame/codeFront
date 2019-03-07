@@ -17,6 +17,7 @@ export default {
     return {
       assets: [],
       fr: 36,
+      hasWon: false,
       board: {
         xTiles: 10,
         yTiles: 15,
@@ -46,42 +47,24 @@ export default {
       sketch.background(200)
     },
     /*
-    * Reset position of all entities
-    */
-    resetPos () {
-      for (let i = 0; i < this.entities.length; i++) {
-        this.entities[i].resetPos()
-      }
-    },
-    /*
     *   Method for evaluating if conditions for a win are met
     *   (Checking if all attackers are at the "goal")
     */
     checkWinningPos () {
-      let attackers = 0
-      let reachedGoal = 0
-      for (let i = 0; i < this.entities.length; i++) {
-        if (this.entities[i].isAttacker === true) {
-          attackers++
-        }
-        if (this.entities[i].y >= 15) {
-          reachedGoal++
-        }
-      }
-      return attackers === reachedGoal
+      return this.entities.filter((e) => e.isAttacker).every((e) => e.y >= this.board.yTiles)
     },
     draw (sketch) {
       // Reset canvas
       sketch.background(this.assets['background'])
       let fr = sketch.getFrameRate()
       fr = fr === 0 ? this.fr : fr
-
       // console.log(fr)
       for (let i = 0; i < this.entities.length; i++) {
         this.entities[i].update({
           sketch: sketch,
           ticks: 1 / fr,
           board: this.board,
+          level: this.$store.getters['getLevel'],
         })
       }
       for (let i = 0; i < this.entities.length; i++) {
@@ -94,7 +77,7 @@ export default {
       }
       if (this.checkWinningPos()) {
         alert('Winner!')
-        this.resetPos()
+        this.$store.commit('incLevel')
       }
     },
   },
