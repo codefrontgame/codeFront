@@ -4,13 +4,13 @@ import { objectDefinition, functionDefinition, callDefinition } from '@/utility/
 import { displayCoordinates } from '@/utility/graphics'
 
 class Zombie extends Character {
-  update ({ ticks, board, level }) {
+  update ({ ticks, board, level, obstacles }) {
     let result = Zombie.userFunctions(level).move.execute({
       me: this,
       board: board,
       entities: null, // TODO
     })
-    Zombie.userFunctions(level)['move'].actuate({ me: this, board, ticks, result })
+    Zombie.userFunctions(level)['move'].actuate({ me: this, board, ticks, result, obstacles })
   }
   draw ({ sketch, assets, board }) {
     let img = assets['zombie']
@@ -32,7 +32,7 @@ class Zombie extends Character {
           '\t} else {\n' +
           '\t  return response.east;\n' +
           '\t}',
-        actuate ({ me, board, ticks, result }) {
+        actuate ({ me, board, ticks, result, obstacles }) {
           // make the entity follow the border of the playing field
           let change = 1 * ticks
           switch (result) {
@@ -54,16 +54,36 @@ class Zombie extends Character {
               }
               break
             case 'north':
-              me.y += change
+              for (let i = 0; i < obstacles.length; i++) {
+                let obs = obstacles[i]
+                if(!(Math.round(me.y+change) === obs.y && Math.round(me.x) === obs.x)){
+                  me.y += change
+                }
+              }
               break
             case 'west':
-              me.x -= change
+              for (let i = 0; i < obstacles.length; i++) {
+                let obs = obstacles[i]
+                if(!(Math.round(me.y) === obs.y && Math.round(me.x-change) === obs.x)){
+                  me.x -= change
+                }
+              }
               break
             case 'south':
-              me.y -= change
+              for (let i = 0; i < obstacles.length; i++) {
+                let obs = obstacles[i]
+                if(!(Math.round(me.y-change) === obs.y && Math.round(me.x) === obs.x)){
+                  me.y -= change
+                }
+              }
               break
             case 'east':
-              me.x += change
+              for (let i = 0; i < obstacles.length; i++) {
+                let obs = obstacles[i]
+                if(!(Math.round(me.y) === obs.y && Math.round(me.x+change) === obs.x)){
+                  me.x += change
+                }
+              }
               break
           }
 

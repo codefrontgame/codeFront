@@ -1,9 +1,11 @@
 import Obstacle from './obstacle'
+import { objectDefinition, functionDefinition, callDefinition } from '@/utility/esper.js'
+import { displayCoordinates } from '@/utility/graphics'
 
 class Boulder extends Obstacle {
     update ({ board, ticks }) {}
     draw ({ sketch, assets, board }) {
-        let img = assets['zombie']
+        let img = assets['rock']
         let coordinates = displayCoordinates(sketch, board, this.x, this.y)
 
         let changeFactor = this.size * coordinates.perspective / img.width
@@ -11,7 +13,7 @@ class Boulder extends Obstacle {
             (img.height * changeFactor), img.width * changeFactor, img.height * changeFactor)
     }
 
-    static image = 'assets/zombie.png'
+    static image = 'assets/rock.svg'
 }
 
 export default Boulder

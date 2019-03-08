@@ -32,6 +32,9 @@ export default {
     entities () {
       return this.$store.getters['getEntities']
     },
+    obstacles () {
+      return this.$store.getters['getObstacles']
+    }
   },
   components: {
     VueP5,
@@ -40,6 +43,7 @@ export default {
     preload (sketch) {
       this.assets['zombie'] = sketch.loadImage('assets/test.svg', () => console.log('yay'), (err) => console.log(err))
       this.assets['background'] = sketch.loadImage('assets/background.png', () => console.log('yay'), (err) => console.log(err))
+      this.assets['rock'] = sketch.loadImage('assets/rock.svg', () => console.log('yay'), (err) => console.log(err))
     },
     setup (sketch) {
       sketch.setFrameRate(this.fr)
@@ -62,6 +66,7 @@ export default {
           ticks: 1 / fr,
           board: this.board,
           level: this.$store.getters['getLevel'],
+          obstacles: this.$store.getters['getObstacles'],
         })
       }
       for (let i = 0; i < this.entities.length; i++) {
@@ -69,6 +74,13 @@ export default {
           sketch: sketch,
           assets: this.assets,
           ticks: 1 / fr,
+          board: this.board,
+        })
+      }
+      for (let i = 0; i < this.obstacles.length; i++) {
+        this.obstacles[i].draw({
+          sketch: sketch,
+          assets: this.assets,
           board: this.board,
         })
       }
