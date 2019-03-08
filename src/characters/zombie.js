@@ -2,6 +2,7 @@ import Character from './character'
 import esper from 'esper.js/dist/esper'
 import { objectDefinition, functionDefinition, callDefinition } from '@/utility/esper.js'
 import { displayCoordinates } from '@/utility/graphics'
+import { isInside } from '@/characters/obstacle'
 
 class Zombie extends Character {
   update ({ ticks, board, level, obstacles }) {
@@ -56,7 +57,7 @@ class Zombie extends Character {
             case 'north':
               for (let i = 0; i < obstacles.length; i++) {
                 let obs = obstacles[i]
-                if(!(Math.round(me.y+change) === obs.y && Math.round(me.x) === obs.x)){
+                if(!(obs.isInside(me.x, me.y+change))){
                   me.y += change
                 }
               }
@@ -64,7 +65,7 @@ class Zombie extends Character {
             case 'west':
               for (let i = 0; i < obstacles.length; i++) {
                 let obs = obstacles[i]
-                if(!(Math.round(me.y) === obs.y && Math.round(me.x-change) === obs.x)){
+                if(!(obs.isInside(me.x-change, me.y))){
                   me.x -= change
                 }
               }
@@ -72,7 +73,7 @@ class Zombie extends Character {
             case 'south':
               for (let i = 0; i < obstacles.length; i++) {
                 let obs = obstacles[i]
-                if(!(Math.round(me.y-change) === obs.y && Math.round(me.x) === obs.x)){
+                if(!(obs.isInside(me.x, me.y-change))){
                   me.y -= change
                 }
               }
@@ -80,7 +81,7 @@ class Zombie extends Character {
             case 'east':
               for (let i = 0; i < obstacles.length; i++) {
                 let obs = obstacles[i]
-                if(!(Math.round(me.y) === obs.y && Math.round(me.x+change) === obs.x)){
+                if(!(obs.isInside(me.x+change, me.y))){
                   me.x += change
                 }
               }
