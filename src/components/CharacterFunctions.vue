@@ -28,7 +28,9 @@ export default {
   },
   computed: {
     functions () {
-      return this.$store.getters['getUserFunctions'](this.characterKey)
+      let fns = this.$store.getters['getUserFunctions'](this.characterKey)
+      console.log(fns)
+      return fns
     },
   },
   methods: {

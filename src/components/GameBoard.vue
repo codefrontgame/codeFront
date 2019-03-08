@@ -17,6 +17,7 @@ export default {
     return {
       assets: [],
       fr: 36,
+      hasWon: false,
       board: {
         xTiles: 10,
         yTiles: 15,
@@ -45,18 +46,25 @@ export default {
       sketch.createCanvas(sketch.windowHeight * 0.86, sketch.windowHeight)
       sketch.background(200)
     },
+    /*
+    *   Method for evaluating if conditions for a win are met
+    *   (Checking if all attackers are at the "goal")
+    */
+    checkWinningPos () {
+      return this.entities.filter((e) => e.isAttacker).every((e) => e.y >= this.board.yTiles)
+    },
     draw (sketch) {
       // Reset canvas
       sketch.background(this.assets['background'])
       let fr = sketch.getFrameRate()
       fr = fr === 0 ? this.fr : fr
-
       // console.log(fr)
       for (let i = 0; i < this.entities.length; i++) {
         this.entities[i].update({
           sketch: sketch,
           ticks: 1 / fr,
           board: this.board,
+          level: this.$store.getters['getLevel'],
         })
       }
       for (let i = 0; i < this.entities.length; i++) {
@@ -66,6 +74,10 @@ export default {
           ticks: 1 / fr,
           board: this.board,
         })
+      }
+      if (this.checkWinningPos()) {
+        alert('Winner!')
+        this.$store.commit('incLevel')
       }
     },
   },
