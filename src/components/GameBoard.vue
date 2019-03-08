@@ -69,18 +69,17 @@ export default {
           obstacles: this.$store.getters['getObstacles'],
         })
       }
-      for (let i = 0; i < this.entities.length; i++) {
-        this.entities[i].draw({
+      let drawables = (this.$store.getters['getEntities']).concat(this.$store.getters['getObstacles'])
+      console.log(drawables)
+      drawables.sort(function(a,b){
+        return b.y - a.y
+      });
+      console.log(drawables, 'hej')
+      for (let i = 0; i < drawables.length; i++) {
+        drawables[i].draw({
           sketch: sketch,
           assets: this.assets,
           ticks: 1 / fr,
-          board: this.board,
-        })
-      }
-      for (let i = 0; i < this.obstacles.length; i++) {
-        this.obstacles[i].draw({
-          sketch: sketch,
-          assets: this.assets,
           board: this.board,
         })
       }
