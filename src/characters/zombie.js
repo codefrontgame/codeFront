@@ -2,7 +2,6 @@ import Character from './character'
 import esper from 'esper.js/dist/esper'
 import { objectDefinition, functionDefinition, callDefinition } from '@/utility/esper.js'
 import { displayCoordinates } from '@/utility/graphics'
-import { isInside } from '@/characters/obstacle'
 
 class Zombie extends Character {
   shadowSize = 0.27 // Percentage sprite that only is shadow

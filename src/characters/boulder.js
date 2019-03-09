@@ -1,5 +1,4 @@
 import Obstacle from './obstacle'
-import { objectDefinition, functionDefinition, callDefinition } from '@/utility/esper.js'
 import { displayCoordinates } from '@/utility/graphics'
 
 class Boulder extends Obstacle {
