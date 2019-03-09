@@ -43,7 +43,6 @@ export default new Vuex.Store({
     },
     setRunStatus (state, status) {
       if (!status) {
-        console.log(state.levels[state.level].entities)
         Vue.set(state, 'entities', clone(state.levels[state.level].entities))
       }
       Vue.set(state, 'running', status)

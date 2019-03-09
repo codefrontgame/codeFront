@@ -6,14 +6,6 @@ import { displayCoordinates } from '@/utility/graphics'
 class Zombie extends Character {
   shadowSize = 0.27 // Percentage sprite that only is shadow
   isAttacker = true
-  update ({ ticks, board, level, obstacles }) {
-    let result = Zombie.userFunctions(level).move.execute({
-      me: this,
-      board: board,
-      entities: null, // TODO
-    })
-    Zombie.userFunctions(level)['move'].actuate({ me: this, board, ticks, result, obstacles })
-  }
   draw ({ sketch, assets, board }) {
     let img = assets['zombie']
     let coordinates = displayCoordinates(sketch, board, this.x, this.y)
@@ -38,6 +30,7 @@ class Zombie extends Character {
         name: 'move',
         description: 'Move the zombie',
         parameters: [],
+        error: null,
         userCode: '\t  return response.north;',
         actuate ({ me, board, ticks, result }) {
           // make the entity follow the border of the playing field
@@ -85,11 +78,19 @@ class Zombie extends Character {
             stop: 'stop',
             rotate: 'rotate',
           })
+          let preFunctionLines = code.split('\n').length - 1
           code += functionDefinition(this.name, this.parameters, this.userCode)
           code += callDefinition(this.name)
-          let result = esper.eval(code)
-          if (result == null) return 'stop'
-          return result
+          try {
+            let result = esper.eval(code)
+            if (result == null) return 'stop'
+            this.error = null
+            return result
+          } catch (e) {
+            e.lineNumber -= preFunctionLines
+            this.error = e
+            throw e
+          }
         },
       },
     },
@@ -99,6 +100,7 @@ class Zombie extends Character {
         name: 'move',
         description: 'Move the zombie',
         parameters: ['willCollide'],
+        error: null,
         userCode: '\t  return response.north;',
         actuate ({ me, board, ticks, result, obstacles }) {
           // make the entity follow the border of the playing field
@@ -169,28 +171,22 @@ class Zombie extends Character {
             stop: 'stop',
             rotate: 'rotate',
           })
+          let preFunctionLines = code.split('\n').length - 1
           code += functionDefinition(this.name, this.parameters, this.userCode)
           code += callDefinition(this.name, false) // Beräknade värdet på willCollide
-          let result = esper.eval(code)
-          if (result == null) return 'stop'
-          return result
+          try {
+            let result = esper.eval(code)
+            if (result == null) return 'stop'
+            this.error = null
+            return result
+          } catch (e) {
+            e.lineNumber -= preFunctionLines
+            this.error = e
+            throw e
+          }
         },
       },
     },
-  }
-  static userFunctions (level) {
-    let functions = {}
-    let functionLevels = Object.keys(this.userFunctionsMap).sort()
-    for (let fl in functionLevels) {
-      if (this.userFunctionsMap.hasOwnProperty(fl)) {
-        if (fl > level) return functions
-        functions = {
-          ...functions,
-          ...this.userFunctionsMap[fl],
-        }
-      }
-    }
-    return functions
   }
   static move (direction, me, change) {
     switch (direction) {

@@ -64,14 +64,19 @@ export default {
       fr = fr === 0 ? this.fr : fr
 
       if (this.$store.getters['getRunStatus']) {
-        for (let i = 0; i < this.entities.length; i++) {
-          this.entities[i].update({
-            sketch: sketch,
-            ticks: 1 / fr,
-            board: this.board,
-            level: this.$store.getters['getLevel'],
-            obstacles: this.obstacles,
-          })
+        try {
+          for (let i = 0; i < this.entities.length; i++) {
+            this.entities[i].update({
+              sketch: sketch,
+              ticks: 1 / fr,
+              board: this.board,
+              level: this.$store.getters['getLevel'],
+              obstacles: this.obstacles,
+            })
+          }
+        } catch (e) {
+          console.log('User error: ', e)
+          this.$store.commit('setRunStatus', false)
         }
       }
 
