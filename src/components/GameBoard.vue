@@ -17,6 +17,7 @@ export default {
     return {
       assets: [],
       fr: 36,
+      hasWon: false,
       board: {
         xTiles: 10,
         yTiles: 15,
@@ -31,6 +32,9 @@ export default {
     entities () {
       return this.$store.getters['getEntities']
     },
+    obstacles () {
+      return this.$store.getters['getObstacles']
+    },
   },
   components: {
     VueP5,
@@ -39,33 +43,52 @@ export default {
     preload (sketch) {
       this.assets['zombie'] = sketch.loadImage('assets/test.svg', () => console.log('yay'), (err) => console.log(err))
       this.assets['background'] = sketch.loadImage('assets/background.png', () => console.log('yay'), (err) => console.log(err))
+      this.assets['rock'] = sketch.loadImage('assets/rock.svg', () => console.log('yay'), (err) => console.log(err))
     },
     setup (sketch) {
       sketch.setFrameRate(this.fr)
       sketch.createCanvas(sketch.windowHeight * 0.86, sketch.windowHeight)
       sketch.background(200)
     },
+    /*
+    *   Method for evaluating if conditions for a win are met
+    *   (Checking if all attackers are at the "goal")
+    */
+    checkWinningPos () {
+      return this.entities.filter((e) => e.isAttacker).every((e) => e.y >= this.board.yTiles)
+    },
     draw (sketch) {
       // Reset canvas
       sketch.background(this.assets['background'])
       let fr = sketch.getFrameRate()
       fr = fr === 0 ? this.fr : fr
-
       // console.log(fr)
       for (let i = 0; i < this.entities.length; i++) {
         this.entities[i].update({
           sketch: sketch,
           ticks: 1 / fr,
           board: this.board,
+          level: this.$store.getters['getLevel'],
+          obstacles: this.$store.getters['getObstacles'],
         })
       }
-      for (let i = 0; i < this.entities.length; i++) {
-        this.entities[i].draw({
+      let drawables = (this.$store.getters['getEntities']).concat(this.$store.getters['getObstacles'])
+      console.log(drawables)
+      drawables.sort(function (a, b) {
+        return b.y - a.y
+      })
+      console.log(drawables, 'hej')
+      for (let i = 0; i < drawables.length; i++) {
+        drawables[i].draw({
           sketch: sketch,
           assets: this.assets,
           ticks: 1 / fr,
           board: this.board,
         })
+      }
+      if (this.checkWinningPos()) {
+        alert('Winner!')
+        this.$store.commit('incLevel')
       }
     },
   },
