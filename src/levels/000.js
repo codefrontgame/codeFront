@@ -14,7 +14,7 @@ export default new Level(
     '',
   ],
   [
-    new Zombie(0, 0),
+    new Zombie(5, 0),
   ],
   []
 )

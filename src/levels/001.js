@@ -1,5 +1,6 @@
 import Level from '@/levels/level'
 import Zombie from '@/characters/zombie'
+import Boulder from '../characters/boulder'
 
 export default new Level(
   1,
@@ -14,8 +15,9 @@ export default new Level(
     '',
   ],
   [
-    new Zombie(10, 0),
     new Zombie(5, 0),
   ],
-  []
+  [
+    new Boulder(5, 5, 1, 1),
+  ]
 )
