@@ -7,6 +7,7 @@
     <div v-if="expanded">
       {{ func.description }}
       <function-editor
+        :disabled="disabled"
         :user-code="func.userCode"
         @update:userCode="code => $emit('update:userCode', code)"
         :function-name="func.name"
@@ -25,6 +26,7 @@ export default {
   props: {
     expanded: Boolean,
     func: Object,
+    disabled: Boolean,
   },
 }
 </script>

@@ -62,20 +62,21 @@ export default {
       sketch.background(this.assets['background'])
       let fr = sketch.getFrameRate()
       fr = fr === 0 ? this.fr : fr
-      // console.log(fr)
-      for (let i = 0; i < this.entities.length; i++) {
-        this.entities[i].update({
-          sketch: sketch,
-          ticks: 1 / fr,
-          board: this.board,
-          level: this.$store.getters['getLevel'],
-          obstacles: this.$store.getters['getObstacles'],
-        })
+
+      if (this.$store.getters['getRunStatus']) {
+        for (let i = 0; i < this.entities.length; i++) {
+          this.entities[i].update({
+            sketch: sketch,
+            ticks: 1 / fr,
+            board: this.board,
+            level: this.$store.getters['getLevel'],
+            obstacles: this.obstacles,
+          })
+        }
       }
-      let drawables = (this.$store.getters['getEntities']).concat(this.$store.getters['getObstacles'])
-      drawables.sort(function (a, b) {
-        return b.y - a.y
-      })
+
+      let drawables = this.entities.concat(this.obstacles)
+      drawables.sort((a, b) => b.y - a.y)
       for (let i = 0; i < drawables.length; i++) {
         drawables[i].draw({
           sketch: sketch,
@@ -85,7 +86,6 @@ export default {
         })
       }
       if (this.checkWinningPos()) {
-        alert('Winner!')
         this.$store.commit('incLevel')
       }
     },

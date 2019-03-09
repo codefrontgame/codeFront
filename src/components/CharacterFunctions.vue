@@ -2,6 +2,7 @@
 <div class="character-functions">
   <div v-for="(func, key) in functions" :key="key">
     <character-function-editor
+      :disabled="running"
       :func="func"
       :expanded="getExpanded(key)"
       @update:expanded="val => setExpanded(key, val)"
@@ -25,6 +26,7 @@ export default {
   },
   props: {
     characterKey: String,
+    running: Boolean,
   },
   computed: {
     functions () {

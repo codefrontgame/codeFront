@@ -3,10 +3,10 @@
   <div>
     <character-functions
       :character-key="selectedCharacterId"
+      :running="running"
     />
-    <button class="button" @click="run">Run code</button>
+    <button class="button" @click="run">{{ running ? 'Avbryt' : 'Starta'}}</button>
     <br>
-    <span v-if="lastResult !== ''">Resultat: {{ lastResult }}</span>
   </div>
   <character-selector :selected.sync="selectedCharacterId" />
 </div>
@@ -24,23 +24,18 @@ export default {
   components: { CharacterFunctions, CharacterSelector },
   data () {
     return {
-      lastResult: '',
       selectedCharacterId: 'zombie',
     }
   },
   computed: {
     ...mapGetters({
       characters: 'getCharacters',
+      running: 'getRunStatus'
     }),
   },
   methods: {
-    run () { // legacy example
-      try {
-        let code = this.functions.map(f => f.userCode).join('\n')
-        this.lastResult = esper.eval(code)
-      } catch (e) {
-        console.log(e)
-      }
+    run () {
+      this.$store.commit('setRunStatus', !this.running)
     },
     onToggle (functionName) {
       for (let i = 0; i < this.characters[this.selectedCharacterId].functions.length; i++) {
