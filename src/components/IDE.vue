@@ -14,7 +14,6 @@
 </template>
 
 <script>
-import esper from 'esper.js/dist/esper'
 import { mapGetters } from 'vuex'
 import CharacterFunctions from './CharacterFunctions'
 import CharacterSelector from './CharacterSelector'
@@ -30,7 +29,7 @@ export default {
   computed: {
     ...mapGetters({
       characters: 'getCharacters',
-      running: 'getRunStatus'
+      running: 'getRunStatus',
     }),
   },
   methods: {
