@@ -73,11 +73,9 @@ export default {
         })
       }
       let drawables = (this.$store.getters['getEntities']).concat(this.$store.getters['getObstacles'])
-      console.log(drawables)
       drawables.sort(function (a, b) {
         return b.y - a.y
       })
-      console.log(drawables, 'hej')
       for (let i = 0; i < drawables.length; i++) {
         drawables[i].draw({
           sketch: sketch,

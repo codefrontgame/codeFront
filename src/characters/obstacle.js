@@ -17,7 +17,6 @@ class Obstacle {
       if (this.y > board.yTiles) this.y = board.yTiles
     }
     isInside (x, y) {
-      console.log(x, y, this.x, this.y)
       if (this.x <= x && x <= (this.x + this.width) && this.y <= y && y <= (this.y + this.depth)) {
         return true
       } else {
