@@ -2,10 +2,22 @@ import Character from './character'
 import esper from 'esper.js/dist/esper'
 import { objectDefinition, functionDefinition, callDefinition } from '@/utility/esper.js'
 import { displayCoordinates } from '@/utility/graphics'
+import HitBox from '../utility/hitbox'
+import moveActuator from '@/utility/actuators/move'
 
 class Zombie extends Character {
   shadowSize = 0.27 // Percentage sprite that only is shadow
   isAttacker = true
+  hitBoxes () {
+    return [
+      new HitBox(
+        this.x - 0.20,
+        this.x + 0.20,
+        this.y - 0.10,
+        this.y + 0.10,
+      ),
+    ]
+  }
   draw ({ sketch, assets, board }) {
     let img = assets['zombie']
     let coordinates = displayCoordinates(sketch, board, this.x, this.y)
@@ -32,43 +44,7 @@ class Zombie extends Character {
         parameters: [],
         error: null,
         userCode: '\t  return response.north;',
-        actuate ({ me, board, ticks, result }) {
-          // make the entity follow the border of the playing field
-          let change = 1 * ticks
-          switch (result) {
-            case 'rotate':
-              if (me.x <= 0 && me.y >= board.yTiles) {
-                me.x += change
-              } else if (me.x <= 0) {
-                me.y += change
-              } else if (me.y >= board.yTiles && me.x >= board.xTiles) {
-                me.y -= change
-              } else if (me.y >= board.yTiles) {
-                me.x += change
-              } else if (me.y <= 0 && me.x >= board.xTiles) {
-                me.x -= change
-              } else if (me.x >= board.xTiles) {
-                me.y -= change
-              } else if (me.y <= 0) {
-                me.x -= change
-              }
-              break
-            case 'north':
-              me.y += change
-              break
-            case 'west':
-              me.x -= change
-              break
-            case 'south':
-              me.y -= change
-              break
-            case 'east':
-              me.x += change
-              break
-          }
-
-          me.moveOntoBoard(board)
-        },
+        actuate: moveActuator,
         execute ({ me, entities, board }) {
           let code = objectDefinition('response', {
             north: 'north',
@@ -102,66 +78,7 @@ class Zombie extends Character {
         parameters: ['willCollide'],
         error: null,
         userCode: '\t  return response.north;',
-        actuate ({ me, board, ticks, result, obstacles }) {
-          // make the entity follow the border of the playing field
-          let change = 1 * ticks
-          let isColliding = false
-          switch (result) {
-            case 'rotate':
-              if (me.x <= 0 && me.y >= board.yTiles) {
-                me.x += change
-              } else if (me.x <= 0) {
-                me.y += change
-              } else if (me.y >= board.yTiles && me.x >= board.xTiles) {
-                me.y -= change
-              } else if (me.y >= board.yTiles) {
-                me.x += change
-              } else if (me.y <= 0 && me.x >= board.xTiles) {
-                me.x -= change
-              } else if (me.x >= board.xTiles) {
-                me.y -= change
-              } else if (me.y <= 0) {
-                me.x -= change
-              }
-              break
-            case 'north':
-              for (let i = 0; i < obstacles.length; i++) {
-                let obs = obstacles[i]
-                if (obs.isInside(me.x, me.y + change)) {
-                  isColliding = true
-                }
-              }
-              break
-            case 'west':
-              for (let i = 0; i < obstacles.length; i++) {
-                let obs = obstacles[i]
-                if (obs.isInside(me.x - change, me.y)) {
-                  isColliding = true
-                }
-              }
-              break
-            case 'south':
-              for (let i = 0; i < obstacles.length; i++) {
-                let obs = obstacles[i]
-                if (obs.isInside(me.x, me.y - change)) {
-                  isColliding = true
-                }
-              }
-              break
-            case 'east':
-              for (let i = 0; i < obstacles.length; i++) {
-                let obs = obstacles[i]
-                if (obs.isInside(me.x + change, me.y)) {
-                  isColliding = true
-                }
-              }
-              break
-          }
-          if (!isColliding) {
-            Zombie.move(result, me, change)
-          }
-          me.moveOntoBoard(board)
-        },
+        actuate: moveActuator,
         execute ({ me, entities, board }) {
           let code = objectDefinition('response', {
             north: 'north',
@@ -187,22 +104,6 @@ class Zombie extends Character {
         },
       },
     },
-  }
-  static move (direction, me, change) {
-    switch (direction) {
-      case 'north':
-        me.y += change
-        break
-      case 'west':
-        me.x -= change
-        break
-      case 'south':
-        me.y -= change
-        break
-      case 'east':
-        me.x += change
-        break
-    }
   }
 }
 

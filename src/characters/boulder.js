@@ -2,7 +2,6 @@ import Obstacle from './obstacle'
 import { displayCoordinates } from '@/utility/graphics'
 
 class Boulder extends Obstacle {
-  update ({ board, ticks }) {}
   draw ({ sketch, assets, board }) {
     let img = assets['rock']
     let coordinates = displayCoordinates(sketch, board, this.x, this.y)
@@ -12,7 +11,7 @@ class Boulder extends Obstacle {
             (img.height * changeFactor), img.width * changeFactor, img.height * changeFactor)
   }
 
-    static image = 'assets/rock.svg'
+  static image = 'assets/rock.svg'
 }
 
 export default Boulder

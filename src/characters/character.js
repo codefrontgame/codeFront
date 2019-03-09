@@ -7,12 +7,6 @@ class Character {
     this.x = x
     this.y = y
   }
-  moveOntoBoard (board) {
-    if (this.x < 0) this.x = 0
-    if (this.x > board.xTiles) this.x = board.xTiles
-    if (this.y < 0) this.y = 0
-    if (this.y > board.yTiles) this.y = board.yTiles
-  }
   static userFunctions (level) {
     let functions = {}
     let functionLevels = Object.keys(this.userFunctionsMap).sort()
@@ -46,6 +40,27 @@ class Character {
         })
       }
     }
+  }
+  move (dx, dy, obstacles, board) {
+    let myHitBoxes = this.hitBoxes()
+    let isColliding = obstacles.some(
+      (o) => o.hitBoxes().some(
+        (hitBox) => myHitBoxes.some(
+          (myHitBox) => myHitBox.collidesWith(hitBox)
+        )
+      )
+    )
+    if (!isColliding) {
+      this.x += dx
+      this.y += dy
+    }
+    this.moveOntoBoard(board)
+  }
+  moveOntoBoard (board) {
+    if (this.x < 0) this.x = 0
+    if (this.x > board.xTiles) this.x = board.xTiles
+    if (this.y < 0) this.y = 0
+    if (this.y > board.yTiles) this.y = board.yTiles
   }
 }
 
