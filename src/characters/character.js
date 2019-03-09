@@ -2,6 +2,7 @@ class Character {
   x = 0
   y = 0
   size = 80
+  isAttacker = false//  Variable to check if character is attacker
   constructor (x, y) {
     this.x = x
     this.y = y
