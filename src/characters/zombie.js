@@ -5,6 +5,7 @@ import { displayCoordinates } from '@/utility/graphics'
 import { isInside } from '@/characters/obstacle'
 
 class Zombie extends Character {
+  shadowSize = 0.27 // Percentage sprite that only is shadow
   isAttacker = true
   update ({ ticks, board, level, obstacles }) {
     let result = Zombie.userFunctions(level).move.execute({
@@ -18,8 +19,17 @@ class Zombie extends Character {
     let img = assets['zombie']
     let coordinates = displayCoordinates(sketch, board, this.x, this.y)
 
+    // Scaling for the image
     let changeFactor = this.size * coordinates.perspective / img.width
-    sketch.image(img, coordinates.x - (this.size * coordinates.perspective / 2), coordinates.y - (img.height * changeFactor), img.width * changeFactor, img.height * changeFactor)
+
+    let notShadow = (1 - this.shadowSize) // Percentage of sprite that's not shadow
+    sketch.image(
+      img,
+      coordinates.x - (img.width * changeFactor / 2), // make sure the feet of the character touches the coordinate
+      coordinates.y - (img.height * changeFactor * notShadow), // make sure the feet of the character touches the coordinate
+      img.width * changeFactor,
+      img.height * changeFactor
+    )
   }
   static image = 'assets/zombie.png'
   static userFunctionsMap = {
@@ -58,7 +68,7 @@ class Zombie extends Character {
             case 'north':
               for (let i = 0; i < obstacles.length; i++) {
                 let obs = obstacles[i]
-                if(!(obs.isInside(me.x, me.y+change))){
+                if (!(obs.isInside(me.x, me.y + change))) {
                   me.y += change
                 }
               }
@@ -66,7 +76,7 @@ class Zombie extends Character {
             case 'west':
               for (let i = 0; i < obstacles.length; i++) {
                 let obs = obstacles[i]
-                if(!(obs.isInside(me.x-change, me.y))){
+                if (!(obs.isInside(me.x - change, me.y))) {
                   me.x -= change
                 }
               }
@@ -74,7 +84,7 @@ class Zombie extends Character {
             case 'south':
               for (let i = 0; i < obstacles.length; i++) {
                 let obs = obstacles[i]
-                if(!(obs.isInside(me.x, me.y-change))){
+                if (!(obs.isInside(me.x, me.y - change))) {
                   me.y -= change
                 }
               }
@@ -82,7 +92,7 @@ class Zombie extends Character {
             case 'east':
               for (let i = 0; i < obstacles.length; i++) {
                 let obs = obstacles[i]
-                if(!(obs.isInside(me.x+change, me.y))){
+                if (!(obs.isInside(me.x + change, me.y))) {
                   me.x += change
                 }
               }
