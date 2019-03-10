@@ -7,11 +7,13 @@
     <div v-if="expanded">
       {{ func.description }}
       <function-editor
+        :disabled="disabled"
         :user-code="func.userCode"
         @update:userCode="code => $emit('update:userCode', code)"
         :function-name="func.name"
         :parameters="func.parameters"
       ></function-editor>
+      {{ errorMessage() }}
     </div>
   </transition>
 </div>
@@ -25,6 +27,16 @@ export default {
   props: {
     expanded: Boolean,
     func: Object,
+    disabled: Boolean,
+  },
+  methods: {
+    errorMessage () {
+      if (this.func == null || this.func.error == null) {
+        return ''
+      } else {
+        return this.func.error.lineNumber + ': ' + this.func.error.description
+      }
+    },
   },
 }
 </script>

@@ -4,12 +4,14 @@ import Vuex from 'vuex'
 import Zombie from '@/characters/zombie'
 // import FireBat from '@/characters/firebat'
 import levels from '@/levels'
+import clone from '@/utility/clone'
 
 Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    entities: levels[0].entities,
+    running: false,
+    entities: clone(levels[0].entities),
     levels,
     level: 0,
     characters: {
@@ -18,6 +20,7 @@ export default new Vuex.Store({
     },
   },
   getters: {
+    getRunStatus: state => state.running,
     getUserCode: state => (character, f) => {
       return state.characters[character].userFunctions(state.level)[f]
     },
@@ -34,8 +37,15 @@ export default new Vuex.Store({
       Vue.set(state.characters[character].userFunctions(state.level)[f], 'userCode', code)
     },
     incLevel (state) {
+      Vue.set(state, 'running', false)
       Vue.set(state, 'level', state.level + 1)
-      Vue.set(state, 'entities', state.levels[state.level].entities)
+      Vue.set(state, 'entities', clone(state.levels[state.level].entities))
+    },
+    setRunStatus (state, status) {
+      if (!status) {
+        Vue.set(state, 'entities', clone(state.levels[state.level].entities))
+      }
+      Vue.set(state, 'running', status)
     },
   },
   actions: {},

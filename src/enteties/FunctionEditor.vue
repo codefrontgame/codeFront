@@ -1,6 +1,6 @@
 <template>
 <div class="function-editor">
-  <editor class="editor" :code.sync="functionCode"></editor>
+  <editor class="editor" :code.sync="functionCode" :disabled="disabled"></editor>
 </div>
 </template>
 
@@ -14,6 +14,7 @@ export default {
     functionName: String,
     parameters: Array,
     userCode: String,
+    disabled: Boolean,
   },
   computed: {
     functionCode: {

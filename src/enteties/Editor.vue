@@ -25,12 +25,18 @@ export default {
   },
   props: {
     code: String,
+    disabled: Boolean,
   },
   watch: {
     code (value) {
       if (this.editor != null && this.editor.getValue() !== value) {
-        console.log(value)
+        // console.log(value)
         this.editor.setValue(value)
+      }
+    },
+    disabled (value) {
+      if (this.editor != null) {
+        this.editor.setReadOnly(value)
       }
     },
   },
