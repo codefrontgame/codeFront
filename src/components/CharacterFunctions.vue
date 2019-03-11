@@ -2,9 +2,9 @@
 <div class="character-functions">
   <div v-for="(func, key) in functions" :key="key">
     <character-function-editor
-      :disabled="running"
+      :disabled="disabled"
       :func="func"
-      :expanded="getExpanded(key)"
+      :expanded="isExpanded(key)"
       @update:expanded="val => setExpanded(key, val)"
       @update:userCode="code => updateUserCode(key, code)"
     />
@@ -26,40 +26,45 @@ export default {
   },
   props: {
     characterKey: String,
-    running: Boolean,
+    disabled: Boolean,
   },
   computed: {
     functions () {
-      let fns = this.$store.getters['getUserFunctions'](this.characterKey)
-      console.log(fns)
-      return fns
+      return this.$store.getters['getUserFunctions'](this.characterKey)
     },
   },
   methods: {
-    updateUserCode (f, code) {
+    updateUserCode (func, code) {
+      // The user code resides in store
       this.$store.commit('setUserCode', {
         character: this.characterKey,
-        f,
+        f: func,
         code,
       })
     },
-    getExpanded (key) {
-      if (this.characterKey != null && this.characterKey !== '') {
+    isExpanded (funKey) {
+      let value = null
+      // Initialize expanded array for the selected character
+      if (this.characterKey != null && this.characterKey !== '') { // Validate
         if (this.expanded[this.characterKey] == null) {
+          // Set it to empty array with vue to init listeners
           Vue.set(this.expanded, this.characterKey, [])
         }
-        let value = this.expanded[this.characterKey][key]
-        return value == null ? this.defaultExpansion : value
       }
-      return this.defaultExpansion
+      value = this.expanded[this.characterKey][funKey]
+      // Return default expansion if it is not set before
+      return value == null ? this.defaultExpansion : value
     },
     setExpanded (key, value) {
-      if (this.characterKey != null && this.characterKey !== '') {
+      // Initialize expanded array for the selected character
+      if (this.characterKey != null && this.characterKey !== '') { // Validate
         if (this.expanded[this.characterKey] == null) {
+          // Set it to empty array with vue to init listeners
           Vue.set(this.expanded, this.characterKey, [])
         }
-        Vue.set(this.expanded[this.characterKey], key, value)
       }
+      // Set it with vue as it might be a new property to initiate listeners
+      Vue.set(this.expanded[this.characterKey], key, value)
     },
   },
   components: {

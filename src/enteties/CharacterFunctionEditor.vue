@@ -9,7 +9,7 @@
       <function-editor
         :disabled="disabled"
         :user-code="func.userCode"
-        @update:userCode="code => $emit('update:userCode', code)"
+        @update:userCode="updateUserCode"
         :function-name="func.name"
         :parameters="func.parameters"
       ></function-editor>
@@ -30,12 +30,19 @@ export default {
     disabled: Boolean,
   },
   methods: {
+    /**
+     * Returns the error message from last execution of user code
+     * @return {string} with error message
+     */
     errorMessage () {
       if (this.func == null || this.func.error == null) {
         return ''
       } else {
         return this.func.error.lineNumber + ': ' + this.func.error.description
       }
+    },
+    updateUserCode (code) {
+      this.$emit('update:userCode', code)
     },
   },
 }

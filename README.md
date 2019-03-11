@@ -1,4 +1,4 @@
-# kandidat19
+# CodeFront
 
 ## Project setup
 ```

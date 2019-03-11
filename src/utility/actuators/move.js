@@ -1,4 +1,12 @@
-
+/**
+ * Moves a character based on the result of a move user function
+ * @param me A character
+ * @param board A game board defining the board boundaries
+ * @param ticks How much time that has elapsed since the last update
+ * @param result The result from the move user function to base movement on
+ *               Currently handles north, east, west, south, rotate and stop
+ * @param obstacles Obstacles to consider before moving
+ */
 function actuate ({ me, board, ticks, result, obstacles }) {
   // make the entity follow the border of the playing field
   let change = 1 * ticks

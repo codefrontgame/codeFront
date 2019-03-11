@@ -1,3 +1,9 @@
+/**
+ * Clone an object
+ * This is done recursively and might be a heavy operation
+ * @param obj Object to clone
+ * @return {*} Copy of the object
+ */
 function clone (obj) {
   let copy
   // Handle the 3 simple types, and null or undefined

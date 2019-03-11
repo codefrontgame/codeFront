@@ -1,6 +1,6 @@
 <template>
 <div class="character-selector">
-  <div :key="key" v-for="(character, key) in characters" @click="$emit('update:selected', key)">
+  <div :key="key" v-for="(character, key) in characters" @click="select(key)">
     <character-selector-symbol :name="character.name" :image="character.image"/>
   </div>
 </div>
@@ -16,6 +16,11 @@ export default {
   computed: {
     characters () {
       return this.$store.getters['getCharacters']
+    },
+  },
+  methods: {
+    select (key) {
+      this.$emit('update:selected', key)
     },
   },
   components: { CharacterSelectorSymbol },

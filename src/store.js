@@ -10,11 +10,11 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    running: false,
-    entities: clone(levels[0].entities),
-    levels,
-    level: 0,
-    characters: {
+    running: false, // Whither game is running or not
+    entities: clone(levels[0].entities), // Entities currently on thr gameboard
+    levels, // List of all levels
+    level: 0, // The current level
+    characters: { // List of all characters
       zombie: Zombie,
       // fireBat: FireBat,
     },
@@ -37,12 +37,18 @@ export default new Vuex.Store({
       Vue.set(state.characters[character].userFunctions(state.level)[f], 'userCode', code)
     },
     incLevel (state) {
+      // Stop game
       Vue.set(state, 'running', false)
+      // Increase level
       Vue.set(state, 'level', state.level + 1)
+      // Populate with entities
+      // Make sure to clone the initial entities
       Vue.set(state, 'entities', clone(state.levels[state.level].entities))
     },
     setRunStatus (state, status) {
+      // Reset entities when stopping game
       if (!status) {
+        // Make sure to clone the initial entities
         Vue.set(state, 'entities', clone(state.levels[state.level].entities))
       }
       Vue.set(state, 'running', status)
@@ -50,5 +56,3 @@ export default new Vuex.Store({
   },
   actions: {},
 })
-
-// helper function to call user code

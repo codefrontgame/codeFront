@@ -15,16 +15,15 @@ export default {
   name: 'GameBoard',
   data () {
     return {
-      assets: [],
-      fr: 36,
-      hasWon: false,
-      board: {
-        xTiles: 10,
-        yTiles: 15,
-        closeHCover: 0.91,
-        farHCover: 0.55,
-        start: 0.085,
-        end: 0.71,
+      assets: [], // Graphical assets (sprites)
+      fr: 36, // Framerate aim
+      board: { // Game board definition
+        xTiles: 10, // Width
+        yTiles: 15, // Height
+        closeHCover: 0.91, // How much of the width the board covers in the close end
+        farHCover: 0.55, // How much of the width the board covers in the far end
+        start: 0.085, // Where the board starts, given in percentage from the bottom
+        end: 0.71, // Where the board ends, given in percentage from the bottom
       },
     }
   },
@@ -40,31 +39,64 @@ export default {
     VueP5,
   },
   methods: {
+    /**
+     * Run before loading all sketch assets
+     * Asynchronously loads all assets
+     * @param sketch The p5.js sketch object
+     */
     preload (sketch) {
-      this.assets['zombie'] = sketch.loadImage('assets/test.svg', () => console.log('yay'), (err) => console.log(err))
-      this.assets['background'] = sketch.loadImage('assets/background.png', () => console.log('yay'), (err) => console.log(err))
-      this.assets['rock'] = sketch.loadImage('assets/rock.svg', () => console.log('yay'), (err) => console.log(err))
+      // List assets
+      let assets = [
+        { name: 'zombie', path: 'assets/test.svg' },
+        { name: 'background', path: 'assets/background.png' },
+        { name: 'rock', path: 'assets/rock.svg' },
+      ]
+
+      // Load assets
+      assets.forEach(({ name, path }) => {
+        this.assets[name] = sketch.loadImage(
+          path,
+          () => console.log('Loaded ' + name + ' asset'),
+          (err) => console.log('Failed to load ' + name, err)
+        )
+      })
     },
+    /**
+     * Run before first draw loop
+     * Creates the canvas and sets p5 options
+     * @param sketch The p5.js sketch object
+     */
     setup (sketch) {
       sketch.setFrameRate(this.fr)
+      // Cover 100 % of height
       sketch.createCanvas(sketch.windowHeight * 0.86, sketch.windowHeight)
       sketch.background(200)
     },
-    /*
-    *   Method for evaluating if conditions for a win are met
-    *   (Checking if all attackers are at the "goal")
-    */
-    checkWinningPos () {
-      return this.entities.filter((e) => e.isAttacker).every((e) => e.y >= this.board.yTiles)
+    /**
+     * Check if player has won
+     * Returns true if all attackers has reached the far end of the board
+     * @return Boolean value
+     */
+    hasWon () {
+      return this.entities.filter((e) => e.isAttacker).every((e) => e.y + 0.1 >= this.board.yTiles)
     },
+    /**
+     * The p5.js draw loop
+     * Is used as general game loop
+     * @param sketch The p5.js sketch object
+     */
     draw (sketch) {
-      // Reset canvas
+      // Reset canvas with background image
       sketch.background(this.assets['background'])
+
+      // Get the current framerate
       let fr = sketch.getFrameRate()
+      // Sometimes the sketch return a 0 framerate, if that's the case, use aim framerate
       fr = fr === 0 ? this.fr : fr
 
+      // Update all entities if the game is running
       if (this.$store.getters['getRunStatus']) {
-        try {
+        try { // Abort if there is an error in the user code
           for (let i = 0; i < this.entities.length; i++) {
             this.entities[i].update({
               sketch: sketch,
@@ -76,10 +108,11 @@ export default {
           }
         } catch (e) {
           console.log('User error: ', e)
-          this.$store.commit('setRunStatus', false)
+          this.$store.commit('setRunStatus', false) // Stop game
         }
       }
 
+      // Redraw all entities and obstacles
       let drawables = this.entities.concat(this.obstacles)
       drawables.sort((a, b) => b.y - a.y)
       for (let i = 0; i < drawables.length; i++) {
@@ -90,7 +123,9 @@ export default {
           board: this.board,
         })
       }
-      if (this.checkWinningPos()) {
+
+      // Check win condition and increase level
+      if (this.hasWon()) {
         this.$store.commit('incLevel')
       }
     },

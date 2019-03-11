@@ -3,9 +3,9 @@
   <div>
     <character-functions
       :character-key="selectedCharacterId"
-      :running="running"
+      :disabled="running"
     />
-    <button class="button" @click="run">{{ running ? 'Avbryt' : 'Starta'}}</button>
+    <button class="button" @click="runBtn">{{ runBtnText }}</button>
     <br>
   </div>
   <character-selector :selected.sync="selectedCharacterId" />
@@ -31,22 +31,13 @@ export default {
       characters: 'getCharacters',
       running: 'getRunStatus',
     }),
+    runBtnText () {
+      return this.running ? 'Avbryt' : 'Starta'
+    },
   },
   methods: {
-    run () {
+    runBtn () {
       this.$store.commit('setRunStatus', !this.running)
-    },
-    onToggle (functionName) {
-      for (let i = 0; i < this.characters[this.selectedCharacterId].functions.length; i++) {
-        let characterFunction = this.characters[this.selectedCharacterId].functions[i]
-        if (characterFunction.name === functionName) {
-          characterFunction.shown = !characterFunction.shown
-        }
-      }
-    },
-    onSelectCharacter (id) {
-      console.log(id)
-      this.selectedCharacterId = id
     },
   },
 }

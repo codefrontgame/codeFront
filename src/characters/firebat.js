@@ -1,5 +1,5 @@
 import Character from './character'
-
+// TODO, this thing is broken....
 class FireBat extends Character {
   update ({ userFunctions, board, entities, ticks }) {}
   draw ({ board, sketch }) {}
