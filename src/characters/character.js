@@ -1,3 +1,5 @@
+import HitBox from '../utility/hitbox'
+
 class Character {
   x = 0
   y = 0
@@ -30,6 +32,7 @@ class Character {
           me: this,
           board: board,
           entities: null, // TODO
+          obstacles: obstacles,
         })
         fun.actuate({
           me: this,
@@ -61,6 +64,20 @@ class Character {
     if (this.x > board.xTiles) this.x = board.xTiles
     if (this.y < 0) this.y = 0
     if (this.y > board.yTiles) this.y = board.yTiles
+  }
+  willCollide (obstacles) {
+    let offset = 1
+    return obstacles.some(
+      (o) => o.hitBoxes().some(
+        (h1) => this.hitBoxes().some((h2) => {
+          let offseth1 = new HitBox(h1.x1 - offset, h1.x2 + offset, h1.y1 - offset, h1.y2 + offset)
+          if (offseth1.collidesWith(h2)) {
+            return true
+          }
+          return false
+        })
+      )
+    )
   }
 }
 

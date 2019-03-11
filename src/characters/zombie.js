@@ -40,7 +40,9 @@ class Zombie extends Character {
       move: {
         cn: 'Gå',
         name: 'move',
-        description: 'Move the zombie',
+        description: 'Få zombien att röra sig ända till slutet av fältet. För att säga åt zombien vilket håll den ' +
+          'ska röra sig åt skriver man till exempel return response.north. istället för north kan man skriva ' +
+          'east, west eller south',
         parameters: [],
         error: null,
         userCode: '\t  return response.north;',
@@ -74,12 +76,17 @@ class Zombie extends Character {
       move: {
         cn: 'Gå',
         name: 'move',
-        description: 'Move the zombie',
+        description: 'Få zombien att röra sig ända till slutet av fältet. För att säga åt zombien vilket håll den ' +
+          'ska röra sig åt skriver man till exempel return response.north. istället för north kan man skriva ' +
+          'east, west eller south',
         parameters: ['willCollide'],
         error: null,
-        userCode: '\t  return response.north;',
+        userCode: '\tif (willCollide) {\n' +
+          '\t\treturn response.north; \n' +
+          '\t}\n' +
+          '\treturn response.north;',
         actuate: moveActuator,
-        execute ({ me, entities, board }) {
+        execute ({ me, entities, board, obstacles }) {
           let code = objectDefinition('response', {
             north: 'north',
             south: 'south',
@@ -88,9 +95,10 @@ class Zombie extends Character {
             stop: 'stop',
             rotate: 'rotate',
           })
+          let willCollide = me.willCollide(obstacles)
           let preFunctionLines = code.split('\n').length - 1
           code += functionDefinition(this.name, this.parameters, this.userCode)
-          code += callDefinition(this.name, false) // Beräknade värdet på willCollide
+          code += callDefinition(this.name, willCollide)
           try {
             let result = esper.eval(code)
             if (result == null) return 'stop'
