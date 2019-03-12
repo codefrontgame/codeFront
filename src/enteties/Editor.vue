@@ -1,6 +1,8 @@
 <template>
-<div class="editor" :id="_uid">
-</div>
+    <div class="editor" :class="{disabled: disabled}">
+        <div :id="_uid">
+        </div>
+    </div>
 </template>
 
 <script>
@@ -83,5 +85,9 @@ export default {
 </script>
 
 <style scoped>
-
+    .disabled {
+        filter: grayscale(100%) /*blur(2px)*/;
+        opacity: 0.8;
+        pointer-events: none;
+    }
 </style>
