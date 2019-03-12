@@ -111,7 +111,7 @@ class Character {
    * @returns {boolean} the character will collide in the near future
    */
   willCollide (obstacles) {
-    let offset = 1
+    let offset = 0.1
     return obstacles.some(
       (o) => o.hitBoxes().some(
         (h1) => this.hitBoxes().some((h2) => {
