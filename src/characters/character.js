@@ -1,3 +1,5 @@
+import HitBox from '../utility/hitbox'
+
 class Character {
   // Position of the character. Indicates where the character touches the ground
   x = 0
@@ -50,6 +52,7 @@ class Character {
           me: this,
           board: board,
           entities: null, // TODO
+          obstacles: obstacles,
         })
 
         // Take action according to the result
@@ -99,6 +102,20 @@ class Character {
       this.x -= dx
       this.y -= dy
     }
+  }
+  willCollide (obstacles) {
+    let offset = 1
+    return obstacles.some(
+      (o) => o.hitBoxes().some(
+        (h1) => this.hitBoxes().some((h2) => {
+          let offseth1 = new HitBox(h1.x1 - offset, h1.x2 + offset, h1.y1 - offset, h1.y2 + offset)
+          if (offseth1.collidesWith(h2)) {
+            return true
+          }
+          return false
+        })
+      )
+    )
   }
 }
 
