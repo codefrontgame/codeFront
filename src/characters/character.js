@@ -103,16 +103,20 @@ class Character {
       this.y -= dy
     }
   }
+
+  /**
+   * Checks whether the character will collide with a list of obstacles
+   * in the near future.
+   * @param {Array} obstacles: the list of obstacles to check collition with
+   * @returns {boolean} the character will collide in the near future
+   */
   willCollide (obstacles) {
     let offset = 1
     return obstacles.some(
       (o) => o.hitBoxes().some(
         (h1) => this.hitBoxes().some((h2) => {
           let offseth1 = new HitBox(h1.x1 - offset, h1.x2 + offset, h1.y1 - offset, h1.y2 + offset)
-          if (offseth1.collidesWith(h2)) {
-            return true
-          }
-          return false
+          return offseth1.collidesWith(h2)
         })
       )
     )
