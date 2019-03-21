@@ -2,7 +2,7 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 
 import Zombie from '@/characters/zombie'
-// import FireBat from '@/characters/firebat'
+import FireBat from '@/characters/firebat'
 import levels from '@/levels'
 import clone from '@/utility/clone'
 
@@ -16,7 +16,7 @@ export default new Vuex.Store({
     level: 0, // The current level
     characters: { // List of all characters
       zombie: Zombie,
-      // fireBat: FireBat,
+      fireBat: FireBat,
     },
   },
   getters: {
