@@ -6,6 +6,7 @@
       :disabled="running"
     />
     <button class="button" @click="runBtn">{{ runBtnText }}</button>
+    <button class="helpButton" @click="getHelpText">Hjälp</button>
     <br>
   </div>
   <character-selector :selected.sync="selectedCharacterId" />
@@ -39,6 +40,9 @@ export default {
     runBtn () {
       this.$store.commit('setRunStatus', !this.running)
     },
+    getHelpText () {
+      console.log(this.$store.getters['getHelptexts'])
+    },
   },
 }
 </script>
@@ -60,5 +64,18 @@ export default {
     position: absolute;
     bottom: 5px;
     right: 5px;
+  }
+  .helpButton { // Placement should be changed
+    background-color: forestgreen;
+    border: none;
+    color: white;
+    padding: 12px 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    position: absolute;
+    bottom: 5px;
+    right: 500px;
   }
 </style>

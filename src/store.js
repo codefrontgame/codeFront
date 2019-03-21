@@ -30,6 +30,7 @@ export default new Vuex.Store({
     },
     getCharacters: state => state.characters,
     getObstacles: state => state.levels[state.level].obstacles,
+    getHelptexts: state => state.levels[state.level].helpTexts,
     getLevel: state => state.level,
   },
   mutations: {
