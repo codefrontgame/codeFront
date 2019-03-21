@@ -48,6 +48,7 @@ export default {
       // List assets
       let assets = [
         { name: 'zombie', path: 'assets/test.svg' },
+        { name: 'firebat', path: 'assets/firebat.png' },
         { name: 'background', path: 'assets/background.png' },
         { name: 'rock', path: 'assets/rock.svg' },
       ]
