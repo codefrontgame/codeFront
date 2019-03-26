@@ -4,6 +4,7 @@ class Character {
   // Position of the character. Indicates where the character touches the ground
   x = 0
   y = 0
+  health = 100
   size = 80
   isAttacker = false //  Variable to check if character is attacker
   constructor (x, y) {
@@ -120,6 +121,14 @@ class Character {
         })
       )
     )
+  }
+
+  /**
+   * Initiates a combat sequence
+   * @param attack An attack object
+   */
+  takeDamage(attack) {
+    this.health -= attack.dmg
   }
 }
 
