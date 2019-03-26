@@ -1,0 +1,8 @@
+stages:
+- name: Build
+  steps:
+  - publishImageConfig:
+      dockerfilePath: ./Dockerfile
+      buildContext: .
+      tag: kandidat/codefront
+timeout: 60
