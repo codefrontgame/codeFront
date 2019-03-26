@@ -36,6 +36,12 @@ export default new Vuex.Store({
     setUserCode (state, { character, f, code }) {
       Vue.set(state.characters[character].userFunctions(state.level)[f], 'userCode', code)
     },
+    resetUserCode (state, { character, f }) {
+      let func = state.characters[character].userFunctions(state.level)[f]
+      console.log(func.originalUserCode)
+      Vue.set(func, 'userCode', func.originalUserCode)
+      console.log(func.userCode)
+    },
     incLevel (state) {
       // Stop game
       Vue.set(state, 'running', false)

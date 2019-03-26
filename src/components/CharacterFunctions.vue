@@ -2,6 +2,7 @@
 <div class="character-functions">
   <div v-for="(func, key) in functions" :key="key">
     <character-function-editor
+      :characterKey="characterKey"
       :disabled="disabled"
       :func="func"
       :expanded="isExpanded(key)"

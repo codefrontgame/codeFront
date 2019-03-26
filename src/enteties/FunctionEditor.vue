@@ -19,6 +19,7 @@ export default {
   computed: {
     functionCode: {
       get () {
+        console.log(this.userCode)
         return `function ${this.functionName} (${this.parameters.join(', ')}) {\n` +
             this.userCode +
             '\n}'

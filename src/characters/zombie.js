@@ -46,6 +46,7 @@ class Zombie extends Character {
         parameters: [],
         error: null,
         userCode: '\t  return response.north;',
+        originalUserCode: '\t  return response.north;',
         actuate: moveActuator,
         execute ({ me, entities, board }) {
           let code = objectDefinition('response', {

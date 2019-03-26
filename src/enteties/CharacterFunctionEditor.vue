@@ -16,7 +16,7 @@
       {{ errorMessage() }}
     </div>
   </transition>
-</div>
+  <button class="button" @click="resetUserCode">Återställ</button></div>
 </template>
 
 <script>
@@ -25,6 +25,7 @@ export default {
   name: 'CharacterFunctionEditor',
   components: { FunctionEditor },
   props: {
+    characterKey: String,
     expanded: Boolean,
     func: Object,
     disabled: Boolean,
@@ -43,6 +44,13 @@ export default {
     },
     updateUserCode (code) {
       this.$emit('update:userCode', code)
+    },
+    resetUserCode () {
+      this.$store.commit('resetUserCode', {
+        character: this.characterKey,
+        f: this.func.name,
+      })
+      console.log(this.func)
     },
   },
 }
