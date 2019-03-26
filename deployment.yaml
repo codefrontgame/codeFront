@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: codefront-master
-  namespace: codefront
+#  namespace: codefront
   labels:
     app: codefront
 spec:
