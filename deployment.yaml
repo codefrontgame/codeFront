@@ -1,7 +1,8 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: example-codefront
+  name: codefront-master
+  namespece: codefront
   labels:
     app: codefront
 spec:
@@ -21,3 +22,5 @@ spec:
           image: ${CICD_IMAGE}:${CICD_EXECUTION_SEQUENCE}
           ports:
             - containerPort: 80
+              name: 80tcp02
+              protocol: TCP
