@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: example-codefront
+  labels:
+    app: codefront
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: codefront
+  template:
+    metadata:
+      labels:
+        app: codefront
+    spec:
+      imagePullSecrets:
+        - name: pipeline-docker-registry
+      containers:
+        - name: codefront
+          image: ${CICD_IMAGE}:${CICD_EXECUTION_SEQUENCE}
+          ports:
+            - containerPort: 80
