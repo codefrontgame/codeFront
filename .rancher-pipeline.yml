@@ -4,5 +4,5 @@ stages:
   - publishImageConfig:
       dockerfilePath: ./Dockerfile
       buildContext: .
-      tag: kandidat/codefront
+      tag: codefront:${CICD_EXECUTION_SEQUENCE}
 timeout: 60
