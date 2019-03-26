@@ -49,14 +49,6 @@ export default {
     grid-template-columns: auto 100px;
   }
   .button { // Lägger knappen längst ner till höger
-    background-color: forestgreen;
-    border: none;
-    color: white;
-    padding: 12px 10px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
     position: absolute;
     bottom: 5px;
     right: 5px;
