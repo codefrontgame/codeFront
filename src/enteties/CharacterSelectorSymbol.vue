@@ -1,6 +1,6 @@
 <template>
   <div v-if="this.withBorder">
-    <img :src="image" width="75" height="75" class="imageBorder">
+    <img :src="image" width="75" height="75" class="image border">
   </div>
   <div v-else>
     <img :src="image" width="75" height="75" class="image">
@@ -25,11 +25,7 @@ export default {
    margin-right: auto;
    margin-top: 10px;
  }
- .imageBorder {
-   display: block;
-   margin-left: auto;
-   margin-right: auto;
-   margin-top: 10px;
+ .border {
    border-style: solid;
    border-width: 5px;
  }
