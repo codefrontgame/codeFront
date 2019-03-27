@@ -6,6 +6,7 @@ import FireBat from '@/characters/firebat'
 import levels from '@/levels'
 import clone from '@/utility/clone'
 import Boulder from '@/characters/boulder'
+import WoodenTower from './characters/wooden-tower'
 
 Vue.use(Vuex)
 
@@ -23,6 +24,7 @@ export default new Vuex.Store({
       Zombie,
       FireBat,
       Boulder,
+      WoodenTower,
     ],
   },
   getters: {

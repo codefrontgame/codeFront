@@ -11,6 +11,7 @@
 <script>
 import VueP5 from 'vue-p5'
 import Character from '../characters/character'
+import Entity from '../characters/entity'
 
 export default {
   name: 'GameBoard',
@@ -66,6 +67,7 @@ export default {
           (err) => console.log('Failed to load asset: ' + path, err)
         )
       })
+      console.log(this.entities)
     },
     /**
      * Run before first draw loop
@@ -114,18 +116,18 @@ export default {
         try { // Abort if there is an error in the user code
           for (let i = 0; i < this.entities.length; i++) {
             // TODO example of damage dealt
-            this.entities[i].takeDamage({ dmg: 5 / fr })
             this.entities[i].update({
               sketch: sketch,
               ticks: 1 / fr,
               board: this.board,
               level: this.$store.getters['getLevel'],
               obstacles: this.obstacles,
+              entities: this.entities,
             })
           }
           // Kill dead entities
           this.entities = this.entities.filter(
-            (e) => e instanceof Character && e.health > 0
+            (e) => e instanceof Entity && e.health > 0
           )
         } catch (e) {
           console.log('User error: ', e)
