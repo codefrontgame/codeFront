@@ -99,6 +99,11 @@ export default {
       // Reset canvas with background image
       sketch.background(this.assets['assets/background.png'])
 
+      let level = this.$store.getters['getLevel']
+      sketch.textAlign(sketch.LEFT, sketch.TOP)
+      sketch.textSize(42)
+      sketch.text('Nivå: ' + level, 10, 10)
+
       // Get the current framerate
       let fr = sketch.getFrameRate()
       // Sometimes the sketch return a 0 framerate, if that's the case, use aim framerate
