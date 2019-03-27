@@ -1,16 +1,13 @@
-import HitBox from '../utility/hitbox'
+import HitBox from '@/utility/hitbox'
+import RectangularObstacle from '@/characters/rectangular-obstacle'
 
-class Character {
-  // Position of the character. Indicates where the character touches the ground
-  x = 0
-  y = 0
-  health = 100
-  size = 80
-  isAttacker = false //  Variable to check if character is attacker
-  constructor (x, y) {
-    this.x = x
-    this.y = y
-  }
+export default class Character extends RectangularObstacle {
+  /**
+   * Variable to check if character is attacker
+   * {boolean}
+   */
+  isAttacker
+
   /**
    * Returns the current set of userFunctions given the current level
    * @param level The current level
@@ -127,9 +124,13 @@ class Character {
    * Initiates a combat sequence
    * @param attack An attack object
    */
-  takeDamage(attack) {
+  takeDamage (attack) {
     this.health -= attack.dmg
   }
-}
 
-export default Character
+  /**
+   * The path to the image that is used to represent the character in the
+   * character selector.
+   */
+  avatar
+}

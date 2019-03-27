@@ -1,40 +1,26 @@
-import Character from './character'
+import Character from '@/characters/character'
 import esper from 'esper.js/dist/esper'
 import { objectDefinition, functionDefinition, callDefinition } from '@/utility/esper.js'
-import { displayCoordinates } from '@/utility/graphics'
-import HitBox from '../utility/hitbox'
 import moveActuator from '@/utility/actuators/move'
 
-class FireBat extends Character {
-  shadowSize = 0.27 // Percentage sprite that only is shadow
+export default class FireBat extends Character {
+  imageAnchor = {
+    x: 0.5,
+    y: 0.73,
+  }
+
   isAttacker = true
-  hitBoxes () {
-    return [
-      new HitBox(
-        this.x - 0.20,
-        this.x + 0.20,
-        this.y - 0.10,
-        this.y + 0.10,
-      ),
-    ]
-  }
-  draw ({ sketch, assets, board }) {
-    let img = assets['firebat']
-    let coordinates = displayCoordinates(sketch, board, this.x, this.y)
 
-    // Scaling for the image
-    let changeFactor = this.size * coordinates.perspective / img.width
-
-    let notShadow = (1 - this.shadowSize) // Percentage of sprite that's not shadow
-    sketch.image(
-      img,
-      coordinates.x - (img.width * changeFactor / 2), // make sure the feet of the character touches the coordinate
-      coordinates.y - (img.height * changeFactor * notShadow), // make sure the feet of the character touches the coordinate
-      img.width * changeFactor,
-      img.height * changeFactor
-    )
+  getAsset (assets) {
+    return assets[FireBat.assetPaths[0]]
   }
-  static image = 'assets/firebat.png'
+
+  static assetPaths = [
+    'assets/firebat.png',
+  ]
+
+  static avatar = 'assets/firebat.png'
+
   static userFunctionsMap = {
     0: {
       move: {
@@ -74,5 +60,3 @@ class FireBat extends Character {
     },
   }
 }
-
-export default FireBat

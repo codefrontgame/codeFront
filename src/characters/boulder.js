@@ -1,17 +1,16 @@
-import Obstacle from './obstacle'
-import { displayCoordinates } from '@/utility/graphics'
+import RectangularObstacle from './rectangular-obstacle'
 
-class Boulder extends Obstacle {
-  draw ({ sketch, assets, board }) {
-    let img = assets['rock']
-    let coordinates = displayCoordinates(sketch, board, this.x, this.y)
-
-    let changeFactor = this.size * coordinates.perspective / img.width
-    sketch.image(img, coordinates.x - (this.size * coordinates.perspective / 2), coordinates.y -
-            (img.height * changeFactor), img.width * changeFactor, img.height * changeFactor)
+export default class Boulder extends RectangularObstacle {
+  imageAnchor = {
+    x: 0.5,
+    y: 1,
   }
 
-  static image = 'assets/rock.svg'
-}
+  getAsset (assets) {
+    return assets[Boulder.assetPaths[0]]
+  }
 
-export default Boulder
+  static assetPaths = [
+    'assets/rock.svg',
+  ]
+}
