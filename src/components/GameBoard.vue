@@ -16,7 +16,7 @@ export default {
   name: 'GameBoard',
   data () {
     return {
-      assets: [], // Graphical assets (sprites)
+      assets: {}, // Graphical assetPaths (sprites)
       fr: 36, // Framerate aim
       board: { // Game board definition
         xTiles: 10, // Width
@@ -38,7 +38,7 @@ export default {
       },
     },
     obstacles () {
-      return this.$store.getters['getObstacles']
+      return this.$store.getters['getLevelObstacles']
     },
   },
   components: {
@@ -46,25 +46,24 @@ export default {
   },
   methods: {
     /**
-     * Run before loading all sketch assets
-     * Asynchronously loads all assets
+     * Run before loading all sketch assetPaths
+     * Asynchronously loads all assetPaths
      * @param sketch The p5.js sketch object
      */
     preload (sketch) {
-      // List assets
       let assets = [
-        { name: 'zombie', path: 'assets/test.svg' },
-        { name: 'firebat', path: 'assets/firebat.png' },
-        { name: 'background', path: 'assets/background.png' },
-        { name: 'rock', path: 'assets/rock.svg' },
+        'assets/background.png',
       ]
 
-      // Load assets
-      assets.forEach(({ name, path }) => {
-        this.assets[name] = sketch.loadImage(
+      this.$store.getters['getGameObjects'].forEach(
+        (o) => o.assetPaths.forEach((p) => assets.push(p))
+      )
+
+      assets.forEach((path) => {
+        this.assets[path] = sketch.loadImage(
           path,
-          () => console.log('Loaded ' + name + ' asset'),
-          (err) => console.log('Failed to load ' + name, err)
+          () => console.log('Loaded asset: ' + path),
+          (err) => console.log('Failed to load asset: ' + path, err)
         )
       })
     },
@@ -98,7 +97,7 @@ export default {
      */
     draw (sketch) {
       // Reset canvas with background image
-      sketch.background(this.assets['background'])
+      sketch.background(this.assets['assets/background.png'])
 
       // Get the current framerate
       let fr = sketch.getFrameRate()
@@ -123,7 +122,6 @@ export default {
           this.entities = this.entities.filter(
             (e) => e instanceof Character && e.health > 0
           )
-
         } catch (e) {
           console.log('User error: ', e)
           this.$store.commit('setRunStatus', false) // Stop game
