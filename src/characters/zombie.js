@@ -33,6 +33,11 @@ class Zombie extends Character {
       img.width * changeFactor,
       img.height * changeFactor
     )
+    //sketch.textFont()
+    sketch.textAlign(sketch.CENTER)
+    sketch.textSize(30)
+
+    sketch.text(Math.round(this.health), coordinates.x, coordinates.y - (img.height * changeFactor * notShadow))
   }
   static image = 'assets/zombie.png'
   static userFunctionsMap = {

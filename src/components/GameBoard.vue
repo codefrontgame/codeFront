@@ -10,6 +10,7 @@
 
 <script>
 import VueP5 from 'vue-p5'
+import Character from '../characters/character'
 
 export default {
   name: 'GameBoard',
@@ -28,8 +29,13 @@ export default {
     }
   },
   computed: {
-    entities () {
-      return this.$store.getters['getEntities']
+    entities: {
+      get () {
+        return this.$store.getters['getEntities']
+      },
+      set (entities) {
+        this.$store.commit('setEntities', entities)
+      },
     },
     obstacles () {
       return this.$store.getters['getObstacles']
@@ -79,7 +85,11 @@ export default {
      * @return Boolean value
      */
     hasWon () {
-      return this.entities.filter((e) => e.isAttacker).every((e) => e.y + 0.1 >= this.board.yTiles)
+      let attackers = this.entities.filter((e) => e.isAttacker)
+      return attackers.every((e) => e.y + 0.1 >= this.board.yTiles) && attackers.length > 0
+    },
+    hasLost () {
+      return this.entities.filter((e) => e.isAttacker).length === 0
     },
     /**
      * The p5.js draw loop
@@ -99,6 +109,8 @@ export default {
       if (this.$store.getters['getRunStatus']) {
         try { // Abort if there is an error in the user code
           for (let i = 0; i < this.entities.length; i++) {
+            // TODO example of damage dealt
+            this.entities[i].takeDamage({ dmg: 5 / fr })
             this.entities[i].update({
               sketch: sketch,
               ticks: 1 / fr,
@@ -107,6 +119,11 @@ export default {
               obstacles: this.obstacles,
             })
           }
+          // Kill dead entities
+          this.entities = this.entities.filter(
+            (e) => e instanceof Character && e.health > 0
+          )
+
         } catch (e) {
           console.log('User error: ', e)
           this.$store.commit('setRunStatus', false) // Stop game
@@ -128,6 +145,8 @@ export default {
       // Check win condition and increase level
       if (this.hasWon()) {
         this.$store.commit('incLevel')
+      } else if (this.hasLost()) {
+        this.$store.commit('setRunStatus', false)
       }
     },
   },

@@ -53,6 +53,9 @@ export default new Vuex.Store({
       }
       Vue.set(state, 'running', status)
     },
+    setEntities (state, entities) {
+      Vue.set(state, 'entities', entities)
+    },
   },
   actions: {},
 })
