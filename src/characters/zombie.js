@@ -33,6 +33,11 @@ class Zombie extends Character {
       img.width * changeFactor,
       img.height * changeFactor
     )
+    //sketch.textFont()
+    sketch.textAlign(sketch.CENTER)
+    sketch.textSize(30)
+
+    sketch.text(Math.round(this.health), coordinates.x, coordinates.y - (img.height * changeFactor * notShadow))
   }
   static image = 'assets/zombie.png'
   static userFunctionsMap = {
@@ -41,7 +46,7 @@ class Zombie extends Character {
         cn: 'Gå',
         name: 'move',
         description: 'Få zombien att röra sig ända till slutet av fältet. För att säga åt zombien vilket håll den ' +
-          'ska röra sig åt skriver man till exempel return response.north. istället för north kan man skriva ' +
+          'ska röra sig åt skriver man till exempel return response.north. Istället för north kan man skriva ' +
           'east, west eller south',
         parameters: [],
         error: null,
