@@ -3,10 +3,21 @@ import RectangularObstacle from '@/characters/rectangular-obstacle'
 
 export default class Character extends RectangularObstacle {
   /**
+   * The health of the character.
+   * @type {number}
+   */
+  health
+
+  /**
    * Variable to check if character is attacker
-   * {boolean}
+   * @type {boolean}
    */
   isAttacker
+
+  constructor (x, y, width, depth, initHealth) {
+    super(x, y, width, depth)
+    this.health = initHealth
+  }
 
   /**
    * Returns the current set of userFunctions given the current level

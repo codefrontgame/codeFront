@@ -147,8 +147,11 @@ export default {
 
       // Check win condition and increase level
       if (this.hasWon()) {
+        console.log('won!')
         this.$store.commit('incLevel')
       } else if (this.hasLost()) {
+        console.log('lost')
+        console.log(this.$store.getters['getEntities'])
         this.$store.commit('setRunStatus', false)
       }
     },
