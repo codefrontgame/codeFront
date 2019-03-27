@@ -16,7 +16,9 @@
       {{ errorMessage() }}
     </div>
   </transition>
-  <button class="button" @click="resetUserCode">Återställ</button></div>
+  <button v-if="!disabled" class="button" @click="resetUserCode">Återställ</button>
+  <button v-else class="disabled button" @click="resetUserCode">Återställ</button>
+</div>
 </template>
 
 <script>
@@ -46,11 +48,13 @@ export default {
       this.$emit('update:userCode', code)
     },
     resetUserCode () {
-      this.$store.commit('resetUserCode', {
-        character: this.characterKey,
-        f: this.func.name,
-      })
-      console.log(this.func)
+      if (!this.disabled) {
+        this.$store.commit('resetUserCode', {
+          character: this.characterKey,
+          f: this.func.name,
+        })
+        console.log(this.func)
+      }
     },
   },
 }
@@ -72,5 +76,8 @@ export default {
 }
 .fade-enter, .fade-leave-to, .fade-leave {
   opacity: 0;
+}
+.disabled {
+  background-color: darkgray;
 }
 </style>
