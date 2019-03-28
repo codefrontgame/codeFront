@@ -2,13 +2,13 @@
 <div class="ide">
   <div>
     <character-functions
-      :character-key="selectedCharacterId"
+      :character="selectedCharacter"
       :disabled="running"
     />
     <button class="button" @click="runBtn">{{ runBtnText }}</button>
     <br>
   </div>
-  <character-selector :selected.sync="selectedCharacterId" />
+  <character-selector :selected.sync="selectedCharacter" />
 </div>
 
 </template>
@@ -17,18 +17,18 @@
 import { mapGetters } from 'vuex'
 import CharacterFunctions from './CharacterFunctions'
 import CharacterSelector from './CharacterSelector'
+import Zombie from '../characters/zombie'
 
 export default {
   name: 'IDE',
   components: { CharacterFunctions, CharacterSelector },
   data () {
     return {
-      selectedCharacterId: 'zombie',
+      selectedCharacter: Zombie,
     }
   },
   computed: {
     ...mapGetters({
-      characters: 'getCharacters',
       running: 'getRunStatus',
     }),
     runBtnText () {

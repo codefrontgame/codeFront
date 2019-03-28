@@ -27,7 +27,7 @@ export default {
   name: 'CharacterFunctionEditor',
   components: { FunctionEditor },
   props: {
-    characterKey: String,
+    character: Function,
     expanded: Boolean,
     func: Object,
     disabled: Boolean,
@@ -50,10 +50,9 @@ export default {
     resetUserCode () {
       if (!this.disabled) {
         this.$store.commit('resetUserCode', {
-          character: this.characterKey,
+          character: this.character.name,
           f: this.func.name,
         })
-        console.log(this.func)
       }
     },
   },
