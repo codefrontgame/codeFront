@@ -10,7 +10,7 @@
 
 <script>
 import VueP5 from 'vue-p5'
-import Character from '../characters/character'
+import Entity from '../characters/entity'
 
 export default {
   name: 'GameBoard',
@@ -26,6 +26,10 @@ export default {
         start: 0.085, // Where the board starts, given in percentage from the bottom
         end: 0.71, // Where the board ends, given in percentage from the bottom
       },
+      mousePos: {
+        x: 0,
+        y: 0,
+      }
     }
   },
   computed: {
@@ -102,6 +106,7 @@ export default {
       let level = this.$store.getters['getLevel']
       sketch.textAlign(sketch.LEFT, sketch.TOP)
       sketch.textSize(42)
+      sketch.stroke(0)
       sketch.text('Nivå: ' + level, 10, 10)
 
       // Get the current framerate
@@ -114,18 +119,18 @@ export default {
         try { // Abort if there is an error in the user code
           for (let i = 0; i < this.entities.length; i++) {
             // TODO example of damage dealt
-            this.entities[i].takeDamage({ dmg: 5 / fr })
             this.entities[i].update({
               sketch: sketch,
               ticks: 1 / fr,
               board: this.board,
               level: this.$store.getters['getLevel'],
               obstacles: this.obstacles,
+              entities: this.entities,
             })
           }
           // Kill dead entities
           this.entities = this.entities.filter(
-            (e) => e instanceof Character && e.health > 0
+            (e) => e instanceof Entity && e.health > 0
           )
         } catch (e) {
           console.log('User error: ', e)
@@ -136,14 +141,28 @@ export default {
       // Redraw all entities and obstacles
       let drawables = this.entities.concat(this.obstacles)
       drawables.sort((a, b) => b.y - a.y)
-      for (let i = 0; i < drawables.length; i++) {
-        drawables[i].draw({
+
+      drawables.forEach(
+        (d) => d.groundDraw({
           sketch: sketch,
           assets: this.assets,
           ticks: 1 / fr,
           board: this.board,
-        })
-      }
+        }))
+      drawables.forEach(
+        (d) => d.draw({
+          sketch: sketch,
+          assets: this.assets,
+          ticks: 1 / fr,
+          board: this.board,
+        }))
+      drawables.forEach(
+        (d) => d.airDraw({
+          sketch: sketch,
+          assets: this.assets,
+          ticks: 1 / fr,
+          board: this.board,
+        }))
 
       // Check win condition and increase level
       if (this.hasWon()) {

@@ -1,23 +1,17 @@
-import HitBox from '@/utility/hitbox'
-import RectangularObstacle from '@/characters/rectangular-obstacle'
+import Entity from '@/characters/entity'
 
-export default class Character extends RectangularObstacle {
+/**
+ * A Character is a player controlled entity that exists on the game board. All
+ * Characters are therefore attackers and have User Functions. They also have an
+ * avatar that is used to represent the Character in the character selection
+ * part of the program.
+ */
+export default class Character extends Entity {
   /**
-   * The health of the character.
-   * @type {number}
-   */
-  health
-
-  /**
-   * Variable to check if character is attacker
+   * All Characters are controlled by the player and are therefore attackers.
    * @type {boolean}
    */
-  isAttacker
-
-  constructor (x, y, width, depth, initHealth) {
-    super(x, y, width, depth)
-    this.health = initHealth
-  }
+  isAttacker = true
 
   /**
    * Returns the current set of userFunctions given the current level
@@ -111,32 +105,6 @@ export default class Character extends RectangularObstacle {
       this.x -= dx
       this.y -= dy
     }
-  }
-
-  /**
-   * Checks whether the character will collide with a list of obstacles
-   * in the near future.
-   * @param {Array} obstacles: the list of obstacles to check collition with
-   * @returns {boolean} the character will collide in the near future
-   */
-  willCollide (obstacles) {
-    let offset = 0.1
-    return obstacles.some(
-      (o) => o.hitBoxes().some(
-        (h1) => this.hitBoxes().some((h2) => {
-          let offseth1 = new HitBox(h1.x1 - offset, h1.x2 + offset, h1.y1 - offset, h1.y2 + offset)
-          return offseth1.collidesWith(h2)
-        })
-      )
-    )
-  }
-
-  /**
-   * Initiates a combat sequence
-   * @param attack An attack object
-   */
-  takeDamage (attack) {
-    this.health -= attack.dmg
   }
 
   /**

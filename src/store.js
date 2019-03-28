@@ -7,6 +7,7 @@ import levels from '@/levels'
 import clone from '@/utility/clone'
 import Boulder from '@/characters/boulder'
 import Character from './characters/character'
+import WoodenTower from './characters/wooden-tower'
 
 Vue.use(Vuex)
 
@@ -14,6 +15,7 @@ let initialGameObjects = [ // List of all game objects
   Zombie,
   FireBat,
   Boulder,
+  WoodenTower,
 ]
 
 export default new Vuex.Store({

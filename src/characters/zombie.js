@@ -9,8 +9,6 @@ export default class Zombie extends Character {
     y: 0.73,
   }
 
-  isAttacker = true
-
   getAsset (assets) {
     return assets[Zombie.assetPaths[0]]
   }

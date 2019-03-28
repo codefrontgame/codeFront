@@ -68,14 +68,6 @@ export default {
       Vue.set(this.expanded[this.character], key, value)
     },
   },
-  watch: {
-    functions: {
-      deep: true,
-      handler (val) {
-        console.log(val)
-      },
-    },
-  },
   components: {
     CharacterFunctionEditor,
   },
