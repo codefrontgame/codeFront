@@ -5,6 +5,7 @@ import Zombie from '@/characters/zombie'
 import FireBat from '@/characters/firebat'
 import levels from '@/levels'
 import clone from '@/utility/clone'
+import Boulder from '@/characters/boulder'
 
 Vue.use(Vuex)
 
@@ -14,22 +15,28 @@ export default new Vuex.Store({
     entities: clone(levels[0].entities), // Entities currently on thr gameboard
     levels, // List of all levels
     level: 0, // The current level
-    characters: { // List of all characters
+    characters: {
       zombie: Zombie,
       fireBat: FireBat,
     },
+    gameObjects: [ // List of all game objects
+      Zombie,
+      FireBat,
+      Boulder,
+    ],
   },
   getters: {
     getRunStatus: state => state.running,
-    getUserCode: state => (character, f) => {
+    getUserCode: (state) => (character, f) => {
       return state.characters[character].userFunctions(state.level)[f]
     },
     getEntities: state => state.entities,
     getUserFunctions: state => (character) => {
       return state.characters[character].userFunctions(state.level)
     },
+    getGameObjects: state => state.gameObjects,
     getCharacters: state => state.characters,
-    getObstacles: state => state.levels[state.level].obstacles,
+    getLevelObstacles: state => state.levels[state.level].obstacles,
     getLevel: state => state.level,
   },
   mutations: {
@@ -58,6 +65,9 @@ export default new Vuex.Store({
         Vue.set(state, 'entities', clone(state.levels[state.level].entities))
       }
       Vue.set(state, 'running', status)
+    },
+    setEntities (state, entities) {
+      Vue.set(state, 'entities', entities)
     },
   },
   actions: {},

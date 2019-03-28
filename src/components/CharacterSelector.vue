@@ -2,10 +2,10 @@
 <div class="character-selector">
   <div :key="key" v-for="(character, key) in characters" @click="select(key)">
     <div v-if="key === selected">
-      <character-selector-symbol :name="character.name" :image="character.image" :withBorder="true"/>
+      <character-selector-symbol :name="character.name" :image="character.avatar" :withBorder="true"/>
     </div>
     <div v-else>
-      <character-selector-symbol :name="character.name" :image="character.image" :withBorder="false"/>
+      <character-selector-symbol :name="character.name" :image="character.avatar" :withBorder="false"/>
     </div>
   </div>
 </div>

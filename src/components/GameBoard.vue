@@ -10,12 +10,13 @@
 
 <script>
 import VueP5 from 'vue-p5'
+import Character from '../characters/character'
 
 export default {
   name: 'GameBoard',
   data () {
     return {
-      assets: [], // Graphical assets (sprites)
+      assets: {}, // Graphical assetPaths (sprites)
       fr: 36, // Framerate aim
       board: { // Game board definition
         xTiles: 10, // Width
@@ -28,11 +29,16 @@ export default {
     }
   },
   computed: {
-    entities () {
-      return this.$store.getters['getEntities']
+    entities: {
+      get () {
+        return this.$store.getters['getEntities']
+      },
+      set (entities) {
+        this.$store.commit('setEntities', entities)
+      },
     },
     obstacles () {
-      return this.$store.getters['getObstacles']
+      return this.$store.getters['getLevelObstacles']
     },
   },
   components: {
@@ -40,25 +46,24 @@ export default {
   },
   methods: {
     /**
-     * Run before loading all sketch assets
-     * Asynchronously loads all assets
+     * Run before loading all sketch assetPaths
+     * Asynchronously loads all assetPaths
      * @param sketch The p5.js sketch object
      */
     preload (sketch) {
-      // List assets
       let assets = [
-        { name: 'zombie', path: 'assets/test.svg' },
-        { name: 'firebat', path: 'assets/firebat.png' },
-        { name: 'background', path: 'assets/background.png' },
-        { name: 'rock', path: 'assets/rock.svg' },
+        'assets/background.png',
       ]
 
-      // Load assets
-      assets.forEach(({ name, path }) => {
-        this.assets[name] = sketch.loadImage(
+      this.$store.getters['getGameObjects'].forEach(
+        (o) => o.assetPaths.forEach((p) => assets.push(p))
+      )
+
+      assets.forEach((path) => {
+        this.assets[path] = sketch.loadImage(
           path,
-          () => console.log('Loaded ' + name + ' asset'),
-          (err) => console.log('Failed to load ' + name, err)
+          () => console.log('Loaded asset: ' + path),
+          (err) => console.log('Failed to load asset: ' + path, err)
         )
       })
     },
@@ -79,7 +84,11 @@ export default {
      * @return Boolean value
      */
     hasWon () {
-      return this.entities.filter((e) => e.isAttacker).every((e) => e.y + 0.1 >= this.board.yTiles)
+      let attackers = this.entities.filter((e) => e.isAttacker)
+      return attackers.every((e) => e.y + 0.1 >= this.board.yTiles) && attackers.length > 0
+    },
+    hasLost () {
+      return this.entities.filter((e) => e.isAttacker).length === 0
     },
     /**
      * The p5.js draw loop
@@ -88,7 +97,12 @@ export default {
      */
     draw (sketch) {
       // Reset canvas with background image
-      sketch.background(this.assets['background'])
+      sketch.background(this.assets['assets/background.png'])
+
+      let level = this.$store.getters['getLevel']
+      sketch.textAlign(sketch.LEFT, sketch.TOP)
+      sketch.textSize(42)
+      sketch.text('Nivå: ' + level, 10, 10)
 
       // Get the current framerate
       let fr = sketch.getFrameRate()
@@ -99,6 +113,8 @@ export default {
       if (this.$store.getters['getRunStatus']) {
         try { // Abort if there is an error in the user code
           for (let i = 0; i < this.entities.length; i++) {
+            // TODO example of damage dealt
+            this.entities[i].takeDamage({ dmg: 5 / fr })
             this.entities[i].update({
               sketch: sketch,
               ticks: 1 / fr,
@@ -107,6 +123,10 @@ export default {
               obstacles: this.obstacles,
             })
           }
+          // Kill dead entities
+          this.entities = this.entities.filter(
+            (e) => e instanceof Character && e.health > 0
+          )
         } catch (e) {
           console.log('User error: ', e)
           this.$store.commit('setRunStatus', false) // Stop game
@@ -127,7 +147,12 @@ export default {
 
       // Check win condition and increase level
       if (this.hasWon()) {
+        console.log('won!')
         this.$store.commit('incLevel')
+      } else if (this.hasLost()) {
+        console.log('lost')
+        console.log(this.$store.getters['getEntities'])
+        this.$store.commit('setRunStatus', false)
       }
     },
   },
