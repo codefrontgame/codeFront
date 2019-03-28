@@ -40,9 +40,9 @@ export default class GameObject {
 
   /**
    * Draws the GameObject on the screen.
-   * @param sketch
-   * @param assets
-   * @param board
+   * @param sketch p5js sketch object
+   * @param assets the list of assets loaded into the canvas
+   * @param board the game board definition
    */
   draw ({ sketch, assets, board }) {
     let img = this.getAsset(assets)
@@ -61,10 +61,48 @@ export default class GameObject {
   }
 
   /**
+   * Used to draw the things that the object places on the ground and therefore
+   * should appear under all the other entities' pictures.
+   * @param sketch p5js sketch object
+   * @param assets the list of assets loaded into the canvas
+   * @param board the game board definition
+   */
+  groundDraw ({ sketch, assets, board }) { }
+
+  /**
+   * Used to draw the things that the object places in the air and therefore
+   * should appear above all the other entities' pictures.
+   * @param sketch p5js sketch object
+   * @param assets the list of assets loaded into the canvas
+   * @param board the game board definition
+   */
+  airDraw ({ sketch, assets, board }) { }
+
+  /**
    * Gets the asset to use given the current state of this object.
    */
   getAsset (assets) {
     throw new Error('You have to implement the method: getAsset')
+  }
+
+  /**
+   * Determines whether the mouse is currently over the Game Object.
+   * @param sketch p5js sketch object
+   * @param assets the list of assets loaded into the canvas
+   * @param board the game board definition
+   * @returns {boolean}
+   */
+  isMouseOver ({ sketch, assets, board }) {
+    let img = this.getAsset(assets)
+    let coordinates = displayCoordinates(sketch, board, this.x, this.y)
+
+    // Scaling for the image
+    let changeFactor = this.size * coordinates.perspective / img.width
+
+    return sketch.mouseX >= coordinates.x - img.width * changeFactor / 2 &&
+      sketch.mouseX <= coordinates.x + img.width * changeFactor / 2 &&
+      sketch.mouseY >= coordinates.y - (img.height * changeFactor * this.imageAnchor.y) &&
+      sketch.mouseY <= coordinates.y + img.height * changeFactor / 2
   }
 
   /**

@@ -28,3 +28,63 @@ export function displayCoordinates (sketch, board, boardX, boardY) {
   // Also return the perspective as its needed to resize sprites proportionally
   return { x, y, perspective: boardCover }
 }
+
+/**
+ * Draws a circle on the board that is centered around the given x and y coordinates.
+ * The circle can vary in size and in resolution.
+ * @param sketch p5.js sketch object
+ * @param board A representation of the game board, holding its dimensions and
+ *                position on the sketch
+ * @param centerBoardX The logical center x-position of the circle
+ * @param centerBoardY The logical center y-position of the circle
+ * @param radius The radius of the circle
+ * @param resolution The resolution of the circle (the number of points that will
+ *                     describe the circumference)
+ */
+export function drawCircle (sketch, board, centerBoardX, centerBoardY, radius, resolution) {
+  // The number to increase the angle with to get the next point
+  let angleStep = Math.PI * 2 / resolution
+
+  let angle = 0
+  let points = [{ x: radius, y: 0 }]
+
+  // Generate points for the circumference of the circle
+  // with a center in (0,0) and the given radius.
+  for (let i = 0; i < resolution - 1; i++) {
+    angle += angleStep
+    points.push({
+      x: Math.cos(angle) * radius,
+      y: Math.sin(angle) * radius,
+    })
+  }
+
+  // Map the points to real positions on the screen
+  points = points.map(({ x, y }) => {
+    let display = displayCoordinates(
+      sketch,
+      board,
+      x + centerBoardX,
+      y + centerBoardY
+    )
+    return {
+      x: display.x,
+      y: display.y,
+    }
+  })
+
+  // Draw lines between the points to for the circle
+  sketch.line(
+    points[resolution - 1].x,
+    points[resolution - 1].y,
+    points[0].x,
+    points[0].y
+  )
+  for (let i = 0; i < resolution - 1; i++) {
+    sketch.line(
+      points[i].x,
+      points[i].y,
+      points[i + 1].x,
+      points[i + 1].y
+    )
+  }
+}
