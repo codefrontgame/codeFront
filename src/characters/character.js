@@ -1,4 +1,3 @@
-import HitBox from '@/utility/hitbox'
 import Entity from '@/characters/entity'
 
 /**

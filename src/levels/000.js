@@ -10,12 +10,12 @@ export default new Level(
       'The second hint',
     ],
   },
-  [ // Helptexts
+  [ // Help-texts
     'Välkommen till codeFront ...',
     '',
   ],
   [ // Entities
-    new WoodenTower(7, 5, 1, 1, 1000),
+    new WoodenTower(7, 10, 1, 1, 100),
     new Zombie(5, 0, 1, 1, 100),
   ],
   [] // Obstacles

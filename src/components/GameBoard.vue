@@ -10,7 +10,6 @@
 
 <script>
 import VueP5 from 'vue-p5'
-import Character from '../characters/character'
 import Entity from '../characters/entity'
 
 export default {
@@ -27,6 +26,10 @@ export default {
         start: 0.085, // Where the board starts, given in percentage from the bottom
         end: 0.71, // Where the board ends, given in percentage from the bottom
       },
+      mousePos: {
+        x: 0,
+        y: 0,
+      }
     }
   },
   computed: {
@@ -67,7 +70,6 @@ export default {
           (err) => console.log('Failed to load asset: ' + path, err)
         )
       })
-      console.log(this.entities)
     },
     /**
      * Run before first draw loop
@@ -104,6 +106,7 @@ export default {
       let level = this.$store.getters['getLevel']
       sketch.textAlign(sketch.LEFT, sketch.TOP)
       sketch.textSize(42)
+      sketch.stroke(0)
       sketch.text('Nivå: ' + level, 10, 10)
 
       // Get the current framerate
@@ -138,14 +141,28 @@ export default {
       // Redraw all entities and obstacles
       let drawables = this.entities.concat(this.obstacles)
       drawables.sort((a, b) => b.y - a.y)
-      for (let i = 0; i < drawables.length; i++) {
-        drawables[i].draw({
+
+      drawables.forEach(
+        (d) => d.groundDraw({
           sketch: sketch,
           assets: this.assets,
           ticks: 1 / fr,
           board: this.board,
-        })
-      }
+        }))
+      drawables.forEach(
+        (d) => d.draw({
+          sketch: sketch,
+          assets: this.assets,
+          ticks: 1 / fr,
+          board: this.board,
+        }))
+      drawables.forEach(
+        (d) => d.airDraw({
+          sketch: sketch,
+          assets: this.assets,
+          ticks: 1 / fr,
+          board: this.board,
+        }))
 
       // Check win condition and increase level
       if (this.hasWon()) {

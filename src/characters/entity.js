@@ -37,6 +37,16 @@ export default class Entity extends RectangularObstacle {
 
   draw ({ sketch, assets, board }) {
     super.draw({ sketch, assets, board })
+    this.showHealth({ sketch, assets, board })
+  }
+
+  /**
+   * Displays the health of the entity on top of the entity.
+   * @param sketch p5js sketch object
+   * @param assets the list of assets loaded into the canvas
+   * @param board the game board definition
+   */
+  showHealth ({ sketch, assets, board }) {
     let img = this.getAsset(assets)
     let coordinates = displayCoordinates(sketch, board, this.x, this.y)
 
@@ -45,14 +55,20 @@ export default class Entity extends RectangularObstacle {
 
     sketch.textAlign(sketch.CENTER, sketch.BOTTOM)
     sketch.textSize(30)
+    sketch.strokeWeight(0)
+    sketch.stroke(0)
 
-    sketch.text(Math.round(this.health), coordinates.x, coordinates.y - (img.height * changeFactor * this.imageAnchor.y))
+    sketch.text(
+      Math.round(this.health),
+      coordinates.x,
+      coordinates.y - (img.height * changeFactor * this.imageAnchor.y)
+    )
   }
 
   /**
    * Checks whether the character will collide with a list of obstacles
    * in the near future.
-   * @param {Array} obstacles: the list of obstacles to check collition with
+   * @param {Array} obstacles: the list of obstacles to check collision with
    * @returns {boolean} the character will collide in the near future
    */
   willCollide (obstacles) {

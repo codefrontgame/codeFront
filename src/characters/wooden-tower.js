@@ -1,6 +1,9 @@
 import Entity from './entity'
+import { drawCircle } from '../utility/graphics'
 
 export default class WoodenTower extends Entity {
+  size = 200
+
   imageAnchor = {
     x: 0.5,
     y: 0.6,
@@ -14,6 +17,10 @@ export default class WoodenTower extends Entity {
    */
   damageRange = 4
 
+  /**
+   * The damage made per second when dealing damage.
+   * @type {number}
+   */
   attackDamage = 10
 
   update ({ ticks, board, level, obstacles, entities }) {
@@ -26,6 +33,16 @@ export default class WoodenTower extends Entity {
         e.takeDamage({ dmg: this.attackDamage * ticks })
       }
     })
+  }
+
+  groundDraw ({ sketch, assets, board }) {
+    super.draw({ sketch, assets, board })
+
+    if (this.isMouseOver({ sketch, assets, board })) {
+      sketch.strokeWeight(6)
+      sketch.stroke(220, 0, 0, 50)
+      drawCircle(sketch, board, this.x, this.y, this.damageRange, 1000)
+    }
   }
 
   getAsset (assets) {
