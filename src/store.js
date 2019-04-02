@@ -75,7 +75,7 @@ export default new Vuex.Store({
   actions: {},
 })
 
-function getFunctions(gameObjects, level) {
+function getFunctions (gameObjects, level) {
   let functions = {}
   let characters = gameObjects.filter(Obj => (new Obj()) instanceof Character)
   for (let i = 0; i < characters.length; i++) {
