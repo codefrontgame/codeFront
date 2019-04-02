@@ -71,6 +71,11 @@ export default class Zombie extends Character {
           '\t} else {\n' +
           '\t\treturn response.north;\n' +
           '\t}',
+        originalUserCode: '\tif (willCollide) {\n' +
+          '\t\treturn response.north;\n' +
+          '\t} else {\n' +
+          '\t\treturn response.north;\n' +
+          '\t}',
         actuate: moveActuator,
         execute ({ me, entities, board, obstacles }) {
           let code = objectDefinition('response', {
