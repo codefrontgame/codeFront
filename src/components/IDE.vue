@@ -2,13 +2,13 @@
 <div class="ide">
   <div>
     <character-functions
-      :character-key="selectedCharacterId"
+      :character="selectedCharacter"
       :disabled="running"
     />
     <button class="button" @click="runBtn">{{ runBtnText }}</button>
     <br>
   </div>
-  <character-selector :selected.sync="selectedCharacterId" />
+  <character-selector :selected.sync="selectedCharacter" />
 </div>
 
 </template>
@@ -17,18 +17,18 @@
 import { mapGetters } from 'vuex'
 import CharacterFunctions from './CharacterFunctions'
 import CharacterSelector from './CharacterSelector'
+import Zombie from '../characters/zombie'
 
 export default {
   name: 'IDE',
   components: { CharacterFunctions, CharacterSelector },
   data () {
     return {
-      selectedCharacterId: 'zombie',
+      selectedCharacter: Zombie,
     }
   },
   computed: {
     ...mapGetters({
-      characters: 'getCharacters',
       running: 'getRunStatus',
     }),
     runBtnText () {
@@ -49,14 +49,6 @@ export default {
     grid-template-columns: auto 100px;
   }
   .button { // Lägger knappen längst ner till höger
-    background-color: forestgreen;
-    border: none;
-    color: white;
-    padding: 12px 10px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
     position: absolute;
     bottom: 5px;
     right: 5px;

@@ -16,6 +16,8 @@
       {{ errorMessage() }}
     </div>
   </transition>
+  <button v-if="!disabled" class="button" @click="resetUserCode">Återställ</button>
+  <button v-else class="disabled button" @click="resetUserCode">Återställ</button>
 </div>
 </template>
 
@@ -25,6 +27,7 @@ export default {
   name: 'CharacterFunctionEditor',
   components: { FunctionEditor },
   props: {
+    character: Function,
     expanded: Boolean,
     func: Object,
     disabled: Boolean,
@@ -43,6 +46,14 @@ export default {
     },
     updateUserCode (code) {
       this.$emit('update:userCode', code)
+    },
+    resetUserCode () {
+      if (!this.disabled) {
+        this.$store.commit('resetUserCode', {
+          character: this.character.name,
+          f: this.func.name,
+        })
+      }
     },
   },
 }
@@ -64,5 +75,8 @@ export default {
 }
 .fade-enter, .fade-leave-to, .fade-leave {
   opacity: 0;
+}
+.disabled {
+  background-color: darkgray;
 }
 </style>

@@ -29,7 +29,7 @@ export default {
       mousePos: {
         x: 0,
         y: 0,
-      }
+      },
     }
   },
   computed: {

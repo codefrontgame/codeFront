@@ -20,5 +20,15 @@ body {
   .app{
     height: 100vh;
   }
+.button {
+  background-color: forestgreen;
+  border: none;
+  color: white;
+  padding: 12px 10px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+}
 
 </style>

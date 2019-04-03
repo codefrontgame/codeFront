@@ -30,6 +30,7 @@ export default class Zombie extends Character {
         parameters: [],
         error: null,
         userCode: '\t  return response.north;',
+        originalUserCode: '\t  return response.north;',
         actuate: moveActuator,
         execute ({ me, entities, board }) {
           let code = objectDefinition('response', {
@@ -66,6 +67,11 @@ export default class Zombie extends Character {
         parameters: ['willCollide'],
         error: null,
         userCode: '\tif (willCollide) {\n' +
+          '\t\treturn response.north;\n' +
+          '\t} else {\n' +
+          '\t\treturn response.north;\n' +
+          '\t}',
+        originalUserCode: '\tif (willCollide) {\n' +
           '\t\treturn response.north;\n' +
           '\t} else {\n' +
           '\t\treturn response.north;\n' +

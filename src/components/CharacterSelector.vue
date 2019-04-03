@@ -1,7 +1,7 @@
 <template>
 <div class="character-selector">
-  <div :key="key" v-for="(character, key) in characters" @click="select(key)">
-    <div v-if="key === selected">
+  <div :key="key" v-for="(character, key) in characters" @click="select(character)">
+    <div v-if="character === selected">
       <character-selector-symbol :name="character.name" :image="character.avatar" :withBorder="true"/>
     </div>
     <div v-else>
@@ -16,7 +16,7 @@ import CharacterSelectorSymbol from '@/enteties/CharacterSelectorSymbol'
 export default {
   name: 'CharacterSelector',
   props: {
-    selected: String, // Name
+    selected: Function, // the character object
   },
   computed: {
     characters () {
@@ -24,8 +24,8 @@ export default {
     },
   },
   methods: {
-    select (key) {
-      this.$emit('update:selected', key)
+    select (character) {
+      this.$emit('update:selected', character)
     },
   },
   components: { CharacterSelectorSymbol },
