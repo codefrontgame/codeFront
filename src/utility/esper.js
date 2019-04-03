@@ -5,13 +5,14 @@
  * @return {string} Code to the define the object variable
  */
 export function objectDefinition (name, object) {
-  return 'let ' + name + ' = ' + JSON.stringify(object) + ';\n'
+  return enumDefinition(name, object)
 }
 
 export function enumDefinition (name, object) {
-  let enumCode = 'class ' + name + '(Enum):\n'
-  enumCode += Object.keys(object).map((key) => '\t' + key + ' = \'' + object[key] + '\'').join('\n')
-  return enumCode + '\n'
+  let enumCode = 'class ' + name + '_class:\n'
+  enumCode += Object.keys(object).map((key) => '\t' + key + ' = \'' + object[key] + '\'').join('\n') + '\n'
+  enumCode += name + ' = ' + name + '_class()\n'
+  return enumCode
 }
 
 /**
@@ -47,3 +48,8 @@ export function functionDefinition (name, parameters, body) {
 export function callDefinition (name, ...parameters) {
   return name + '(' + parameters.join(', ') + ')\n'
 }
+
+esper.plugin('lang-python')
+export var engine = esper({
+  language: 'python',
+})

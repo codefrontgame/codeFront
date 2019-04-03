@@ -1,8 +1,7 @@
 import Character from './character'
-import esper from 'esper.js/dist/esper'
-import 'esper.js/plugins/lang-python'
-import { objectDefinition, functionDefinition, callDefinition, enumDefinition } from '@/utility/esper.js'
+import { objectDefinition, functionDefinition, callDefinition, enumDefinition, engine } from '@/utility/esper.js'
 import moveActuator from '@/utility/actuators/move'
+
 
 export default class Zombie extends Character {
   imageAnchor = {
@@ -34,8 +33,7 @@ export default class Zombie extends Character {
         originalUserCode: '\treturn Response.NORTH',
         actuate: moveActuator,
         execute ({ me, entities, board }) {
-          let code = 'from enum import Enum\n'
-          code += enumDefinition('response', {
+          let code = enumDefinition('Response', {
             NORTH: 'north',
             SOUTH: 'south',
             WEST: 'west',
@@ -46,13 +44,8 @@ export default class Zombie extends Character {
           let preFunctionLines = code.split('\n').length - 1
           code += functionDefinition(this.name, this.parameters, this.userCode)
           code += callDefinition(this.name)
-          console.log(code)
           try {
-            esper.plugin('lang-python')
-            let engine = esper({
-              language: 'python',
-            })
-            let result = engine.load(code)
+            let result = engine.evalSync(code).native
             if (result == null) return 'stop'
             this.error = null
             return result
