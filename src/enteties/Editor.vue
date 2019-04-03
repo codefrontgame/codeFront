@@ -18,7 +18,7 @@ export default {
         maxLines: 50,
         minLines: 5,
         value: this.code,
-        mode: 'ace/mode/javascript',
+        mode: 'ace/mode/python',
         theme: 'ace/theme/monokai',
         fontSize: '18pt',
         tabSize: '2',
@@ -74,7 +74,7 @@ export default {
           ))
 
       if (!commandIsAllowed) {
-        if ((rowCol.row === 0) || ((rowCol.row + 1) === this.editor.session.getLength())) {
+        if ((rowCol.row === 0) /* || ((rowCol.row + 1) === this.editor.session.getLength()) */) {
           e.preventDefault()
           e.stopPropagation()
         }

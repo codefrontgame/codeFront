@@ -86,7 +86,7 @@ export default class Zombie extends Character {
           })
           let preFunctionLines = code.split('\n').length - 1
           code += functionDefinition(this.name, this.parameters, this.userCode)
-          code += callDefinition(this.name)
+          code += callDefinition(this.name, me.willCollide(obstacles) ? 'True' : 'False')
           try {
             let result = engine.evalSync(code).native
             if (result == null) return 'stop'
