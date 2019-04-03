@@ -8,6 +8,12 @@ export function objectDefinition (name, object) {
   return 'let ' + name + ' = ' + JSON.stringify(object) + ';\n'
 }
 
+export function enumDefinition (name, object) {
+  let enumCode = 'class ' + name + '(Enum):\n'
+  enumCode += Object.keys(object).map((key) => '\t' + key + ' = \'' + object[key] + '\'').join('\n')
+  return enumCode + '\n'
+}
+
 /**
  * Writes out code to define a variable
  * @param name Name of the variable to define
@@ -27,9 +33,8 @@ export function varDefinition (name, value) {
  */
 export function functionDefinition (name, parameters, body) {
   return (
-    'let ' + name + ' = function (' + parameters.join(', ') + ') {\n' +
-    body + '\n' +
-    '};\n'
+    'def ' + name + '(' + parameters.join(', ') + '):\n' +
+    body + '\n'
   )
 }
 
@@ -40,5 +45,5 @@ export function functionDefinition (name, parameters, body) {
  * @return {string} Code to call a function
  */
 export function callDefinition (name, ...parameters) {
-  return name + '(' + parameters.join(', ') + ');\n'
+  return name + '(' + parameters.join(', ') + ')\n'
 }

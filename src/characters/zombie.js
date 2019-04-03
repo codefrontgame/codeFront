@@ -1,6 +1,7 @@
 import Character from './character'
 import esper from 'esper.js/dist/esper'
-import { objectDefinition, functionDefinition, callDefinition } from '@/utility/esper.js'
+import 'esper.js/plugins/lang-python'
+import { objectDefinition, functionDefinition, callDefinition, enumDefinition } from '@/utility/esper.js'
 import moveActuator from '@/utility/actuators/move'
 
 export default class Zombie extends Character {
@@ -29,23 +30,29 @@ export default class Zombie extends Character {
           'east, west eller south',
         parameters: [],
         error: null,
-        userCode: '\t  return response.north;',
-        originalUserCode: '\t  return response.north;',
+        userCode: '\treturn Response.NORTH',
+        originalUserCode: '\treturn Response.NORTH',
         actuate: moveActuator,
         execute ({ me, entities, board }) {
-          let code = objectDefinition('response', {
-            north: 'north',
-            south: 'south',
-            west: 'west',
-            east: 'east',
-            stop: 'stop',
-            rotate: 'rotate',
+          let code = 'from enum import Enum\n'
+          code += enumDefinition('response', {
+            NORTH: 'north',
+            SOUTH: 'south',
+            WEST: 'west',
+            EAST: 'east',
+            STOP: 'stop',
+            ROTATE: 'rotate',
           })
           let preFunctionLines = code.split('\n').length - 1
           code += functionDefinition(this.name, this.parameters, this.userCode)
           code += callDefinition(this.name)
+          console.log(code)
           try {
-            let result = esper.eval(code)
+            esper.plugin('lang-python')
+            let engine = esper({
+              language: 'python',
+            })
+            let result = engine.load(code)
             if (result == null) return 'stop'
             this.error = null
             return result
