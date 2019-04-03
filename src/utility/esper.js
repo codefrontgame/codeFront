@@ -16,16 +16,6 @@ export function enumDefinition (name, object) {
 }
 
 /**
- * Writes out code to define a variable
- * @param name Name of the variable to define
- * @param value Value of the variable to define
- * @return {string} Code to define a variable
- */
-export function varDefinition (name, value) {
-  return 'let ' + name + ' = ' + value + ';\n'
-}
-
-/**
  * Writes out code to define a function
  * @param name Function name
  * @param parameters Name of function parameters
