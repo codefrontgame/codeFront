@@ -1,7 +1,6 @@
 import Character from './character'
-import { objectDefinition, functionDefinition, callDefinition, enumDefinition, engine } from '@/utility/esper.js'
+import { functionDefinition, callDefinition, enumDefinition, engine } from '@/utility/esper.js'
 import moveActuator from '@/utility/actuators/move'
-
 
 export default class Zombie extends Character {
   imageAnchor = {
@@ -66,32 +65,30 @@ export default class Zombie extends Character {
           'east, west eller south',
         parameters: ['willCollide'],
         error: null,
-        userCode: '\tif (willCollide) {\n' +
-          '\t\treturn response.north;\n' +
-          '\t} else {\n' +
-          '\t\treturn response.north;\n' +
-          '\t}',
+        userCode: '\tif (willCollide):\n' +
+          '\t\treturn Response.NORTH\n' +
+          '\telse:\n' +
+          '\t\treturn Response.NORTH\n',
         originalUserCode: '\tif (willCollide) {\n' +
-          '\t\treturn response.north;\n' +
+          '\t\treturn Response.NORTH;\n' +
           '\t} else {\n' +
-          '\t\treturn response.north;\n' +
+          '\t\treturn Response.NORTH;\n' +
           '\t}',
         actuate: moveActuator,
         execute ({ me, entities, board, obstacles }) {
-          let code = objectDefinition('response', {
-            north: 'north',
-            south: 'south',
-            west: 'west',
-            east: 'east',
-            stop: 'stop',
-            rotate: 'rotate',
+          let code = enumDefinition('Response', {
+            NORTH: 'north',
+            SOUTH: 'south',
+            WEST: 'west',
+            EAST: 'east',
+            STOP: 'stop',
+            ROTATE: 'rotate',
           })
-          let willCollide = me.willCollide(obstacles)
           let preFunctionLines = code.split('\n').length - 1
           code += functionDefinition(this.name, this.parameters, this.userCode)
-          code += callDefinition(this.name, willCollide)
+          code += callDefinition(this.name)
           try {
-            let result = esper.eval(code)
+            let result = engine.evalSync(code).native
             if (result == null) return 'stop'
             this.error = null
             return result
