@@ -34,6 +34,7 @@ export default {
       if (this.editor != null && this.editor.getValue() !== value) {
         // console.log(value)
         this.editor.setValue(value)
+        this.editor.clearSelection()
       }
     },
     disabled (value) {
