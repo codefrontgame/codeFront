@@ -1,5 +1,9 @@
 <template>
 <div class="game-board">
+  <div v-if="completedLevel != null" class="level-transition">
+    <h3>Bra jobbat!</h3>
+    <p>Du klarade nivå {{completedLevel}}</p>
+  </div>
   <vue-p5
     @setup="setup"
     @draw="draw"
@@ -30,6 +34,7 @@ export default {
         x: 0,
         y: 0,
       },
+      completedLevel: null,
     }
   },
   computed: {
@@ -93,6 +98,9 @@ export default {
     },
     hasLost () {
       return this.entities.filter((e) => e.isAttacker).length === 0
+    },
+    endTransition () {
+      this.completedLevel = null
     },
     /**
      * The p5.js draw loop
@@ -166,10 +174,10 @@ export default {
 
       // Check win condition and increase level
       if (this.hasWon()) {
-        console.log('won!')
+        this.completedLevel = this.$store.getters['getLevel']
+        setTimeout(this.endTransition, 2000)
         this.$store.commit('incLevel')
       } else if (this.hasLost()) {
-        console.log('lost')
         console.log(this.$store.getters['getEntities'])
         this.$store.commit('setRunStatus', false)
       }
@@ -179,5 +187,15 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+  .level-transition {
+    position: absolute;
+    left: 275px;
+    top: 200px;
+    height: 200px;
+    width: 300px;
+    background-color: white;
+    text-align: center;
+    padding-top: 70px;
+  }
 
 </style>
