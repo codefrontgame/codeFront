@@ -22,6 +22,7 @@ export default {
         theme: 'ace/theme/monokai',
         fontSize: '18pt',
         tabSize: '2',
+        useSoftTabs: false,
       },
     }
   },
