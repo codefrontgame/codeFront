@@ -6,7 +6,6 @@
     <img :src="image" width="75" height="75" class="image">
   </div>
 </template>
-
 <script>
 export default {
   name: 'CharacterSelectorSymbol',

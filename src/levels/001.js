@@ -4,12 +4,10 @@ import Boulder from '../characters/boulder'
 
 export default new Level(
   1, // Id
-  { // Hints
-    move: [
-      'The first hint',
-      'The second hint',
-    ],
-  },
+  [ // Hints
+    'First hint level 1',
+    'Second hint level 1',
+  ],
   [ // Helptexts
     'Välkommen till codeFront ...',
     '',

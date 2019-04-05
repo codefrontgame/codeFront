@@ -9,6 +9,10 @@
     @draw="draw"
     @preload="preload"
   ></vue-p5>
+  <button class="button hint-button" @click="getHint">Ledtråd</button>
+  <div v-if="speechBubbleText !== ''" class="box">
+    <p>{{speechBubbleText}}</p>
+  </div>
 </div>
 </template>
 
@@ -35,6 +39,8 @@ export default {
         y: 0,
       },
       completedLevel: null,
+      speechBubbleText: '',
+      hintIndex: 0,
     }
   },
   computed: {
@@ -102,6 +108,15 @@ export default {
     endTransition () {
       this.completedLevel = null
     },
+    getHint () {
+      let hint = this.$store.getters.getHint[this.hintIndex]
+      if (typeof hint !== 'undefined') {
+        this.speechBubbleText = hint
+        this.hintIndex += 1
+      } else {
+        this.speechBubbleText = ''
+      }
+    },
     /**
      * The p5.js draw loop
      * Is used as general game loop
@@ -144,6 +159,8 @@ export default {
           console.log('User error: ', e)
           this.$store.commit('setRunStatus', false) // Stop game
         }
+        // The speech bubble should go away when running code
+        // this.speechBubbleText = ''
       }
 
       // Redraw all entities and obstacles
@@ -176,6 +193,8 @@ export default {
       if (this.hasWon()) {
         this.completedLevel = this.$store.getters['getLevel']
         setTimeout(this.endTransition, 2000)
+        this.speechBubbleText = ''
+        this.hintIndex = 0
         this.$store.commit('incLevel')
       } else if (this.hasLost()) {
         console.log(this.$store.getters['getEntities'])
@@ -188,14 +207,31 @@ export default {
 
 <style lang="scss" scoped>
   .level-transition {
-    position: absolute;
-    left: 275px;
-    top: 200px;
-    height: 200px;
-    width: 300px;
-    background-color: white;
-    text-align: center;
-    padding-top: 70px;
+  position: absolute;
+  left: 275px;
+  top: 200px;
+  height: 200px;
+  width: 300px;
+  background-color: white;
+  text-align: center;
+  padding-top: 70px;
   }
-
+  .hint-button {
+    position: absolute;
+    bottom: 5px;
+    left: 70vh;
+  }
+  .box {
+    position: absolute;
+    bottom: 5px;
+    left: 25vh;
+    width: 40vh;
+    height: 100px;
+    background-color: white;
+    border-style: solid;
+    border-color: darkgreen;
+    border-width: 1px;
+    text-align: left;
+    padding-left: 10px;
+  }
 </style>

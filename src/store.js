@@ -26,6 +26,7 @@ export default new Vuex.Store({
     level: 0, // The current level
     gameObjects: initialGameObjects,
     userFunctions: getFunctions(initialGameObjects, 0), // works as a cache
+    hint: 0, // The hint to be shown
   },
   getters: {
     getRunStatus: state => state.running,
@@ -35,6 +36,7 @@ export default new Vuex.Store({
     getCharacters: state => state.gameObjects.filter(Obj => (new Obj()) instanceof Character),
     getLevelObstacles: state => state.levels[state.level].obstacles,
     getLevel: state => state.level,
+    getHint: state => state.levels[state.level].hints,
   },
   mutations: {
     setUserCode (state, { character, f, code }) {
@@ -70,6 +72,9 @@ export default new Vuex.Store({
     },
     setEntities (state, entities) {
       Vue.set(state, 'entities', entities)
+    },
+    incHint (state) {
+      Vue.set(state, 'hint', state.hint + 1)
     },
   },
   actions: {},
