@@ -7,6 +7,7 @@ import levels from '@/levels'
 import clone from '@/utility/clone'
 import Boulder from '@/characters/boulder'
 import WoodenTower from './characters/wooden-tower'
+import Book from '@/book'
 
 Vue.use(Vuex)
 
@@ -26,6 +27,9 @@ export default new Vuex.Store({
       Boulder,
       WoodenTower,
     ],
+    book: Book,
+    selectedChapter: null,
+    selectedPage: null,
   },
   getters: {
     getRunStatus: state => state.running,
@@ -40,6 +44,21 @@ export default new Vuex.Store({
     getCharacters: state => state.characters,
     getLevelObstacles: state => state.levels[state.level].obstacles,
     getLevel: state => state.level,
+    bookChapters: state => Object.keys(state.book),
+    bookPages: state => {
+      let chapter = state.book[state.selectedChapter]
+      if (chapter == null) return []
+      return Object.keys(chapter)
+    },
+    bookPage: state => {
+      let chapter = state.book[state.selectedChapter]
+      if (chapter == null) return ''
+      let page = chapter[state.selectedPage]
+      if (page == null) return ''
+      return page
+    },
+    selectedPage: state => state.selectedPage,
+    selectedChapter: state => state.selectedChapter,
   },
   mutations: {
     setUserCode (state, { character, f, code }) {
@@ -64,6 +83,13 @@ export default new Vuex.Store({
     },
     setEntities (state, entities) {
       Vue.set(state, 'entities', entities)
+    },
+    selectedPage (state, page) {
+      Vue.set(state, 'selectedPage', page)
+    },
+    selectedChapter (state, chapter) {
+      Vue.set(state, 'selectedPage', null)
+      Vue.set(state, 'selectedChapter', chapter)
     },
   },
   actions: {},
