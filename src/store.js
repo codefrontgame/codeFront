@@ -35,6 +35,7 @@ export default new Vuex.Store({
     getCharacters: state => state.gameObjects.filter(Obj => (new Obj()) instanceof Character),
     getLevelObstacles: state => state.levels[state.level].obstacles,
     getLevel: state => state.level,
+    getHelpTexts: state => state.levels[state.level].helpTexts,
   },
   mutations: {
     setUserCode (state, { character, f, code }) {
