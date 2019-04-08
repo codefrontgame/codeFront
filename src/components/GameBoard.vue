@@ -60,6 +60,9 @@ export default {
      * @param sketch The p5.js sketch object
      */
     preload (sketch) {
+      let music = new Audio('assets/plain-loafer-by-kevin-macleod.mp3');
+      music.loop = true;
+      music.play();
       let assets = [
         'assets/background.png',
       ]
