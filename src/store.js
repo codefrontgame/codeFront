@@ -8,6 +8,9 @@ import clone from '@/utility/clone'
 import Boulder from '@/characters/boulder'
 import Character from './characters/character'
 import WoodenTower from './characters/wooden-tower'
+import Log from './characters/log'
+
+let startLevel = 0
 
 Vue.use(Vuex)
 
@@ -15,17 +18,18 @@ let initialGameObjects = [ // List of all game objects
   Zombie,
   FireBat,
   Boulder,
+  Log,
   WoodenTower,
 ]
 
 export default new Vuex.Store({
   state: {
     running: false, // Whither game is running or not
-    entities: clone(levels[0].entities), // Entities currently on thr gameboard
+    entities: clone(levels[startLevel].entities), // Entities currently on thr gameboard
     levels, // List of all levels
-    level: 0, // The current level
+    level: startLevel, // The current level
     gameObjects: initialGameObjects,
-    userFunctions: getFunctions(initialGameObjects, 0), // works as a cache
+    userFunctions: getFunctions(initialGameObjects, startLevel), // works as a cache
   },
   getters: {
     getRunStatus: state => state.running,

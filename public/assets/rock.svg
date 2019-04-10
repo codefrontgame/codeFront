@@ -10,13 +10,13 @@
    xmlns:xlink="http://www.w3.org/1999/xlink"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   width="210mm"
-   height="297mm"
-   viewBox="0 0 210 297"
+   width="173.69241mm"
+   height="136.19397mm"
+   viewBox="0 0 173.69241 136.19397"
    version="1.1"
    id="svg8"
-   inkscape:version="0.92.4 (5da689c313, 2019-01-14)"
-   sodipodi:docname="Rock.svg">
+   inkscape:version="0.92.4 5da689c313, 2019-01-14"
+   sodipodi:docname="rock.svg">
   <defs
      id="defs2">
     <linearGradient
@@ -113,16 +113,16 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="1.4"
-     inkscape:cx="285.62707"
-     inkscape:cy="575.74434"
+     inkscape:zoom="0.49497475"
+     inkscape:cx="481.85987"
+     inkscape:cy="279.5838"
      inkscape:document-units="mm"
      inkscape:current-layer="layer15"
      showgrid="false"
      inkscape:window-width="1920"
-     inkscape:window-height="1057"
-     inkscape:window-x="-8"
-     inkscape:window-y="-8"
+     inkscape:window-height="1015"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
      inkscape:window-maximized="1" />
   <metadata
      id="metadata5">
@@ -140,7 +140,8 @@
      inkscape:groupmode="layer"
      id="layer16"
      inkscape:label="Reference"
-     style="display:none">
+     style="display:none"
+     transform="translate(-19.391823,-66.750308)">
     <image
        y="-7.3057928"
        x="-513.25146"
@@ -155,7 +156,8 @@
      inkscape:label="Layer 1"
      inkscape:groupmode="layer"
      id="layer1"
-     style="display:inline">
+     style="display:inline"
+     transform="translate(-19.391823,-66.750308)">
     <path
        style="fill:#c3c3c3;fill-opacity:1;stroke:#000000;stroke-width:0.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
        d="m 113.77083,67.946428 -10.20536,16.252976 15.875,21.166666 35.15179,23.43452 38.1756,2.26786 -2.64584,-15.49703 L 176.1369,99.318452 145.52083,86.467261 132.66964,70.214285 116.03869,68.70238 Z"
@@ -230,17 +232,20 @@
   <g
      inkscape:groupmode="layer"
      id="layer5"
-     inkscape:label="mid gradient" />
+     inkscape:label="mid gradient"
+     transform="translate(-19.391823,-66.750308)" />
   <g
      inkscape:groupmode="layer"
      id="layer3"
      inkscape:label="Outline"
-     style="display:inline" />
+     style="display:inline"
+     transform="translate(-19.391823,-66.750308)" />
   <g
      inkscape:groupmode="layer"
      id="layer2"
      inkscape:label="Light"
-     style="display:inline">
+     style="display:inline"
+     transform="translate(-19.391823,-66.750308)">
     <path
        style="display:inline;opacity:0.57999998;fill:url(#linearGradient1358);fill-opacity:1;stroke:#000000;stroke-width:0;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
        d="m 48.551526,80.605943 c -7.921224,12.139323 -16.602958,24.700047 -24.524182,36.839367 -1.457683,10.58854 -2.915365,21.17709 -4.373047,31.76563 4.158203,3.65364 8.316406,7.30729 12.474609,10.96094 l 3.023438,-32.88282 c 3.90614,-5.48322 7.816293,-10.96369 11.719925,-16.44862 4.345962,-6.61218 8.691925,-13.224356 13.037887,-19.836534 l 6.613282,-11.90625 2.43295,-7.513079 1.867045,-2.58453 -1.464802,0.08031 z"
@@ -252,7 +257,8 @@
      inkscape:groupmode="layer"
      id="layer4"
      inkscape:label="White"
-     style="display:inline">
+     style="display:inline"
+     transform="translate(-19.391823,-66.750308)">
     <path
        style="display:inline;fill:#ffffff;fill-opacity:0.99494952;stroke:#000000;stroke-width:0;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
        d="m 112.71484,70.212891 c 1.31641,0.514974 2.63282,1.029948 3.94922,1.544921 l 14.03125,1.337891 11.35938,13.162109 1.95297,2.473377 c 0.44336,-0.821615 0.85785,-1.442778 1.30121,-2.264392 -4.28385,-5.417318 -8.35537,-10.501108 -12.63923,-15.918425 l -0.70337,-0.115025 -15.95455,-1.669675 c -0.71745,-0.171875 -1.4349,-0.34375 -2.15234,-0.515625 -0.38152,0.654948 -0.76303,1.309896 -1.14454,1.964844 z"
@@ -269,7 +275,8 @@
   <g
      inkscape:groupmode="layer"
      id="layer7"
-     inkscape:label="Little Stone">
+     inkscape:label="Little Stone"
+     transform="translate(-19.391823,-66.750308)">
     <g
        inkscape:groupmode="layer"
        id="layer8"
@@ -314,7 +321,7 @@
        inkscape:groupmode="layer"
        id="layer10"
        inkscape:label="Little stone gradient"
-       style="display:inline;opacity:0.89">
+       style="display:inline;opacity:0.88999999">
       <path
          style="display:inline;fill:url(#linearGradient1648);fill-opacity:1;stroke:#000000;stroke-width:0.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
          d="m 128.3238,196.40448 -1.55777,-7.64769 1.40588,-10.13084 8.86201,-8.15598 20.36051,-2.01538 9.37361,3.33345 6.07813,7.59768 3.29346,5.91088 0.31285,6.47871 -1.0255,4.66288 -2.0415,2.36382 -8.74479,1.24935 -10.94063,0.91172 -11.54851,-1.51954 -7.0528,-0.45745 z"
@@ -349,7 +356,8 @@
   <g
      inkscape:groupmode="layer"
      id="layer12"
-     inkscape:label="Mini sten">
+     inkscape:label="Mini sten"
+     transform="translate(-19.391823,-66.750308)">
     <g
        inkscape:groupmode="layer"
        id="layer15"
@@ -406,7 +414,7 @@
        inkscape:groupmode="layer"
        id="layer14"
        inkscape:label="Mini sten white"
-       style="opacity:0.72">
+       style="opacity:0.72000002">
       <path
          style="display:inline;fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:0;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
          d="m 123.81869,187.67771 0.83863,0.76777 1.43984,0.84674 2.76514,2.77947 0.58132,-0.77565 -2.78128,-3.02348 z"
