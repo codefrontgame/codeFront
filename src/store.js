@@ -37,6 +37,7 @@ export default new Vuex.Store({
     getLevelObstacles: state => state.levels[state.level].obstacles,
     getLevel: state => state.level,
     getHint: state => state.levels[state.level].hints,
+    getHelpTexts: state => state.levels[state.level].helpTexts,
   },
   mutations: {
     setUserCode (state, { character, f, code }) {

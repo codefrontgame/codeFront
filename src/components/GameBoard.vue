@@ -4,6 +4,12 @@
     <h3>Bra jobbat!</h3>
     <p>Du klarade nivå {{completedLevel}}</p>
   </div>
+  <div class="image-container">
+    <img src="assets/duck.svg"
+         class="duck"
+         v-bind:class="{ 'duck-hidden': duckHidden }"
+         @click="duckPressed()">
+  </div>
   <vue-p5
     @setup="setup"
     @draw="draw"
@@ -18,7 +24,7 @@
 
 <script>
 import VueP5 from 'vue-p5'
-import Entity from '../characters/entity'
+import Entity from '@/characters/entity'
 
 export default {
   name: 'GameBoard',
@@ -41,6 +47,10 @@ export default {
       completedLevel: null,
       speechBubbleText: '',
       hintIndex: 0,
+      duckHidden: false,
+      helpTextIndex: 0,
+      storyTime: true,
+      resize: null, // Function that resizes the canvas when the window size changes
     }
   },
   computed: {
@@ -58,6 +68,13 @@ export default {
   },
   components: {
     VueP5,
+  },
+  // bind event handlers to the `handleResize` method (defined below)
+  mounted: function () {
+    window.addEventListener('resize', this.handleResize)
+  },
+  beforeDestroy: function () {
+    window.removeEventListener('resize', this.handleResize)
   },
   methods: {
     /**
@@ -88,10 +105,15 @@ export default {
      * @param sketch The p5.js sketch object
      */
     setup (sketch) {
+      this.resize = () => sketch.createCanvas(sketch.windowHeight * 0.86, sketch.windowHeight)
       sketch.setFrameRate(this.fr)
       // Cover 100 % of height
       sketch.createCanvas(sketch.windowHeight * 0.86, sketch.windowHeight)
       sketch.background(200)
+      this.duckPressed()
+    },
+    handleResize () {
+      this.resize()
     },
     /**
      * Check if player has won
@@ -107,6 +129,30 @@ export default {
     },
     endTransition () {
       this.completedLevel = null
+      this.duckHidden = false
+      this.duckPressed()
+    },
+    duckPressed () {
+      let helpTexts = this.$store.getters['getHelpTexts']
+      if (!this.duckHidden) {
+        if (this.helpTextIndex < helpTexts.length && this.helpTextIndex >= 0) {
+          this.duckSay()
+        } else if (this.helpTextIndex === helpTexts.length) {
+          this.helpTextIndex = 0
+          this.duckHidden = !this.duckHidden
+        }
+      } else {
+        this.duckHidden = false
+        this.duckSay()
+      }
+    },
+    duckSay () {
+      let helpTexts = this.$store.getters['getHelpTexts']
+      console.log('Duck: ' + helpTexts[this.helpTextIndex])
+      this.helpTextIndex++
+      if (this.helpTextIndex === helpTexts.length) {
+        console.log('DONE')
+      }
     },
     getHint () {
       let hint = this.$store.getters.getHint[this.hintIndex]
@@ -206,6 +252,11 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+  .game-board {
+    height: 100vh;
+    resize: none;
+    overflow: hidden;
+  }
   .level-transition {
   position: absolute;
   left: 275px;
@@ -233,5 +284,22 @@ export default {
     border-width: 1px;
     text-align: left;
     padding-left: 10px;
+  }
+  .duck {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 20vh;
+  }
+  .duck-hidden {
+    bottom: -10vh;
+  }
+  .image-container {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 20vh;
+    height: 20vh;
+    overflow: hidden;
   }
 </style>
