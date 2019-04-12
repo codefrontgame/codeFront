@@ -8,13 +8,15 @@ export default new Level(
   6, // Id
   { // Hints
     move: [
-      'The first hint',
-      'The second hint',
+      'Kommer du ihåg hur en \'if-stats\' ser ut?',
+      'Du kan kolla i boken om du behöver hjälp att komma ihåg',
+      'Detta är samma problem som du löste för zombien på nivå 1',
     ],
   },
   [ // Helptexts
-    'Välkommen till codeFront ...',
-    '',
+    'Vilken bra kod du gjort som klarade av den banan med!',
+    'Här har vi en ny vän. Detta är detta är en firebat och hen är helt ny.',
+    'Du kommer behöva lära firebat hur hen ska gå helt från början. Men detta problem har vi väl sett tidigare...',
   ],
   [ // Entities
     new FireBat(5, 0, 1, 1, 100),

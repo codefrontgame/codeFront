@@ -7,13 +7,19 @@ export default new Level(
   4, // Id
   { // Hints
     move: [
-      'The first hint',
-      'The second hint',
+      'Vilka nya möjligheter ger \'elif\' dig?',
+      'Med \'elif\' kan du be zombien göra olika saker beroende vilken typ av hinder den har framför sig',
+      'Vad behöver zombien göra när den kommer fram till en stock och vad behöver den göra när den sedan stöter på stenen?',
     ],
   },
-  [ // Helptexts
-    'Välkommen till codeFront ...',
-    '',
+  [ // Helptexts TODO:Fixa så texten blir snygg
+    'Med din hjälp kommer jag snart få tillbaka mina kodkrafter!',
+    'Här behöver vi hjälpa denna zombien att komma igenom alla dessa hinder. Det är så många!',
+    'För att lyckas behöver du använda \'elif\', vilket är en ihopslagning av orden \'else if\'.',
+    'Detta ger oss möjligheten att ge instruktioner som blir ungefär så här:',
+    'OM x är sant gör 1' +
+    'ANNARS OM y är sant gör 2' +
+    'ANNARS gör 3',
   ],
   [ // Entities
     new Zombie(5, 0, 1, 1, 100),

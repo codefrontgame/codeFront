@@ -8,13 +8,13 @@ export default new Level(
   10, // Id
   { // Hints
     move: [
-      'The first hint',
-      'The second hint',
+      'Om du vill att firebat ska flyga över hinder behöver du inte titta om det finns några ivägen, ' +
+      'eller så kan du be hen flyga framåt även om det gör det',
     ],
   },
   [ // Helptexts
-    'Välkommen till codeFront ...',
-    '',
+    'Härligt!',
+    'Här kommer vi kunna se skillnaden mellan zombie och firebat. Alla har sina olika styrkor.',
   ],
   [ // Entities
     new Zombie(2, 0, 1, 1, 100),

@@ -7,13 +7,13 @@ export default new Level(
   7, // Id
   { // Hints
     move: [
-      'The first hint',
-      'The second hint',
+      'Kommer du ihåg vilka olika nyckelord du kan använda i en \'if-sats\'?',
+      'Du kan alltid kolla i boken om du behöver hjälp att komma ihåg',
     ],
   },
   [ // Helptexts
-    'Välkommen till codeFront ...',
-    '',
+    'Bra, firebat börjar lära sig! Men det verkar som att hen kan behöva lite mer övning.',
+    'Visst kan du hjälpa dessa två att komma framåt?',
   ],
   [ // Entities
     new FireBat(3, 0, 1, 1, 100),

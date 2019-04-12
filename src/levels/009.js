@@ -7,13 +7,15 @@ export default new Level(
   9, // Id
   { // Hints
     move: [
-      'The first hint',
-      'The second hint',
+      'Karaktärerna kommer att följa den kod du gett dem, oavsett om det är nödvändigt eller ej',
+      'Behöver du kolla om det finns några stockar ivägen?',
     ],
   },
   [ // Helptexts
-    'Välkommen till codeFront ...',
-    '',
+    'Bra jobbat!',
+    'Firebat känner sig nu redo att börja flyga, så framöver kommer dem att kunna flyga över hinder!',
+    'Du kan fortfarande be firebat att gå åt sidan om det finns en stock framför, men du kan också låta hen ' +
+    'flyga över hindren.',
   ],
   [ // Entities
     new FireBat(5, 0, 1, 1, 100),

@@ -7,13 +7,14 @@ export default new Level(
   12, // Id
   { // Hints
     move: [
-      'The first hint',
-      'The second hint',
+      'Om du går förbi tornen tillräckligt fort kommer du att klara dig',
+      'Försök att springa förbi så fort som möjligt',
     ],
   },
   [ // Help-texts
-    'Välkommen till codeFront ...',
-    '',
+    'Bra gjort! Vi kom förbi där med.',
+    'Det är något annorlunda med de här tornen. Jag tror att de som stal mina kodkrafter har beväpnat dem.',
+    'Tror du våra vänner klarar sig förbi dem?',
   ],
   [ // Entities
     new WoodenTower(1, 10, 1, 1, 100),

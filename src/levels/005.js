@@ -7,13 +7,14 @@ export default new Level(
   5, // Id
   { // Hints
     move: [
-      'The first hint',
-      'The second hint',
+      'Det spelar ingen roll i vilken ordning du skrivit koden, varje zombie kommer använda den kod som ' +
+      'gäller vid det hinder den kommit fram till',
+      'Din kod från förra nivån kanske räcker för att leda dem förbi hindren?',
     ],
   },
   [ // Helptexts
-    'Välkommen till codeFront ...',
-    '',
+    'Härligt!',
+    'Denna gången har vi två zombies. Tror du dem klara av att ta sig förbi hindren båda två?',
   ],
   [ // Entities
     new Zombie(2, 0, 1, 1, 100),
