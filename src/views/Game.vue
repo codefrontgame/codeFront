@@ -1,7 +1,7 @@
 <template>
 <div class="game">
-  <book v-if="openBook"></book>
-  <game-board v-else></game-board>
+  <book v-if="openBook" @toggle-book="toggleBook"></book>
+  <game-board v-else @toggle-book="toggleBook"></game-board>
   <i-d-e></i-d-e>
 </div>
 </template>
@@ -13,9 +13,14 @@ import Book from '@/components/Book'
 export default {
   name: 'Game',
   data: () => ({
-    openBook: true,
+    openBook: false,
   }),
   components: { GameBoard, IDE, Book },
+  methods: {
+    toggleBook () {
+      this.openBook = !this.openBook
+    },
+  },
 }
 </script>
 

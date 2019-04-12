@@ -19,16 +19,15 @@ export default {
   computed: {
     functionCode: {
       get () {
-        return `function ${this.functionName} (${this.parameters.join(', ')}) {\n` +
-            this.userCode +
-            '\n}'
+        console.log(this.userCode)
+        return `def ${this.functionName}(${this.parameters.join(', ')}):\n` +
+            this.userCode
       },
       set (val, old) {
         if (val !== old) {
           let v = val.split('\n')
           v.splice(0, 1)
-          v.splice(-1, 1)
-          this.$emit('update:userCode', v.join('\n'))
+          this.$emit('update:userCode', v.join('\n').replace('  ', '\t'))
         }
       },
     },

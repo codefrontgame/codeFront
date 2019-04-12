@@ -6,10 +6,18 @@ import FireBat from '@/characters/firebat'
 import levels from '@/levels'
 import clone from '@/utility/clone'
 import Boulder from '@/characters/boulder'
+import Character from './characters/character'
 import WoodenTower from './characters/wooden-tower'
 import Book from '@/book'
 
 Vue.use(Vuex)
+
+let initialGameObjects = [ // List of all game objects
+  Zombie,
+  FireBat,
+  Boulder,
+  WoodenTower,
+]
 
 export default new Vuex.Store({
   state: {
@@ -17,31 +25,18 @@ export default new Vuex.Store({
     entities: clone(levels[0].entities), // Entities currently on thr gameboard
     levels, // List of all levels
     level: 0, // The current level
-    characters: {
-      zombie: Zombie,
-      fireBat: FireBat,
-    },
-    gameObjects: [ // List of all game objects
-      Zombie,
-      FireBat,
-      Boulder,
-      WoodenTower,
-    ],
     book: Book,
     selectedChapter: null,
     selectedPage: null,
+    gameObjects: initialGameObjects,
+    userFunctions: getFunctions(initialGameObjects, 0), // works as a cache
   },
   getters: {
     getRunStatus: state => state.running,
-    getUserCode: (state) => (character, f) => {
-      return state.characters[character].userFunctions(state.level)[f]
-    },
     getEntities: state => state.entities,
-    getUserFunctions: state => (character) => {
-      return state.characters[character].userFunctions(state.level)
-    },
+    getUserFunctions: (state) => state.userFunctions,
     getGameObjects: state => state.gameObjects,
-    getCharacters: state => state.characters,
+    getCharacters: state => state.gameObjects.filter(Obj => (new Obj()) instanceof Character),
     getLevelObstacles: state => state.levels[state.level].obstacles,
     getLevel: state => state.level,
     bookChapters: state => Object.keys(state.book),
@@ -59,10 +54,19 @@ export default new Vuex.Store({
     },
     selectedPage: state => state.selectedPage,
     selectedChapter: state => state.selectedChapter,
+    getHelpTexts: state => state.levels[state.level].helpTexts,
   },
   mutations: {
     setUserCode (state, { character, f, code }) {
-      Vue.set(state.characters[character].userFunctions(state.level)[f], 'userCode', code)
+      character = state.gameObjects.find(obj => obj.name === character)
+      Vue.set(character.userFunctions(state.level)[f], 'userCode', code)
+      Vue.set(state, 'userFunctions', getFunctions(state.gameObjects, state.level))
+    },
+    resetUserCode (state, { character, f }) {
+      character = state.gameObjects.find(obj => obj.name === character)
+      let func = character.userFunctions(state.level)[f]
+      Vue.set(func, 'userCode', func.originalUserCode)
+      Vue.set(state, 'userFunctions', getFunctions(state.gameObjects, state.level))
     },
     incLevel (state) {
       // Stop game
@@ -72,6 +76,9 @@ export default new Vuex.Store({
       // Populate with entities
       // Make sure to clone the initial entities
       Vue.set(state, 'entities', clone(state.levels[state.level].entities))
+
+      // Update functions
+      Vue.set(state, 'userFunctions', getFunctions(state.gameObjects, state.level))
     },
     setRunStatus (state, status) {
       // Reset entities when stopping game
@@ -94,3 +101,12 @@ export default new Vuex.Store({
   },
   actions: {},
 })
+
+function getFunctions (gameObjects, level) {
+  let functions = {}
+  let characters = gameObjects.filter(Obj => (new Obj()) instanceof Character)
+  for (let i = 0; i < characters.length; i++) {
+    functions[characters[i].name] = characters[i].userFunctions(level)
+  }
+  return functions
+}

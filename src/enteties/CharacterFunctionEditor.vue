@@ -2,6 +2,7 @@
 <div class="character-function-editor">
   <div class="title" @click="$emit('update:expanded', !expanded)">
     <label>{{func.cn}}</label>
+    <font-awesome-icon class="icon" :icon="expanded ? 'window-minimize' : 'window-maximize'"></font-awesome-icon>
   </div>
   <transition name="fade">
     <div v-if="expanded">
@@ -16,6 +17,8 @@
       {{ errorMessage() }}
     </div>
   </transition>
+  <button v-if="!disabled" class="button" @click="resetUserCode">Återställ</button>
+  <button v-else class="disabled button" @click="resetUserCode">Återställ</button>
 </div>
 </template>
 
@@ -25,6 +28,7 @@ export default {
   name: 'CharacterFunctionEditor',
   components: { FunctionEditor },
   props: {
+    character: Function,
     expanded: Boolean,
     func: Object,
     disabled: Boolean,
@@ -44,6 +48,14 @@ export default {
     updateUserCode (code) {
       this.$emit('update:userCode', code)
     },
+    resetUserCode () {
+      if (!this.disabled) {
+        this.$store.commit('resetUserCode', {
+          character: this.character.name,
+          f: this.func.name,
+        })
+      }
+    },
   },
 }
 </script>
@@ -53,6 +65,7 @@ export default {
   font-size: 18pt;
   margin-top: 5px;
   margin-bottom: 5px;
+  padding: 3px;
   background: lightgray;
 }
 .editor {
@@ -64,5 +77,11 @@ export default {
 }
 .fade-enter, .fade-leave-to, .fade-leave {
   opacity: 0;
+}
+.disabled {
+  background-color: darkgray;
+}
+.icon {
+  float: right;
 }
 </style>

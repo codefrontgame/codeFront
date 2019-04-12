@@ -5,17 +5,14 @@
  * @return {string} Code to the define the object variable
  */
 export function objectDefinition (name, object) {
-  return 'let ' + name + ' = ' + JSON.stringify(object) + ';\n'
+  return enumDefinition(name, object)
 }
 
-/**
- * Writes out code to define a variable
- * @param name Name of the variable to define
- * @param value Value of the variable to define
- * @return {string} Code to define a variable
- */
-export function varDefinition (name, value) {
-  return 'let ' + name + ' = ' + value + ';\n'
+export function enumDefinition (name, object) {
+  let enumCode = 'class ' + name + '_class:\n'
+  enumCode += Object.keys(object).map((key) => '\t' + key + ' = \'' + object[key] + '\'').join('\n') + '\n'
+  enumCode += name + ' = ' + name + '_class()\n'
+  return enumCode
 }
 
 /**
@@ -27,9 +24,8 @@ export function varDefinition (name, value) {
  */
 export function functionDefinition (name, parameters, body) {
   return (
-    'let ' + name + ' = function (' + parameters.join(', ') + ') {\n' +
-    body + '\n' +
-    '};\n'
+    'def ' + name + '(' + parameters.join(', ') + '):\n' +
+    body + '\n'
   )
 }
 
@@ -40,5 +36,10 @@ export function functionDefinition (name, parameters, body) {
  * @return {string} Code to call a function
  */
 export function callDefinition (name, ...parameters) {
-  return name + '(' + parameters.join(', ') + ');\n'
+  return name + '(' + parameters.join(', ') + ')\n'
 }
+
+esper.plugin('lang-python')
+export var engine = esper({
+  language: 'python',
+})
