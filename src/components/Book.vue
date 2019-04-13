@@ -2,7 +2,9 @@
   <div class="book">
     <TabSelector :selections="bookChapters" hidden :selected.sync="selectedChapter"></TabSelector>
     <TabSelector :selections="bookPages" hidden :selected.sync="selectedPage"></TabSelector>
-    <VueMarkdown class="content" :source="bookPage"></VueMarkdown>
+    <div v-bar class="content">
+      <VueMarkdown :source="bookPage"></VueMarkdown>
+    </div>
     <font-awesome-icon icon="times" size="3x" class="close-btn" @click="$emit('toggle-book')"></font-awesome-icon>
   </div>
 </template>
@@ -51,7 +53,6 @@ export default {
   background-size: 100%;
   height: 100vh;
   position: relative;
-  overflow: hidden;
   .close-btn {
     :hover {
       cursor: pointer;
@@ -61,10 +62,8 @@ export default {
     right: 10px;
   }
   .content {
-    position: relative;
     left: 20%;
     width: 70%;
-    overflow-y: auto;
     height: 100%;
   }
 }
