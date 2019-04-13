@@ -16,7 +16,7 @@
     @preload="preload"
   ></vue-p5>
   <div class="book-btn" @click="$emit('toggle-book')">
-    BOKEN
+    <font-awesome-icon icon="book" size="3x"/>
   </div>
 </div>
 </template>

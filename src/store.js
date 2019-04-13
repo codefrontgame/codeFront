@@ -26,8 +26,8 @@ export default new Vuex.Store({
     levels, // List of all levels
     level: 0, // The current level
     book: Book,
-    selectedChapter: null,
-    selectedPage: null,
+    selectedChapter: 'a',
+    selectedPage: 1,
     gameObjects: initialGameObjects,
     userFunctions: getFunctions(initialGameObjects, 0), // works as a cache
   },

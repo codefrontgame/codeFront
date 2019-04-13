@@ -1,8 +1,9 @@
 <template>
   <div class="book">
-    <TabSelector :selections="bookChapters" :selected.sync="selectedChapter"></TabSelector>
-    <TabSelector :selections="bookPages" :selected.sync="selectedPage"></TabSelector>
-    <VueMarkdown :source="bookPage"></VueMarkdown>
+    <TabSelector :selections="bookChapters" hidden :selected.sync="selectedChapter"></TabSelector>
+    <TabSelector :selections="bookPages" hidden :selected.sync="selectedPage"></TabSelector>
+    <VueMarkdown class="content" :source="bookPage"></VueMarkdown>
+    <font-awesome-icon icon="times" size="3x" class="close-btn" @click="$emit('toggle-book')"></font-awesome-icon>
   </div>
 </template>
 
@@ -49,5 +50,22 @@ export default {
   background-image: url('/assets/book.png');
   background-size: 100%;
   height: 100vh;
+  position: relative;
+  overflow: hidden;
+  .close-btn {
+    :hover {
+      cursor: pointer;
+    }
+    position: absolute;
+    top: 10px;
+    right: 10px;
+  }
+  .content {
+    position: relative;
+    left: 20%;
+    width: 70%;
+    overflow-y: auto;
+    height: 100%;
+  }
 }
 </style>
