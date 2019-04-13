@@ -19,9 +19,8 @@ export default new Level(
   ],
   [ // Entities
     new Zombie(2, 0, 1, 1, 100),
-    new FireBat(8, 0, 1, 1, 100),
-    new WoodenTower(2, 6, 1, 1, 100),
-    new WoodenTower(8, 6, 1, 1, 100),
+    new FireBat(8, 0, 1, 1, 100, true),
+
   ],
   [ // Obstacles
     new Log(0, 8, 1, 1),
@@ -33,5 +32,9 @@ export default new Level(
     new Boulder(10, 8, 1, 1),
     new Log(7, 10, 1, 1),
     new Log(9, 10, 1, 1),
+
+    // TODO: make sure attack and obscure the path in both obstacles and entities!!
+    new WoodenTower(2, 6, 1, 1, 100),
+    new WoodenTower(8, 6, 1, 1, 100),
   ]
 )

@@ -1,6 +1,5 @@
 import Level from '@/levels/level'
 import Log from '../characters/log'
-import Boulder from '../characters/boulder'
 import FireBat from '../characters/firebat'
 
 export default new Level(
@@ -18,7 +17,7 @@ export default new Level(
     'flyga över hindren.',
   ],
   [ // Entities
-    new FireBat(5, 0, 1, 1, 100),
+    new FireBat(5, 0, 1, 1, 100, true),
   ],
   [ // Obstacles
     new Log(2, 6, 1, 1),

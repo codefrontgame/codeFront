@@ -84,6 +84,25 @@ export default class Entity extends RectangularObstacle {
   }
 
   /**
+   * Checks whether the character is in front of a obstacle of type obstacleType.
+   * @param {Array} obstacles: the list of obstacles to check collision with
+   * @param {prototype} obstacleType: the type of obstacle to check
+   * @returns {boolean} the character will collide in the near future
+   */
+  isInFrontOf (obstacleType, obstacles) {
+    let offset = 0.1
+    return obstacles.some(
+      (o) => o.hitBoxes().some((h1) => {
+        if (!(o instanceof obstacleType)) return false
+        return this.hitBoxes().some((h2) => {
+          let h1WithOffset = new HitBox(h1.x1, h1.x2, h1.y1 - offset, h1.y2)
+          return h1WithOffset.collidesWith(h2)
+        })
+      })
+    )
+  }
+
+  /**
    * Initiates a combat sequence
    * @param attack An attack object
    */

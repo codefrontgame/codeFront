@@ -6,13 +6,15 @@ export default new Level(
   2, // Id
   { // Hints
     move: [
-      'The first hint',
-      'The second hint',
+      'Vad är det som är annorlunda på denna banan?',
+      'Vad är det zombien behöver akta sig för nu?',
+      'Stämmer villkoret denna gången? Kan du prova ett annat?',
     ],
   },
   [ // Helptexts
-    'Välkommen till codeFront ...',
-    '',
+    'Härligt! Nu har vi kommit närmare.',
+    'Åh nej! Nu är det något annat framför zombien. Hen vet tyvärr bara hur man går runt stenar...',
+    'Du måste hjälpa hen att gå runt stocken istället!',
   ],
   [ // Entities
     new Zombie(5, 0, 1, 1, 100),

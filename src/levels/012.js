@@ -20,7 +20,7 @@ export default new Level(
     new WoodenTower(1, 10, 1, 1, 100),
     new WoodenTower(9, 10, 1, 1, 100),
     new Zombie(3, 0, 1, 1, 100),
-    new FireBat(7, 0, 1, 1, 100),
+    new FireBat(7, 0, 1, 1, 100, true),
   ],
   [] // Obstacles
 )

@@ -16,7 +16,7 @@ export default new Level(
     'Här kommer alla dessa hinder igen. Nog kan vi få firebat att klara dessa med!',
   ],
   [ // Entities
-    new FireBat(5, 0, 1, 1, 100),
+    new FireBat(5, 0, 1, 1, 100, false),
   ],
   [ // Obstacles
     new Log(5, 6, 1, 1),

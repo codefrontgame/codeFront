@@ -18,7 +18,7 @@ export default new Level(
   ],
   [ // Entities
     new Zombie(2, 0, 1, 1, 100),
-    new FireBat(8, 0, 1, 1, 100),
+    new FireBat(8, 0, 1, 1, 100, true),
   ],
   [ // Obstacles
     new Log(2, 6, 1, 1),

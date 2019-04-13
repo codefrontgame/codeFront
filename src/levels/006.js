@@ -1,6 +1,4 @@
 import Level from '@/levels/level'
-import Zombie from '@/characters/zombie'
-import Log from '../characters/log'
 import Boulder from '../characters/boulder'
 import FireBat from '../characters/firebat'
 
@@ -19,7 +17,7 @@ export default new Level(
     'Du kommer behöva lära firebat hur hen ska gå helt från början. Men detta problem har vi väl sett tidigare...',
   ],
   [ // Entities
-    new FireBat(5, 0, 1, 1, 100),
+    new FireBat(5, 0, 1, 1, 100, false),
   ],
   [ // Obstacles
     new Boulder(5, 6, 1, 1),

@@ -21,12 +21,11 @@ export default class Character extends Entity {
     let functions = {}
 
     // Find levels that introduce new functions
-    let functionLevels = Object.keys(this.userFunctionsMap).sort()
-
-    for (let fl in functionLevels) {
+    let functionLevels = Object.keys(this.userFunctionsMap)
+      .sort(function (a, b) { return a - b })
+    for (let fl of functionLevels) {
       if (this.userFunctionsMap.hasOwnProperty(fl)) {
         if (fl > level) break // Exit loop when we have added current level
-
         // Redefine the function object, overwriting the previous keys with the new ones
         functions = {
           ...functions,
