@@ -240,13 +240,15 @@ export default {
   }
   .level-transition {
     position: absolute;
-    left: 275px;
+    left: 27.5vh;
     top: 200px;
     height: 200px;
     width: 300px;
     background-color: white;
     text-align: center;
     padding-top: 70px;
+    border-style: solid;
+    border-width: thin;
   }
   .duck {
     position: absolute;
