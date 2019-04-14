@@ -1,12 +1,7 @@
 <template>
 <div class="character-selector">
   <div :key="key" v-for="(character, key) in characters" @click="select(character)">
-    <div v-if="character === selected">
-      <character-selector-symbol :name="character.name" :image="character.avatar" :withBorder="true"/>
-    </div>
-    <div v-else>
-      <character-selector-symbol :name="character.name" :image="character.avatar" :withBorder="false"/>
-    </div>
+    <character-selector-symbol :name="character.name" :image="character.avatar" :withBorder="character === selected"/>
   </div>
 </div>
 </template>
