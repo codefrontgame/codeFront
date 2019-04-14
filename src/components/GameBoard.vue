@@ -4,20 +4,31 @@
     <h3>Bra jobbat!</h3>
     <p>Du klarade nivå {{completedLevel}}</p>
   </div>
-  <div class="image-container">
+  <div class="image-container" v-bind:class="{ 'image-container-hidden': duckHidden }">
     <img src="assets/duck.svg"
          class="duck"
          v-bind:class="{ 'duck-hidden': duckHidden }"
          @click="duckPressed()">
   </div>
-  <vue-p5
-    @setup="setup"
-    @draw="draw"
-    @preload="preload"
-  ></vue-p5>
+  <div @click="closeSpeechBubble">
+    <vue-p5
+            @setup="setup"
+            @draw="draw"
+            @preload="preload"
+    ></vue-p5>
+  </div>
   <button class="button hint-button" @click="getHint">Ledtråd</button>
   <div v-if="speechBubbleText !== ''" class="box">
     <p>{{speechBubbleText}}</p>
+    <button>
+      Prev
+    </button>
+    <button>
+      Next
+    </button>
+    <button>
+      Close
+    </button>
   </div>
 </div>
 </template>
@@ -132,6 +143,10 @@ export default {
       this.duckHidden = false
       this.duckPressed()
     },
+    duckReset () {
+      this.duckHidden = true
+      this.helpTextIndex = 0
+    },
     duckPressed () {
       let helpTexts = this.$store.getters['getHelpTexts']
       if (!this.duckHidden) {
@@ -139,6 +154,7 @@ export default {
           this.duckSay()
         } else if (this.helpTextIndex === helpTexts.length) {
           this.helpTextIndex = 0
+          this.speechBubbleText = ''
           this.duckHidden = !this.duckHidden
         }
       } else {
@@ -148,20 +164,26 @@ export default {
     },
     duckSay () {
       let helpTexts = this.$store.getters['getHelpTexts']
-      console.log('Duck: ' + helpTexts[this.helpTextIndex])
+      this.speechBubbleText = helpTexts[this.helpTextIndex]
       this.helpTextIndex++
       if (this.helpTextIndex === helpTexts.length) {
         console.log('DONE')
       }
     },
     getHint () {
-      let hint = this.$store.getters.getHint[this.hintIndex]
-      if (typeof hint !== 'undefined') {
-        this.speechBubbleText = hint
-        this.hintIndex += 1
+      let hintText = this.$store.getters.getHint[this.hintIndex]
+      if (typeof hintText === 'undefined') {
+        this.hintIndex = 0
+        hintText = ''
       } else {
-        this.speechBubbleText = ''
+        this.hintIndex += 1
       }
+      this.speechBubbleText = hintText
+      this.duckReset()
+    },
+    closeSpeechBubble () {
+      this.duckReset()
+      this.speechBubbleText = ''
     },
     /**
      * The p5.js draw loop
@@ -275,31 +297,39 @@ export default {
   .box {
     position: absolute;
     bottom: 5px;
-    left: 25vh;
-    width: 40vh;
-    height: 100px;
-    background-color: white;
+    left: 5vh;
+    width: 72vh;
+    height: 150px;
+    background-color: dimgrey;
+    color: whitesmoke;
     border-style: solid;
-    border-color: darkgreen;
-    border-width: 1px;
+    border-color: black;
+    border-width: 3px;
+    border-radius: 15px;
     text-align: left;
     padding-left: 10px;
+    padding-right: 10px;
   }
   .duck {
-    position: absolute;
-    left: 0;
-    bottom: 0;
-    width: 20vh;
-  }
-  .duck-hidden {
-    bottom: -10vh;
-  }
-  .image-container {
-    position: absolute;
+    position: relative;
     left: 0;
     bottom: 0;
     width: 20vh;
     height: 20vh;
+  }
+  .duck-hidden {
+    bottom: -11vh;
+  }
+  .image-container {
+    position: absolute;
+    left: 5vh;
+    bottom: 15vh;
+    width: 20vh;
+    height: 20vh;
     overflow: hidden;
+  }
+  .image-container-hidden {
+    left: 0;
+    bottom: 0;
   }
 </style>
