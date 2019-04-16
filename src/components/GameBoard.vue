@@ -20,15 +20,9 @@
   <button class="button hint-button" @click="getHint">Ledtråd</button>
   <div v-if="speechBubbleText !== ''" class="box">
     <p>{{speechBubbleText}}</p>
-    <button>
-      Prev
-    </button>
-    <button>
-      Next
-    </button>
-    <button>
-      Close
-    </button>
+    <font-awesome-icon v-if="!duckHidden" @click="getDuckText(-1)" class="left-icon" icon="chevron-left"/>
+    <font-awesome-icon v-if="!duckHidden" @click="getDuckText(1)" class="right-icon" icon="chevron-right"/>
+    <font-awesome-icon @click="closeSpeechBubble" class="close-icon" icon="times"/>
   </div>
 </div>
 </template>
@@ -151,7 +145,7 @@ export default {
       let helpTexts = this.$store.getters['getHelpTexts']
       if (!this.duckHidden) {
         if (this.helpTextIndex < helpTexts.length && this.helpTextIndex >= 0) {
-          this.duckSay()
+          this.getDuckText(1)
         } else if (this.helpTextIndex === helpTexts.length) {
           this.helpTextIndex = 0
           this.speechBubbleText = ''
@@ -159,15 +153,25 @@ export default {
         }
       } else {
         this.duckHidden = false
-        this.duckSay()
+        this.getDuckText()
       }
     },
-    duckSay () {
-      let helpTexts = this.$store.getters['getHelpTexts']
-      this.speechBubbleText = helpTexts[this.helpTextIndex]
-      this.helpTextIndex++
+    getDuckText (offset) {
+      let helpText = ''
+      let helpTexts = this.$store.getters.getHelpTexts
+      if (offset === -1) {
+        this.helpTextIndex -= 1
+      } else if (offset === 1) {
+        this.helpTextIndex += 1
+      } else {
+        // inget händer
+      }
+      helpText = this.$store.getters.getHelpTexts[this.helpTextIndex]
+      // this.helpTextIndex++
       if (this.helpTextIndex === helpTexts.length) {
-        console.log('DONE')
+        this.speechBubbleText = ''
+      } else {
+        this.speechBubbleText = helpText
       }
     },
     getHint () {
@@ -359,5 +363,20 @@ export default {
   .image-container-hidden {
     left: 0;
     bottom: 0;
+  }
+  .close-icon {
+    position: absolute;
+    top: 4px;
+    right: 4px;
+  }
+  .left-icon {
+    position: absolute;
+    bottom: 4px;
+    left: 4px;
+  }
+  .right-icon {
+    position: absolute;
+    bottom: 4px;
+    left: 25px;
   }
 </style>
