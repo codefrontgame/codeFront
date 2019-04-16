@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+import VuexPersist from 'vuex-persist'
 
 import Zombie from '@/characters/zombie'
 import FireBat from '@/characters/firebat'
@@ -10,6 +11,15 @@ import Character from './characters/character'
 import WoodenTower from './characters/wooden-tower'
 
 Vue.use(Vuex)
+
+const vuexLocalStorage = new VuexPersist({
+  key: 'vuex', // The key to store the state on in the storage provider.
+  storage: window.localStorage, // or window.sessionStorage or localForage
+  // Function that passes the state and returns the state with only the objects you want to store.
+  // reducer: state => state,
+  // Function that passes a mutation and lets you decide if it should update the state in localStorage.
+  // filter: mutation => (true)
+})
 
 let initialGameObjects = [ // List of all game objects
   Zombie,
@@ -74,6 +84,7 @@ export default new Vuex.Store({
     },
   },
   actions: {},
+  plugins: [vuexLocalStorage.plugin],
 })
 
 function getFunctions (gameObjects, level) {
