@@ -1,6 +1,9 @@
 # build stage
 FROM node:lts-alpine as build-stage
 WORKDIR /app
+# install git
+RUN apk update && apk upgrade && \
+    apk add --no-cache bash git openssh
 COPY package*.json ./
 RUN npm install
 COPY . .

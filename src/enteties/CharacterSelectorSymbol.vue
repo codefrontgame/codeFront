@@ -1,10 +1,5 @@
 <template>
-  <div v-if="this.withBorder">
-    <img :src="image" width="75" height="75" class="image border">
-  </div>
-  <div v-else>
-    <img :src="image" width="75" height="75" class="image">
-  </div>
+    <img :src="image" width="75" height="75" class="image" v-bind:class="{ 'border': withBorder }">
 </template>
 <script>
 export default {
