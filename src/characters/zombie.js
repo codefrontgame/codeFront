@@ -13,7 +13,7 @@ export default class Zombie extends Character {
   }
 
   static assetPaths = [
-    'assets/test.svg',
+    'assets/zombie.svg',
   ]
 
   static avatar = 'assets/zombie.png'

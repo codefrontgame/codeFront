@@ -85,7 +85,8 @@ function yWithPerspective (sketch, board, boardX, boardY, boardCover, sketchX) {
   // calculated from. It either goes from sketchA or sketchB and through the
   // transposed point. With a transposed x-coordinate a transposed y-coordinate
   // can be calculated.
-  let sketchf = (xPos) => { }
+  let sketchf = (xPos) => {
+  }
 
   if (boardY <= boardX * board.yTiles / board.xTiles) {
     // Side A
@@ -181,4 +182,31 @@ export function drawCircle (sketch, board, centerBoardX, centerBoardY, radius, r
       points[i + 1].y
     )
   }
+}
+
+export function drawLine (sketch, board, p1, p2) {
+  let display = displayCoordinates(
+    sketch,
+    board,
+    p1.x,
+    p1.y,
+  )
+  let display2 = displayCoordinates(
+    sketch,
+    board,
+    p2.x,
+    p2.y,
+  )
+  sketch.line(display.x, display.y, display2.x, display2.y)
+}
+
+export function drawHitbox (sketch, board, hitbox) {
+
+  sketch.strokeWeight(6)
+  sketch.stroke(220, 0, 0, 50)
+
+  drawLine(sketch, board, { x: hitbox.x1, y: hitbox.y1 }, { x: hitbox.x1, y: hitbox.y2 })
+  drawLine(sketch, board, { x: hitbox.x1, y: hitbox.y2 }, { x: hitbox.x2, y: hitbox.y2 })
+  drawLine(sketch, board, { x: hitbox.x2, y: hitbox.y2 }, { x: hitbox.x2, y: hitbox.y1 })
+  drawLine(sketch, board, { x: hitbox.x2, y: hitbox.y1 }, { x: hitbox.x1, y: hitbox.y1 })
 }

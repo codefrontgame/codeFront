@@ -166,6 +166,8 @@ export default {
       sketch.stroke(0)
       sketch.text('Nivå: ' + level, 10, 10)
 
+      // TODO - Lägg till anka och bok
+
       // Get the current framerate
       let fr = sketch.getFrameRate()
       // Sometimes the sketch return a 0 framerate, if that's the case, use aim framerate
@@ -176,6 +178,7 @@ export default {
         try { // Abort if there is an error in the user code
           for (let i = 0; i < this.entities.length; i++) {
             // TODO example of damage dealt
+            console.log(this.entities[i])
             this.entities[i].update({
               sketch: sketch,
               ticks: 1 / fr,
