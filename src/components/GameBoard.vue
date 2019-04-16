@@ -297,8 +297,8 @@ export default {
   .box {
     position: absolute;
     bottom: 5px;
-    left: 5vh;
-    width: 72vh;
+    left: 25vh;
+    width: 40vh;
     height: 150px;
     background-color: dimgrey;
     color: whitesmoke;
@@ -309,6 +309,32 @@ export default {
     text-align: left;
     padding-left: 10px;
     padding-right: 10px;
+    :before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 50%;
+      width: 0;
+      height: 0;
+      border: 20px solid transparent;
+      border-right-color: black;
+      border-left: 0;
+      margin-top: -20px;
+      margin-left: -23px;
+    }
+    :after {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 50%;
+      width: 0;
+      height: 0;
+      border: 20px solid transparent;
+      border-right-color: dimgray;
+      border-left: 0;
+      margin-top: -20px;
+      margin-left: -20px;
+    }
   }
   .duck {
     position: relative;
