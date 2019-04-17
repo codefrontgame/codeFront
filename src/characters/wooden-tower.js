@@ -1,7 +1,7 @@
 import Entity from './entity'
 import { drawCircle } from '../utility/graphics'
 
-export default class WoodenTower extends Entity {
+export default class WoodenTower extends Tower {
   size = 200
 
   imageAnchor = {
