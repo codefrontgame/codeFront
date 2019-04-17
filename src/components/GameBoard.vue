@@ -8,7 +8,7 @@
     <img src="assets/duck.svg"
          class="duck"
          v-bind:class="{ 'duck-hidden': duckHidden }"
-         @click="duckPressed()">
+         @click="duckClicked">
   </div>
   <div @click="closeSpeechBubble">
     <vue-p5
@@ -18,10 +18,10 @@
     ></vue-p5>
   </div>
   <button class="button hint-button" @click="getHint">Ledtråd</button>
-  <div v-if="speechBubbleText !== ''" class="box">
-    <p>{{speechBubbleText}}</p>
-    <font-awesome-icon v-if="!duckHidden" @click="getDuckText(-1)" class="left-icon" icon="chevron-left"/>
-    <font-awesome-icon v-if="!duckHidden" @click="getDuckText(1)" class="right-icon" icon="chevron-right"/>
+  <div v-if="speechBubble !== ''" class="box">
+    <p>{{speechBubble}}</p>
+    <font-awesome-icon v-if="!duckHidden" @click="previousHelpText" class="left-icon" icon="chevron-left"/>
+    <font-awesome-icon v-if="!duckHidden" @click="nextHelpText" class="right-icon" icon="chevron-right"/>
     <font-awesome-icon @click="closeSpeechBubble" class="close-icon" icon="times"/>
   </div>
 </div>
@@ -50,8 +50,8 @@ export default {
         y: 0,
       },
       completedLevel: null,
-      speechBubbleText: '',
-      hintIndex: 0,
+      hintIndex: -1, // So that we not skip the first hint the first time
+      showHint: false,
       duckHidden: false,
       helpTextIndex: 0,
       storyTime: true,
@@ -69,6 +69,15 @@ export default {
     },
     obstacles () {
       return this.$store.getters['getLevelObstacles']
+    },
+    speechBubble () {
+      if (!this.duckHidden) {
+        return this.$store.getters.getHelpTexts[this.helpTextIndex]
+      } else if (this.showHint) {
+        return this.$store.getters.getHint[this.hintIndex]
+      } else {
+        return ''
+      }
     },
   },
   components: {
@@ -115,7 +124,7 @@ export default {
       // Cover 100 % of height
       sketch.createCanvas(sketch.windowHeight * 0.86, sketch.windowHeight)
       sketch.background(200)
-      this.duckPressed()
+      this.duckHidden = false
     },
     handleResize () {
       this.resize()
@@ -135,59 +144,44 @@ export default {
     endTransition () {
       this.completedLevel = null
       this.duckHidden = false
-      this.duckPressed()
+      this.showHint = false
+      this.hintIndex = -1
     },
     duckReset () {
       this.duckHidden = true
       this.helpTextIndex = 0
     },
-    duckPressed () {
-      let helpTexts = this.$store.getters['getHelpTexts']
-      if (!this.duckHidden) {
-        if (this.helpTextIndex < helpTexts.length && this.helpTextIndex >= 0) {
-          this.getDuckText(1)
-        } else if (this.helpTextIndex === helpTexts.length) {
-          this.helpTextIndex = 0
-          this.speechBubbleText = ''
-          this.duckHidden = !this.duckHidden
-        }
-      } else {
-        this.duckHidden = false
-        this.getDuckText()
+    duckClicked () {
+      this.duckHidden = !this.duckHidden
+      this.showHint = false
+      if (this.duckHidden) {
+        this.helpTextIndex = 0
       }
     },
-    getDuckText (offset) {
-      let helpText = ''
+    nextHelpText () {
       let helpTexts = this.$store.getters.getHelpTexts
-      if (offset === -1) {
-        this.helpTextIndex -= 1
-      } else if (offset === 1) {
+      if (helpTexts.length - 1 > this.helpTextIndex) {
         this.helpTextIndex += 1
-      } else {
-        // inget händer
       }
-      helpText = this.$store.getters.getHelpTexts[this.helpTextIndex]
-      // this.helpTextIndex++
-      if (this.helpTextIndex === helpTexts.length) {
-        this.speechBubbleText = ''
-      } else {
-        this.speechBubbleText = helpText
+    },
+    previousHelpText () {
+      if (this.helpTextIndex > 0) {
+        this.helpTextIndex -= 1
       }
     },
     getHint () {
-      let hintText = this.$store.getters.getHint[this.hintIndex]
-      if (typeof hintText === 'undefined') {
+      this.showHint = true
+      let hints = this.$store.getters.getHint
+      if (hints.length - 1 === this.hintIndex) {
         this.hintIndex = 0
-        hintText = ''
       } else {
         this.hintIndex += 1
       }
-      this.speechBubbleText = hintText
       this.duckReset()
     },
     closeSpeechBubble () {
       this.duckReset()
-      this.speechBubbleText = ''
+      this.showHint = false
     },
     /**
      * The p5.js draw loop
@@ -232,7 +226,7 @@ export default {
           this.$store.commit('setRunStatus', false) // Stop game
         }
         // The speech bubble should go away when running code
-        // this.speechBubbleText = ''
+        this.closeSpeechBubble()
       }
 
       // Redraw all entities and obstacles
@@ -265,8 +259,6 @@ export default {
       if (this.hasWon()) {
         this.completedLevel = this.$store.getters['getLevel']
         setTimeout(this.endTransition, 2000)
-        this.speechBubbleText = ''
-        this.hintIndex = 0
         this.$store.commit('incLevel')
       } else if (this.hasLost()) {
         console.log(this.$store.getters['getEntities'])
