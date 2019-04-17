@@ -17,8 +17,9 @@
       {{ errorMessage() }}
     </div>
   </transition>
-  <button v-if="!disabled" class="button" @click="resetUserCode">Återställ</button>
-  <button v-else class="disabled button" @click="resetUserCode">Återställ</button>
+  <button class="button" v-bind:class="{ 'disabled' : disabled }" @click="resetUserCode">
+    Återställ
+  </button>
 </div>
 </template>
 
