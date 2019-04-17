@@ -1,6 +1,6 @@
 <template>
   <div class="welcome">
-    <img src="assets/duck.svg" width="200px">
+    <img src="assets/logo.png" class="logo">
     <h1>Välkommen till codeFront!</h1>
     <video class="video center"  controls>
       <source src="assets/video.mp4" type="video/mp4">
@@ -32,5 +32,10 @@ export default {
 .to-game {
   position: relative;
   top: 50px;
+}
+.logo {
+  width: 200px;
+  position: relative;
+  top: 10px;
 }
 </style>
