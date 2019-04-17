@@ -3,7 +3,7 @@ import { drawHitbox } from '../utility/graphics'
 
 export default class Log extends RectangularObstacle {
   constructor (x, y, size) {
-    super(x, y, 0.01*size, 0.007*size)
+    super(x, y, 0.01 * size, 0.007 * size)
     this.size = size
   }
 

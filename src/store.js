@@ -20,6 +20,7 @@ let initialGameObjects = [ // List of all game objects
   Boulder,
   Log,
   WoodenTower,
+  StoneTower,
 ]
 
 export default new Vuex.Store({
