@@ -201,7 +201,6 @@ export function drawLine (sketch, board, p1, p2) {
 }
 
 export function drawHitbox (sketch, board, hitbox) {
-
   sketch.strokeWeight(6)
   sketch.stroke(220, 0, 0, 50)
 
