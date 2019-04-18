@@ -20,8 +20,8 @@
   <button class="button hint-button" @click="getHint">Ledtråd</button>
   <div v-if="speechBubble !== ''" class="box">
     <p>{{speechBubble}}</p>
-    <font-awesome-icon v-if="!duckHidden" @click="previousHelpText" class="left-icon" icon="chevron-left"/>
-    <font-awesome-icon v-if="!duckHidden" @click="nextHelpText" class="right-icon" icon="chevron-right"/>
+    <font-awesome-icon v-if="!duckHidden && hasPrevious" @click="previousHelpText" class="left-icon" icon="chevron-left"/>
+    <font-awesome-icon v-if="!duckHidden && hasNext" @click="nextHelpText" class="right-icon" icon="chevron-right"/>
     <font-awesome-icon @click="closeSpeechBubble" class="close-icon" icon="times"/>
   </div>
 </div>
@@ -78,6 +78,13 @@ export default {
       } else {
         return ''
       }
+    },
+    hasNext () {
+      let helpTexts = this.$store.getters.getHelpTexts
+      return helpTexts.length - 1 > this.helpTextIndex
+    },
+    hasPrevious () {
+      return this.helpTextIndex > 0
     },
   },
   components: {
@@ -347,7 +354,7 @@ export default {
   .image-container {
     position: absolute;
     left: 5vh;
-    bottom: 15vh;
+    bottom: 1vh;
     width: 20vh;
     height: 20vh;
     overflow: hidden;
