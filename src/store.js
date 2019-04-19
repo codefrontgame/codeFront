@@ -9,10 +9,11 @@ import Boulder from '@/characters/boulder'
 import Character from './characters/character'
 import WoodenTower from './characters/wooden-tower'
 import Log from './characters/log'
-
-let startLevel = 0 // Setting this greater than 0 breaks the initial user code at the moment
+import Book from '@/book'
 
 Vue.use(Vuex)
+
+let startLevel = 0 // Setting this greater than 0 breaks the initial user code at the moment
 
 let initialGameObjects = [ // List of all game objects
   Zombie,
@@ -28,6 +29,9 @@ export default new Vuex.Store({
     entities: clone(levels[startLevel].entities), // Entities currently on thr gameboard
     levels, // List of all levels
     level: startLevel, // The current level
+    book: Book,
+    selectedChapter: 'a',
+    selectedPage: 1,
     gameObjects: initialGameObjects,
     userFunctions: getInitialFunctions(initialGameObjects, startLevel), // works as a cache
   },
@@ -39,6 +43,22 @@ export default new Vuex.Store({
     getCharacters: state => state.gameObjects.filter(Obj => (new Obj()) instanceof Character),
     getLevelObstacles: state => state.levels[state.level].obstacles,
     getLevel: state => state.level,
+    bookChapters: state => Object.keys(state.book),
+    bookPages: state => {
+      let chapter = state.book[state.selectedChapter]
+      if (chapter == null) return []
+      return Object.keys(chapter)
+    },
+    bookPage: state => {
+      let chapter = state.book[state.selectedChapter]
+      if (chapter == null) return ''
+      let page = chapter[state.selectedPage]
+      if (page == null) return ''
+      return page
+    },
+    selectedPage: state => state.selectedPage,
+    selectedChapter: state => state.selectedChapter,
+    getHelpTexts: state => state.levels[state.level].helpTexts,
   },
   mutations: {
     setUserCode (state, { character, f, code }) {
@@ -72,6 +92,13 @@ export default new Vuex.Store({
     },
     setEntities (state, entities) {
       Vue.set(state, 'entities', entities)
+    },
+    selectedPage (state, page) {
+      Vue.set(state, 'selectedPage', page)
+    },
+    selectedChapter (state, chapter) {
+      Vue.set(state, 'selectedPage', null)
+      Vue.set(state, 'selectedChapter', chapter)
     },
   },
   actions: {},

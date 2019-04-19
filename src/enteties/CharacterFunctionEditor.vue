@@ -2,6 +2,7 @@
 <div class="character-function-editor">
   <div class="title" @click="$emit('update:expanded', !expanded)">
     <label>{{func.cn}}</label>
+    <font-awesome-icon class="icon" :icon="expanded ? 'window-minimize' : 'window-maximize'"></font-awesome-icon>
   </div>
   <transition name="fade">
     <div v-if="expanded">
@@ -16,8 +17,9 @@
       {{ errorMessage() }}
     </div>
   </transition>
-  <button v-if="!disabled" class="button" @click="resetUserCode">Återställ</button>
-  <button v-else class="disabled button" @click="resetUserCode">Återställ</button>
+  <button class="button" v-bind:class="{ 'disabled' : disabled }" @click="resetUserCode">
+    Återställ
+  </button>
 </div>
 </template>
 
@@ -64,6 +66,7 @@ export default {
   font-size: 18pt;
   margin-top: 5px;
   margin-bottom: 5px;
+  padding: 3px;
   background: lightgray;
 }
 .editor {
@@ -78,5 +81,8 @@ export default {
 }
 .disabled {
   background-color: darkgray;
+}
+.icon {
+  float: right;
 }
 </style>
