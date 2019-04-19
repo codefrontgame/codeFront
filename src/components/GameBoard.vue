@@ -74,7 +74,7 @@ export default {
       if (!this.duckHidden) {
         return this.$store.getters.getHelpTexts[this.helpTextIndex]
       } else if (this.showHint) {
-        return this.$store.getters.getHint[this.hintIndex]
+        return this.$store.getters.getHints[this.hintIndex]
       } else {
         return ''
       }
@@ -178,7 +178,7 @@ export default {
     },
     getHint () {
       this.showHint = true
-      let hints = this.$store.getters.getHint
+      let hints = this.$store.getters.getHints
       if (hints.length - 1 === this.hintIndex) {
         this.hintIndex = 0
       } else {

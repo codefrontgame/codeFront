@@ -35,7 +35,7 @@ export default new Vuex.Store({
     getCharacters: state => state.gameObjects.filter(Obj => (new Obj()) instanceof Character),
     getLevelObstacles: state => state.levels[state.level].obstacles,
     getLevel: state => state.level,
-    getHint: state => state.levels[state.level].hints,
+    getHints: state => state.levels[state.level].hints,
     getHelpTexts: state => state.levels[state.level].helpTexts,
   },
   mutations: {
