@@ -4,10 +4,10 @@
     <h3>Bra jobbat!</h3>
     <p>Du klarade nivå {{completedLevel}}</p>
   </div>
-  <div class="image-container" v-bind:class="{ 'image-container-hidden': duckHidden }">
+  <div class="image-container" :class="{ 'image-container-hidden': duckHidden }">
     <img src="assets/duck.svg"
          class="duck"
-         v-bind:class="{ 'duck-hidden': duckHidden }"
+         :class="{ 'duck-hidden': duckHidden }"
          @click="duckClicked">
   </div>
   <div @click="closeSpeechBubble">
