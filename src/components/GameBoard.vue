@@ -15,6 +15,9 @@
     @draw="draw"
     @preload="preload"
   ></vue-p5>
+  <div class="book-btn" @click="$emit('toggle-book')">
+    <font-awesome-icon icon="book" size="3x"/>
+  </div>
 </div>
 </template>
 
@@ -237,6 +240,15 @@ export default {
     height: 100vh;
     resize: none;
     overflow: hidden;
+    position: relative;
+    .book-btn {
+      position: absolute;
+      bottom: 20px;
+      right: 30px;
+    }
+    .book-btn:hover {
+      cursor: pointer;
+    }
   }
   .level-transition {
     position: absolute;
@@ -267,5 +279,4 @@ export default {
     height: 20vh;
     overflow: hidden;
   }
-
 </style>
