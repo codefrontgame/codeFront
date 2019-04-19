@@ -18,18 +18,23 @@
     ></vue-p5>
   </div>
   <button class="button hint-button" @click="getHint">Ledtråd</button>
-  <div v-if="speechBubble !== ''" class="box">
-    <p>{{speechBubble}}</p>
-    <font-awesome-icon v-if="!duckHidden && hasPrevious" @click="previousHelpText" class="left-icon" icon="chevron-left"/>
-    <font-awesome-icon v-if="!duckHidden && hasNext" @click="nextHelpText" class="right-icon" icon="chevron-right"/>
-    <font-awesome-icon @click="closeSpeechBubble" class="close-icon" icon="times"/>
-  </div>
+  <SpeechBubble
+    v-if="speechBubble !== ''"
+    class="box"
+    :text="speechBubble"
+    :hasPrevious="!duckHidden && hasPrevious"
+    @previous="previousHelpText"
+    :hasNext="!duckHidden && hasNext"
+    @next="nextHelpText"
+    @close="closeSpeechBubble"
+  />
 </div>
 </template>
 
 <script>
 import VueP5 from 'vue-p5'
 import Entity from '@/characters/entity'
+import SpeechBubble from '@/enteties/SpeechBubble'
 
 export default {
   name: 'GameBoard',
@@ -89,6 +94,7 @@ export default {
   },
   components: {
     VueP5,
+    SpeechBubble,
   },
   // bind event handlers to the `handleResize` method (defined below)
   mounted: function () {
@@ -303,43 +309,6 @@ export default {
     position: absolute;
     bottom: 5px;
     left: 25vh;
-    width: 40vh;
-    height: 150px;
-    background-color: dimgrey;
-    color: whitesmoke;
-    border-style: solid;
-    border-color: black;
-    border-width: 3px;
-    border-radius: 15px;
-    text-align: left;
-    padding-left: 10px;
-    padding-right: 10px;
-    :before {
-      content: '';
-      position: absolute;
-      left: 0;
-      top: 50%;
-      width: 0;
-      height: 0;
-      border: 20px solid transparent;
-      border-right-color: black;
-      border-left: 0;
-      margin-top: -20px;
-      margin-left: -23px;
-    }
-    :after {
-      content: '';
-      position: absolute;
-      left: 0;
-      top: 50%;
-      width: 0;
-      height: 0;
-      border: 20px solid transparent;
-      border-right-color: dimgray;
-      border-left: 0;
-      margin-top: -20px;
-      margin-left: -20px;
-    }
   }
   .duck {
     position: relative;
@@ -362,20 +331,5 @@ export default {
   .image-container-hidden {
     left: 0;
     bottom: 0;
-  }
-  .close-icon {
-    position: absolute;
-    top: 4px;
-    right: 4px;
-  }
-  .left-icon {
-    position: absolute;
-    bottom: 4px;
-    left: 4px;
-  }
-  .right-icon {
-    position: absolute;
-    bottom: 4px;
-    left: 25px;
   }
 </style>
