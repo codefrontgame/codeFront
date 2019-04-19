@@ -1,11 +1,17 @@
 import Tower from './tower'
+import { drawHitbox } from '../utility/graphics'
 
 export default class StoneTower extends Tower {
-  size = 300
+  size//= 200
+
+  constructor (x, y, size, initHealth) {
+    super(x, y, 0.009 * size, 0.0076 * size, initHealth)
+    this.size = size
+  }
 
   imageAnchor = {
-    x: 0.5,
-    y: 0.6,
+    x: 0.62,
+    y: 0.74,
   }
 
   /**
@@ -27,4 +33,12 @@ export default class StoneTower extends Tower {
   static assetPaths = [
     'assets/stone-tower.svg',
   ]
+
+  groundDraw ({ sketch, assets, board }) {
+    super.groundDraw({ sketch, assets, board })
+    /* this.hitBoxes().forEach((hitbox) => {
+      drawHitbox(sketch, board, hitbox)
+    })
+    */
+  }
 }

@@ -1,11 +1,17 @@
 import Tower from './tower'
+import { drawHitbox } from '../utility/graphics'
 
 export default class WoodenTower extends Tower {
-  size = 200
+  size//= 200
+
+  constructor (x, y, size, initHealth) {
+    super(x, y, 0.009 * size, 0.008 * size, initHealth)
+    this.size = size
+  }
 
   imageAnchor = {
-    x: 0.5,
-    y: 0.6,
+    x: 0.60,
+    y: 0.68,
   }
 
   /**
@@ -27,4 +33,12 @@ export default class WoodenTower extends Tower {
   static assetPaths = [
     'assets/wooden-tower.svg',
   ]
+
+  groundDraw ({ sketch, assets, board }) {
+    super.groundDraw({ sketch, assets, board })
+    /* this.hitBoxes().forEach((hitbox) => {
+      drawHitbox(sketch, board, hitbox)
+    })
+    */
+  }
 }

@@ -1,11 +1,19 @@
 import Character from './character'
 import { functionDefinition, callDefinition, enumDefinition, engine } from '@/utility/esper.js'
 import moveActuator from '@/utility/actuators/move'
+import { drawHitbox } from '../utility/graphics'
 
 export default class Zombie extends Character {
+  size//= 80
+
+  constructor (x, y, size, initHealth) {
+    super(x, y, 0.009 * size, 0.007 * size, initHealth)
+    this.size = size
+  }
+
   imageAnchor = {
     x: 0.5,
-    y: 0.73,
+    y: 0.63,
   }
 
   getAsset (assets) {
@@ -100,5 +108,12 @@ export default class Zombie extends Character {
         },
       },
     },
+  }
+  groundDraw ({ sketch, assets, board }) {
+    super.groundDraw({ sketch, assets, board })
+    /* this.hitBoxes().forEach((hitbox) => {
+      drawHitbox(sketch, board, hitbox)
+    })
+    */
   }
 }
