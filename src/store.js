@@ -55,6 +55,7 @@ export default new Vuex.Store({
     selectedPage: state => state.selectedPage,
     selectedChapter: state => state.selectedChapter,
     getHelpTexts: state => state.levels[state.level].helpTexts,
+    getLevelCharacters: state => [...new Set(state.entities.filter(entity => entity instanceof Character).map(character => character.constructor))],
   },
   mutations: {
     setUserCode (state, { character, f, code }) {
