@@ -1,40 +1,19 @@
 <template>
 <div class="game-board">
-  <div v-if="completedLevel != null" class="level-transition">
-    <h3>Bra jobbat!</h3>
-    <p>Du klarade nivå {{completedLevel}}</p>
-  </div>
-  <div class="image-container" :class="{ 'image-container-hidden': duckHidden }">
-    <img src="assets/duck.svg"
-         class="duck"
-         :class="{ 'duck-hidden': duckHidden }"
-         @click="duckClicked">
-  </div>
-  <div @click="closeSpeechBubble">
+  <HUD>
     <vue-p5
-            @setup="setup"
-            @draw="draw"
-            @preload="preload"
+      @setup="setup"
+      @draw="draw"
+      @preload="preload"
     ></vue-p5>
-  </div>
-  <button class="button hint-button" @click="getHint">Ledtråd</button>
-  <SpeechBubble
-    v-if="speechBubble !== ''"
-    class="box"
-    :text="speechBubble"
-    :hasPrevious="!duckHidden && hasPrevious"
-    @previous="previousHelpText"
-    :hasNext="!duckHidden && hasNext"
-    @next="nextHelpText"
-    @close="closeSpeechBubble"
-  />
+  </HUD>
 </div>
 </template>
 
 <script>
 import VueP5 from 'vue-p5'
 import Entity from '@/characters/entity'
-import SpeechBubble from '@/enteties/SpeechBubble'
+import HUD from '@/components/HUD'
 
 export default {
   name: 'GameBoard',
@@ -54,12 +33,6 @@ export default {
         x: 0,
         y: 0,
       },
-      completedLevel: null,
-      hintIndex: -1, // So that we not skip the first hint the first time
-      showHint: false,
-      duckHidden: false,
-      helpTextIndex: 0,
-      storyTime: true,
       resize: null, // Function that resizes the canvas when the window size changes
     }
   },
@@ -75,127 +48,8 @@ export default {
     obstacles () {
       return this.$store.getters['getLevelObstacles']
     },
-    speechBubble () {
-      if (!this.duckHidden) {
-        return this.$store.getters.getHelpTexts[this.helpTextIndex]
-      } else if (this.showHint) {
-        return this.$store.getters.getHints[this.hintIndex]
-      } else {
-        return ''
-      }
-    },
-    hasNext () {
-      let helpTexts = this.$store.getters.getHelpTexts
-      return helpTexts.length - 1 > this.helpTextIndex
-    },
-    hasPrevious () {
-      return this.helpTextIndex > 0
-    },
-  },
-  components: {
-    VueP5,
-    SpeechBubble,
-  },
-  // bind event handlers to the `handleResize` method (defined below)
-  mounted: function () {
-    window.addEventListener('resize', this.handleResize)
-  },
-  beforeDestroy: function () {
-    window.removeEventListener('resize', this.handleResize)
   },
   methods: {
-    /**
-     * Run before loading all sketch assetPaths
-     * Asynchronously loads all assetPaths
-     * @param sketch The p5.js sketch object
-     */
-    preload (sketch) {
-      let assets = [
-        'assets/background.png',
-      ]
-
-      this.$store.getters['getGameObjects'].forEach(
-        (o) => o.assetPaths.forEach((p) => assets.push(p))
-      )
-
-      assets.forEach((path) => {
-        this.assets[path] = sketch.loadImage(
-          path,
-          () => console.log('Loaded asset: ' + path),
-          (err) => console.log('Failed to load asset: ' + path, err)
-        )
-      })
-    },
-    /**
-     * Run before first draw loop
-     * Creates the canvas and sets p5 options
-     * @param sketch The p5.js sketch object
-     */
-    setup (sketch) {
-      this.resize = () => sketch.createCanvas(sketch.windowHeight * 0.86, sketch.windowHeight)
-      sketch.setFrameRate(this.fr)
-      // Cover 100 % of height
-      sketch.createCanvas(sketch.windowHeight * 0.86, sketch.windowHeight)
-      sketch.background(200)
-      this.duckHidden = false
-    },
-    handleResize () {
-      this.resize()
-    },
-    /**
-     * Check if player has won
-     * Returns true if all attackers has reached the far end of the board
-     * @return Boolean value
-     */
-    hasWon () {
-      let attackers = this.entities.filter((e) => e.isAttacker)
-      return attackers.every((e) => e.y + 0.1 >= this.board.yTiles) && attackers.length > 0
-    },
-    hasLost () {
-      return this.entities.filter((e) => e.isAttacker).length === 0
-    },
-    endTransition () {
-      this.completedLevel = null
-      this.duckHidden = false
-      this.showHint = false
-      this.hintIndex = -1
-    },
-    duckReset () {
-      this.duckHidden = true
-      this.helpTextIndex = 0
-    },
-    duckClicked () {
-      this.duckHidden = !this.duckHidden
-      this.showHint = false
-      if (this.duckHidden) {
-        this.helpTextIndex = 0
-      }
-    },
-    nextHelpText () {
-      let helpTexts = this.$store.getters.getHelpTexts
-      if (helpTexts.length - 1 > this.helpTextIndex) {
-        this.helpTextIndex += 1
-      }
-    },
-    previousHelpText () {
-      if (this.helpTextIndex > 0) {
-        this.helpTextIndex -= 1
-      }
-    },
-    getHint () {
-      this.showHint = true
-      let hints = this.$store.getters.getHints
-      if (hints.length - 1 === this.hintIndex) {
-        this.hintIndex = 0
-      } else {
-        this.hintIndex += 1
-      }
-      this.duckReset()
-    },
-    closeSpeechBubble () {
-      this.duckReset()
-      this.showHint = false
-    },
     /**
      * The p5.js draw loop
      * Is used as general game loop
@@ -238,8 +92,6 @@ export default {
           console.log('User error: ', e)
           this.$store.commit('setRunStatus', false) // Stop game
         }
-        // The speech bubble should go away when running code
-        this.closeSpeechBubble()
       }
 
       // Redraw all entities and obstacles
@@ -270,14 +122,74 @@ export default {
 
       // Check win condition and increase level
       if (this.hasWon()) {
-        this.completedLevel = this.$store.getters['getLevel']
-        setTimeout(this.endTransition, 2000)
         this.$store.commit('incLevel')
       } else if (this.hasLost()) {
-        console.log(this.$store.getters['getEntities'])
         this.$store.commit('setRunStatus', false)
       }
     },
+    /**
+     * Check if player has won
+     * Returns true if all attackers has reached the far end of the board
+     * @return Boolean value
+     */
+    hasWon () {
+      let attackers = this.entities.filter((e) => e.isAttacker)
+      return attackers.every((e) => e.y + 0.1 >= this.board.yTiles) && attackers.length > 0
+    },
+    hasLost () {
+      return this.entities.filter((e) => e.isAttacker).length === 0
+    },
+    /**
+     * Run before loading all sketch assetPaths
+     * Asynchronously loads all assetPaths
+     * @param sketch The p5.js sketch object
+     */
+    preload (sketch) {
+      let assets = [
+        'assets/background.png',
+      ]
+
+      this.$store.getters['getGameObjects'].forEach(
+        (o) => o.assetPaths.forEach((p) => assets.push(p))
+      )
+
+      assets.forEach((path) => {
+        this.assets[path] = sketch.loadImage(
+          path,
+          () => console.log('Loaded asset: ' + path),
+          (err) => console.log('Failed to load asset: ' + path, err)
+        )
+      })
+    },
+    /**
+     * Run before first draw loop
+     * Creates the canvas and sets p5 options
+     * @param sketch The p5.js sketch object
+     */
+    setup (sketch) {
+      this.resize = () => sketch.createCanvas(sketch.windowHeight * 0.86, sketch.windowHeight)
+      sketch.setFrameRate(this.fr)
+      // Cover 100 % of height
+      sketch.createCanvas(sketch.windowHeight * 0.86, sketch.windowHeight)
+      sketch.background(200)
+      this.duckHidden = false
+    },
+    handleResize () {
+      if (this.resize !== null) {
+        this.resize()
+      }
+    },
+  },
+  components: {
+    VueP5,
+    HUD,
+  },
+  // bind event handlers to the `handleResize` method (defined below)
+  mounted: function () {
+    window.addEventListener('resize', this.handleResize)
+  },
+  beforeDestroy: function () {
+    window.removeEventListener('resize', this.handleResize)
   },
 }
 </script>
@@ -287,49 +199,5 @@ export default {
     height: 100vh;
     resize: none;
     overflow: hidden;
-  }
-  .level-transition {
-    position: absolute;
-    left: 27.5vh;
-    top: 200px;
-    height: 200px;
-    width: 300px;
-    background-color: white;
-    text-align: center;
-    padding-top: 70px;
-    border-style: solid;
-    border-width: thin;
-  }
-  .hint-button {
-    position: absolute;
-    bottom: 5px;
-    left: 70vh;
-  }
-  .box {
-    position: absolute;
-    bottom: 5px;
-    left: 25vh;
-  }
-  .duck {
-    position: relative;
-    left: 0;
-    bottom: 0;
-    width: 20vh;
-    height: 20vh;
-  }
-  .duck-hidden {
-    bottom: -11vh;
-  }
-  .image-container {
-    position: absolute;
-    left: 5vh;
-    bottom: 1vh;
-    width: 20vh;
-    height: 20vh;
-    overflow: hidden;
-  }
-  .image-container-hidden {
-    left: 0;
-    bottom: 0;
   }
 </style>
