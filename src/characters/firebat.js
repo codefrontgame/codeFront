@@ -55,6 +55,12 @@ export default class FireBat extends Character {
     }
   }
 
+  airDraw (parameters) {
+    super.draw(parameters)
+  }
+  
+  draw ({ sketch, assets, board }) { }
+
   static assetPaths = [
     'assets/firebat.png',
   ]
