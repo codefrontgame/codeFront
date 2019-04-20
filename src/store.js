@@ -8,8 +8,9 @@ import clone from '@/utility/clone'
 import Boulder from '@/characters/boulder'
 import Character from './characters/character'
 import WoodenTower from './characters/wooden-tower'
-import Log from './characters/log'
 import Book from '@/book'
+import StoneTower from './characters/stone-tower'
+import Log from './characters/log'
 
 Vue.use(Vuex)
 
@@ -21,6 +22,7 @@ let initialGameObjects = [ // List of all game objects
   Boulder,
   Log,
   WoodenTower,
+  StoneTower,
 ]
 
 export default new Vuex.Store({
@@ -31,7 +33,7 @@ export default new Vuex.Store({
     level: startLevel, // The current level
     book: Book,
     selectedChapter: 'a',
-    selectedPage: 1,
+    selectedPage: '1',
     gameObjects: initialGameObjects,
     userFunctions: getInitialFunctions(initialGameObjects, startLevel), // works as a cache
   },
@@ -43,6 +45,7 @@ export default new Vuex.Store({
     getCharacters: state => state.gameObjects.filter(Obj => (new Obj()) instanceof Character),
     getLevelObstacles: state => state.levels[state.level].obstacles,
     getLevel: state => state.level,
+    getHints: state => state.levels[state.level].hints,
     bookChapters: state => Object.keys(state.book),
     bookPages: state => {
       let chapter = state.book[state.selectedChapter]
@@ -59,6 +62,7 @@ export default new Vuex.Store({
     selectedPage: state => state.selectedPage,
     selectedChapter: state => state.selectedChapter,
     getHelpTexts: state => state.levels[state.level].helpTexts,
+    getLevelCharacters: state => [...new Set(state.entities.filter(entity => entity instanceof Character).map(character => character.constructor))],
   },
   mutations: {
     setUserCode (state, { character, f, code }) {

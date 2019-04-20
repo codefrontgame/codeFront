@@ -6,19 +6,18 @@ import Boulder from './boulder'
 import WoodenTower from './wooden-tower'
 
 export default class FireBat extends Character {
+  size//= 120
+
+  constructor (x, y, size, initHealth) {
+    super(x, y, 0.012 * size, 0.0048 * size, initHealth)
+    this.size = size
+  }
   imageAnchor = {
     x: 0.5,
-    y: 0.73,
+    y: 0.54,
   }
 
   flying = false
-
-  constructor (x, y, width, depth, initHealth, flying) {
-    super(x, y, width, depth, initHealth)
-    this.flying = flying
-  }
-
-  isAttacker = true
 
   getAsset (assets) {
     return assets[FireBat.assetPaths[0]]

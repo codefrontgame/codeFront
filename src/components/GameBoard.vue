@@ -1,29 +1,19 @@
 <template>
 <div class="game-board">
-  <div v-if="completedLevel != null" class="level-transition">
-    <h3>Bra jobbat!</h3>
-    <p>Du klarade nivå {{completedLevel}}</p>
-  </div>
-  <div class="image-container">
-    <img src="assets/duck.svg"
-         class="duck"
-         v-bind:class="{ 'duck-hidden': duckHidden }"
-         @click="duckPressed()">
-  </div>
-  <vue-p5
-    @setup="setup"
-    @draw="draw"
-    @preload="preload"
-  ></vue-p5>
-  <div class="book-btn" @click="$emit('toggle-book')">
-    <font-awesome-icon icon="book" size="3x"/>
-  </div>
+  <HUD>
+    <vue-p5
+      @setup="setup"
+      @draw="draw"
+      @preload="preload"
+    ></vue-p5>
+  </HUD>
 </div>
 </template>
 
 <script>
 import VueP5 from 'vue-p5'
 import Entity from '@/characters/entity'
+import HUD from '@/components/HUD'
 
 export default {
   name: 'GameBoard',
@@ -43,10 +33,6 @@ export default {
         x: 0,
         y: 0,
       },
-      completedLevel: null,
-      duckHidden: false,
-      helpTextIndex: 0,
-      storyTime: true,
       resize: null, // Function that resizes the canvas when the window size changes
     }
   },
@@ -63,94 +49,7 @@ export default {
       return this.$store.getters['getLevelObstacles']
     },
   },
-  components: {
-    VueP5,
-  },
-  // bind event handlers to the `handleResize` method (defined below)
-  mounted: function () {
-    window.addEventListener('resize', this.handleResize)
-  },
-  beforeDestroy: function () {
-    window.removeEventListener('resize', this.handleResize)
-  },
   methods: {
-    /**
-     * Run before loading all sketch assetPaths
-     * Asynchronously loads all assetPaths
-     * @param sketch The p5.js sketch object
-     */
-    preload (sketch) {
-      let assets = [
-        'assets/background.png',
-      ]
-
-      this.$store.getters['getGameObjects'].forEach(
-        (o) => o.assetPaths.forEach((p) => assets.push(p))
-      )
-
-      assets.forEach((path) => {
-        this.assets[path] = sketch.loadImage(
-          path,
-          () => console.log('Loaded asset: ' + path),
-          (err) => console.log('Failed to load asset: ' + path, err)
-        )
-      })
-    },
-    /**
-     * Run before first draw loop
-     * Creates the canvas and sets p5 options
-     * @param sketch The p5.js sketch object
-     */
-    setup (sketch) {
-      this.resize = () => sketch.createCanvas(sketch.windowHeight * 0.86, sketch.windowHeight)
-      sketch.setFrameRate(this.fr)
-      // Cover 100 % of height
-      sketch.createCanvas(sketch.windowHeight * 0.86, sketch.windowHeight)
-      sketch.background(200)
-      this.duckPressed()
-    },
-    handleResize () {
-      this.resize()
-    },
-    /**
-     * Check if player has won
-     * Returns true if all attackers has reached the far end of the board
-     * @return Boolean value
-     */
-    hasWon () {
-      let attackers = this.entities.filter((e) => e.isAttacker)
-      return attackers.every((e) => e.y + 0.1 >= this.board.yTiles) && attackers.length > 0
-    },
-    hasLost () {
-      return this.entities.filter((e) => e.isAttacker).length === 0
-    },
-    endTransition () {
-      this.completedLevel = null
-      this.duckHidden = false
-      this.duckPressed()
-    },
-    duckPressed () {
-      let helpTexts = this.$store.getters['getHelpTexts']
-      if (!this.duckHidden) {
-        if (this.helpTextIndex < helpTexts.length && this.helpTextIndex >= 0) {
-          this.duckSay()
-        } else if (this.helpTextIndex === helpTexts.length) {
-          this.helpTextIndex = 0
-          this.duckHidden = !this.duckHidden
-        }
-      } else {
-        this.duckHidden = false
-        this.duckSay()
-      }
-    },
-    duckSay () {
-      let helpTexts = this.$store.getters['getHelpTexts']
-      console.log('Duck: ' + helpTexts[this.helpTextIndex])
-      this.helpTextIndex++
-      if (this.helpTextIndex === helpTexts.length) {
-        console.log('DONE')
-      }
-    },
     /**
      * The p5.js draw loop
      * Is used as general game loop
@@ -223,14 +122,74 @@ export default {
 
       // Check win condition and increase level
       if (this.hasWon()) {
-        this.completedLevel = this.$store.getters['getLevel']
-        setTimeout(this.endTransition, 2000)
         this.$store.commit('incLevel')
       } else if (this.hasLost()) {
-        console.log(this.$store.getters['getEntities'])
         this.$store.commit('setRunStatus', false)
       }
     },
+    /**
+     * Check if player has won
+     * Returns true if all attackers has reached the far end of the board
+     * @return Boolean value
+     */
+    hasWon () {
+      let attackers = this.entities.filter((e) => e.isAttacker)
+      return attackers.every((e) => e.y + 0.1 >= this.board.yTiles) && attackers.length > 0
+    },
+    hasLost () {
+      return this.entities.filter((e) => e.isAttacker).length === 0
+    },
+    /**
+     * Run before loading all sketch assetPaths
+     * Asynchronously loads all assetPaths
+     * @param sketch The p5.js sketch object
+     */
+    preload (sketch) {
+      let assets = [
+        'assets/background.png',
+      ]
+
+      this.$store.getters['getGameObjects'].forEach(
+        (o) => o.assetPaths.forEach((p) => assets.push(p))
+      )
+
+      assets.forEach((path) => {
+        this.assets[path] = sketch.loadImage(
+          path,
+          () => console.log('Loaded asset: ' + path),
+          (err) => console.log('Failed to load asset: ' + path, err)
+        )
+      })
+    },
+    /**
+     * Run before first draw loop
+     * Creates the canvas and sets p5 options
+     * @param sketch The p5.js sketch object
+     */
+    setup (sketch) {
+      this.resize = () => sketch.createCanvas(sketch.windowHeight * 0.86, sketch.windowHeight)
+      sketch.setFrameRate(this.fr)
+      // Cover 100 % of height
+      sketch.createCanvas(sketch.windowHeight * 0.86, sketch.windowHeight)
+      sketch.background(200)
+      this.duckHidden = false
+    },
+    handleResize () {
+      if (this.resize !== null) {
+        this.resize()
+      }
+    },
+  },
+  components: {
+    VueP5,
+    HUD,
+  },
+  // bind event handlers to the `handleResize` method (defined below)
+  mounted: function () {
+    window.addEventListener('resize', this.handleResize)
+  },
+  beforeDestroy: function () {
+    window.removeEventListener('resize', this.handleResize)
   },
 }
 </script>
@@ -239,44 +198,6 @@ export default {
   .game-board {
     height: 100vh;
     resize: none;
-    overflow: hidden;
-    position: relative;
-    .book-btn {
-      position: absolute;
-      bottom: 20px;
-      right: 30px;
-    }
-    .book-btn:hover {
-      cursor: pointer;
-    }
-  }
-  .level-transition {
-    position: absolute;
-    left: 27.5vh;
-    top: 200px;
-    height: 200px;
-    width: 300px;
-    background-color: white;
-    text-align: center;
-    padding-top: 70px;
-    border-style: solid;
-    border-width: thin;
-  }
-  .duck {
-    position: absolute;
-    left: 0;
-    bottom: 0;
-    width: 20vh;
-  }
-  .duck-hidden {
-    bottom: -10vh;
-  }
-  .image-container {
-    position: absolute;
-    left: 0;
-    bottom: 0;
-    width: 20vh;
-    height: 20vh;
     overflow: hidden;
   }
 </style>

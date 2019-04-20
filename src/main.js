@@ -5,13 +5,13 @@ import router from './router'
 
 import { library } from '@fortawesome/fontawesome-svg-core'
 // find icon names here: https://fontawesome.com/icons?d=gallery&s=solid&m=free
-import { faWindowMinimize, faWindowMaximize, faBook, faTimes } from '@fortawesome/free-solid-svg-icons'
+import { faWindowMinimize, faWindowMaximize, faTimes, faChevronRight, faChevronLeft, faBook } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 
 import Vuebar from 'vuebar'
-Vue.use(Vuebar)
 
-library.add(faWindowMinimize, faWindowMaximize, faBook, faTimes)
+library.add(faWindowMinimize, faWindowMaximize, faTimes, faChevronRight, faChevronLeft, faBook)
+Vue.use(Vuebar)
 
 Vue.component('font-awesome-icon', FontAwesomeIcon)
 
