@@ -19,11 +19,11 @@ export default {
     },
   },
   watch: {
-    level (val) {
+    level (val, old) {
       if (val !== 0) {
-        this.recentlyCompleted = val
+        this.recentlyCompleted = old
         setTimeout(() => {
-          if (this.recentlyCompleted === val) {
+          if (this.recentlyCompleted === old) {
             this.recentlyCompleted = null
           }
         }, 2000)
