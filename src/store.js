@@ -27,7 +27,7 @@ export default new Vuex.Store({
     level: 0, // The current level
     book: Book,
     selectedChapter: 'a',
-    selectedPage: 1,
+    selectedPage: '1',
     gameObjects: initialGameObjects,
     userFunctions: getFunctions(initialGameObjects, 0), // works as a cache
   },
@@ -39,6 +39,7 @@ export default new Vuex.Store({
     getCharacters: state => state.gameObjects.filter(Obj => (new Obj()) instanceof Character),
     getLevelObstacles: state => state.levels[state.level].obstacles,
     getLevel: state => state.level,
+    getHints: state => state.levels[state.level].hints,
     bookChapters: state => Object.keys(state.book),
     bookPages: state => {
       let chapter = state.book[state.selectedChapter]

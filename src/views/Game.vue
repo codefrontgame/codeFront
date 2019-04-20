@@ -1,26 +1,16 @@
 <template>
 <div class="game">
-  <book v-if="openBook" @toggle-book="toggleBook"></book>
-  <game-board v-else @toggle-book="toggleBook"></game-board>
-  <i-d-e></i-d-e>
+  <game-board />
+  <i-d-e />
 </div>
 </template>
 
 <script>
 import IDE from '@/components/IDE'
 import GameBoard from '@/components/GameBoard'
-import Book from '@/components/Book'
 export default {
   name: 'Game',
-  data: () => ({
-    openBook: false,
-  }),
-  components: { GameBoard, IDE, Book },
-  methods: {
-    toggleBook () {
-      this.openBook = !this.openBook
-    },
-  },
+  components: { GameBoard, IDE },
 }
 </script>
 

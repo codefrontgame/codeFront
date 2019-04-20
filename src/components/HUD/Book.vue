@@ -10,7 +10,7 @@
 </template>
 
 <script>
-import TabSelector from '../enteties/TabSelector'
+import TabSelector from '../../enteties/TabSelector'
 import VueMarkdown from 'vue-markdown'
 import { mapGetters } from 'vuex'
 export default {

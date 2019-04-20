@@ -4,12 +4,10 @@ import WoodenTower from '@/characters/wooden-tower'
 
 export default new Level(
   0, // Id
-  { // Hints
-    move: [
-      'The first hint',
-      'The second hint',
-    ],
-  },
+  [ // Hints
+    'First hint',
+    'Second hint',
+  ],
   [ // Help-texts
     'Välkommen till codeFront ...',
     '',
