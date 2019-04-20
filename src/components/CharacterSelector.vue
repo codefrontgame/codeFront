@@ -15,7 +15,8 @@ export default {
   },
   computed: {
     characters () {
-      return this.$store.getters['getLevelCharacters']
+      let uf = this.$store.getters.getUserFunctions
+      return this.$store.getters['getCharacters'].filter((c) => Object.keys(uf[c.name]).length > 0)
     },
   },
   methods: {
