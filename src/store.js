@@ -14,6 +14,8 @@ import Log from './characters/log'
 
 Vue.use(Vuex)
 
+let startLevel = 12 // Setting this greater than 0 breaks the initial user code at the moment
+
 let initialGameObjects = [ // List of all game objects
   Zombie,
   FireBat,
@@ -26,14 +28,14 @@ let initialGameObjects = [ // List of all game objects
 export default new Vuex.Store({
   state: {
     running: false, // Whither game is running or not
-    entities: clone(levels[0].entities), // Entities currently on thr gameboard
+    entities: clone(levels[startLevel].entities), // Entities currently on thr gameboard
     levels, // List of all levels
-    level: 0, // The current level
+    level: startLevel, // The current level
     book: Book,
     selectedChapter: 'a',
     selectedPage: '1',
     gameObjects: initialGameObjects,
-    userFunctions: getFunctions(initialGameObjects, 0), // works as a cache
+    userFunctions: getInitialFunctions(initialGameObjects, startLevel), // works as a cache
   },
   getters: {
     getRunStatus: state => state.running,
@@ -68,12 +70,7 @@ export default new Vuex.Store({
       Vue.set(character.userFunctions(state.level)[f], 'userCode', code)
       Vue.set(state, 'userFunctions', getFunctions(state.gameObjects, state.level))
     },
-    resetUserCode (state, { character, f }) {
-      character = state.gameObjects.find(obj => obj.name === character)
-      let func = character.userFunctions(state.level)[f]
-      Vue.set(func, 'userCode', func.originalUserCode)
-      Vue.set(state, 'userFunctions', getFunctions(state.gameObjects, state.level))
-    },
+    resetUserCode: resetUserCode,
     incLevel (state) {
       // Stop game
       Vue.set(state, 'running', false)
@@ -85,6 +82,9 @@ export default new Vuex.Store({
 
       // Update functions
       Vue.set(state, 'userFunctions', getFunctions(state.gameObjects, state.level))
+
+      // Sets initial userCode to originalUserCode
+      setInitialUserCode(state)
     },
     setRunStatus (state, status) {
       // Reset entities when stopping game
@@ -114,5 +114,31 @@ function getFunctions (gameObjects, level) {
   for (let i = 0; i < characters.length; i++) {
     functions[characters[i].name] = characters[i].userFunctions(level)
   }
+  return functions
+}
+
+function resetUserCode (state, { character, f }) {
+  character = state.gameObjects.find(obj => obj.name === character)
+  let func = character.userFunctions(state.level)[f]
+  Vue.set(func, 'userCode', func.originalUserCode())
+  Vue.set(state, 'userFunctions', getFunctions(state.gameObjects, state.level))
+}
+
+function setInitialUserCode (state) {
+  let characters = state.gameObjects.filter(Obj => (new Obj()) instanceof Character)
+  characters.forEach((C) => {
+    Object.keys(C.userFunctions(state.level)).forEach((k) => resetUserCode(state, { character: C.name, f: k }))
+  })
+}
+
+function getInitialFunctions (gameObjects, level) {
+  let functions = getFunctions(gameObjects, level)
+  let characters = gameObjects.filter(Obj => (new Obj()) instanceof Character)
+  characters.forEach((C) => {
+    Object.keys(functions[C.name]).forEach((f) => {
+      let func = functions[C.name][f]
+      func.userCode = func.originalUserCode()
+    })
+  })
   return functions
 }

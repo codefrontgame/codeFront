@@ -8,7 +8,7 @@ export default class GameObject {
    * Width of drawn object when closest to the screen
    * @type {number}
    */
-  size = 80
+  size = 70
 
   /**
    * X-position of the GameObject
