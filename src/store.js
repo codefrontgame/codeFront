@@ -14,7 +14,7 @@ import Log from './characters/log'
 
 Vue.use(Vuex)
 
-let startLevel = 12 // Setting this greater than 0 breaks the initial user code at the moment
+let startLevel = 0 // Setting this greater than 0 breaks the initial user code at the moment
 
 let initialGameObjects = [ // List of all game objects
   Zombie,
