@@ -15,9 +15,9 @@ export default new Level(
     '',
   ],
   [ // Entities
-    new Zombie(5, 0, 1, 1, 100),
+    new Zombie(5, 0, 50, 100),
   ],
   [ // Obstacles
-    new Boulder(5, 5, 1, 1),
+    new Boulder(5, 5, 100),
   ]
 )
