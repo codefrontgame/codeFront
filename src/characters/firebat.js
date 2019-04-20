@@ -1,6 +1,5 @@
 import Character from '@/characters/character'
 import moveActuator from '@/utility/actuators/move'
-import { drawHitbox } from '../utility/graphics'
 
 export default class FireBat extends Character {
   size//= 120

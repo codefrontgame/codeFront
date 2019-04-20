@@ -1,5 +1,4 @@
 import Tower from './tower'
-import { drawHitbox } from '../utility/graphics'
 
 export default class WoodenTower extends Tower {
   size//= 200

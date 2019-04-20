@@ -1,7 +1,6 @@
 import Character from './character'
 import { functionDefinition, callDefinition, enumDefinition, engine } from '@/utility/esper.js'
 import moveActuator from '@/utility/actuators/move'
-import { drawHitbox } from '../utility/graphics'
 
 export default class Zombie extends Character {
   size//= 80

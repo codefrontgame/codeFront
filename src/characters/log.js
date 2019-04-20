@@ -1,5 +1,4 @@
 import RectangularObstacle from './rectangular-obstacle'
-import { drawHitbox } from '../utility/graphics'
 
 export default class Log extends RectangularObstacle {
   size //= 100
@@ -9,24 +8,24 @@ export default class Log extends RectangularObstacle {
     this.size = size
   }
 
-    imageAnchor = {
-      x: 0.485,
-      y: 0.5,
-    }
+  imageAnchor = {
+    x: 0.485,
+    y: 0.5,
+  }
 
-    getAsset (assets) {
-      return assets[Log.assetPaths[0]]
-    }
+  getAsset (assets) {
+    return assets[Log.assetPaths[0]]
+  }
 
-    static assetPaths = [
-      'assets/log.svg',
-    ]
+  static assetPaths = [
+    'assets/log.svg',
+  ]
 
-    groundDraw ({ sketch, assets, board }) {
-      super.groundDraw({ sketch, assets, board })
-      /* this.hitBoxes().forEach((hitbox) => {
-        drawHitbox(sketch, board, hitbox)
-      })
-      */
-    }
+  groundDraw ({ sketch, assets, board }) {
+    super.groundDraw({ sketch, assets, board })
+    /* this.hitBoxes().forEach((hitbox) => {
+      drawHitbox(sketch, board, hitbox)
+    })
+    */
+  }
 }

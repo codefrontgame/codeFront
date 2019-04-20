@@ -1,5 +1,4 @@
 import RectangularObstacle from './rectangular-obstacle'
-import { drawHitbox } from '../utility/graphics'
 
 export default class Boulder extends RectangularObstacle {
   size //= 100

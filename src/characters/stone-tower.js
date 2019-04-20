@@ -1,5 +1,4 @@
 import Tower from './tower'
-import { drawHitbox } from '../utility/graphics'
 
 export default class StoneTower extends Tower {
   size//= 200
