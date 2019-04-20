@@ -15,7 +15,7 @@ export default {
   },
   computed: {
     characters () {
-      return this.$store.getters['getCharacters']
+      return this.$store.getters['getLevelCharacters']
     },
   },
   methods: {

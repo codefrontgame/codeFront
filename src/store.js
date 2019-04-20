@@ -8,6 +8,7 @@ import clone from '@/utility/clone'
 import Boulder from '@/characters/boulder'
 import Character from './characters/character'
 import WoodenTower from './characters/wooden-tower'
+import Book from '@/book'
 
 Vue.use(Vuex)
 
@@ -24,6 +25,9 @@ export default new Vuex.Store({
     entities: clone(levels[0].entities), // Entities currently on thr gameboard
     levels, // List of all levels
     level: 0, // The current level
+    book: Book,
+    selectedChapter: 'a',
+    selectedPage: '1',
     gameObjects: initialGameObjects,
     userFunctions: getFunctions(initialGameObjects, 0), // works as a cache
   },
@@ -36,7 +40,23 @@ export default new Vuex.Store({
     getLevelObstacles: state => state.levels[state.level].obstacles,
     getLevel: state => state.level,
     getHints: state => state.levels[state.level].hints,
+    bookChapters: state => Object.keys(state.book),
+    bookPages: state => {
+      let chapter = state.book[state.selectedChapter]
+      if (chapter == null) return []
+      return Object.keys(chapter)
+    },
+    bookPage: state => {
+      let chapter = state.book[state.selectedChapter]
+      if (chapter == null) return ''
+      let page = chapter[state.selectedPage]
+      if (page == null) return ''
+      return page
+    },
+    selectedPage: state => state.selectedPage,
+    selectedChapter: state => state.selectedChapter,
     getHelpTexts: state => state.levels[state.level].helpTexts,
+    getLevelCharacters: state => [...new Set(state.entities.filter(entity => entity instanceof Character).map(character => character.constructor))],
   },
   mutations: {
     setUserCode (state, { character, f, code }) {
@@ -72,6 +92,13 @@ export default new Vuex.Store({
     },
     setEntities (state, entities) {
       Vue.set(state, 'entities', entities)
+    },
+    selectedPage (state, page) {
+      Vue.set(state, 'selectedPage', page)
+    },
+    selectedChapter (state, chapter) {
+      Vue.set(state, 'selectedPage', null)
+      Vue.set(state, 'selectedChapter', chapter)
     },
   },
   actions: {},

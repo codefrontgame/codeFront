@@ -4,6 +4,10 @@
       <slot />
     </div>
     <LevelTransition />
+    <button class="button hint-button" @click="getHint">Ledtråd</button>
+    <button class="button book-button" @click="toggleBook">
+      <font-awesome-icon icon="book" size="3x"/>
+    </button>
     <Duck
       :hidden="duckHidden"
       @clicked="duckClicked"
@@ -18,13 +22,17 @@
       @next="nextSpeechBubbleText"
       @close="closeHelpSystems"
     />
-    <button class="button hint-button" @click="getHint">Ledtråd</button>
+    <Book
+      v-if="showingBook"
+      @toggle-book="toggleBook"
+    />
   </div>
 </template>
 
 <script>
 import SpeechBubble from '@/enteties/SpeechBubble'
 import LevelTransition from './LevelTransition'
+import Book from './Book'
 import Duck from './Duck'
 
 export default {
@@ -35,6 +43,7 @@ export default {
       storyIndex: 0,
       showingHints: false,
       hintIndex: -1,
+      showingBook: false,
     }
   },
   methods: {
@@ -65,6 +74,10 @@ export default {
     closeHelpSystems () {
       this.showingStory = false
       this.showingHints = false
+      this.showingBook = false
+    },
+    toggleBook () {
+      this.showingBook = !this.showingBook
     },
   },
   computed: {
@@ -115,6 +128,7 @@ export default {
     Duck,
     LevelTransition,
     SpeechBubble,
+    Book,
   },
 }
 </script>
@@ -135,5 +149,15 @@ export default {
   position: absolute;
   bottom: 5px;
   left: 25vh;
+}
+.book-button {
+  position: absolute;
+  bottom: 15px;
+  right: 15px;
+}
+.book {
+  position: absolute;
+  left: 0;
+  top: 0;
 }
 </style>
