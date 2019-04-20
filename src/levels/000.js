@@ -13,8 +13,8 @@ export default new Level(
     '',
   ],
   [ // Entities
-    new WoodenTower(7, 10, 1, 1, 100),
-    new Zombie(5, 0, 1, 1, 100),
+    new WoodenTower(7, 10, 120, 100),
+    new Zombie(5, 0, 50, 100),
   ],
   [] // Obstacles
 )

@@ -9,6 +9,8 @@ import Boulder from '@/characters/boulder'
 import Character from './characters/character'
 import WoodenTower from './characters/wooden-tower'
 import Book from '@/book'
+import StoneTower from './characters/stone-tower'
+import Log from './characters/log'
 
 Vue.use(Vuex)
 
@@ -16,7 +18,9 @@ let initialGameObjects = [ // List of all game objects
   Zombie,
   FireBat,
   Boulder,
+  Log,
   WoodenTower,
+  StoneTower,
 ]
 
 export default new Vuex.Store({

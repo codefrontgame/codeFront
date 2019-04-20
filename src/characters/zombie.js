@@ -3,9 +3,14 @@ import { functionDefinition, callDefinition, enumDefinition, engine } from '@/ut
 import moveActuator from '@/utility/actuators/move'
 
 export default class Zombie extends Character {
+  constructor (x, y, size, initHealth) {
+    super(x, y, 0.009 * size, 0.007 * size, initHealth)
+    this.size = size
+  }
+
   imageAnchor = {
     x: 0.5,
-    y: 0.73,
+    y: 0.63,
   }
 
   getAsset (assets) {
@@ -13,7 +18,7 @@ export default class Zombie extends Character {
   }
 
   static assetPaths = [
-    'assets/test.svg',
+    'assets/zombie.svg',
   ]
 
   static avatar = 'assets/zombie.png'

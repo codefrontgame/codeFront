@@ -1,16 +1,16 @@
 import Tower from './tower'
 
-export default class WoodenTower extends Tower {
+export default class StoneTower extends Tower {
   size//= 200
 
   constructor (x, y, size, initHealth) {
-    super(x, y, 0.009 * size, 0.008 * size, initHealth)
+    super(x, y, 0.009 * size, 0.0076 * size, initHealth)
     this.size = size
   }
 
   imageAnchor = {
-    x: 0.60,
-    y: 0.68,
+    x: 0.62,
+    y: 0.74,
   }
 
   /**
@@ -23,13 +23,13 @@ export default class WoodenTower extends Tower {
    * The damage made per second when dealing damage.
    * @type {number}
    */
-  attackDamage = 10
+  attackDamage = 15
 
   getAsset (assets) {
-    return assets[WoodenTower.assetPaths[0]]
+    return assets[StoneTower.assetPaths[0]]
   }
 
   static assetPaths = [
-    'assets/wooden-tower.svg',
+    'assets/stone-tower.svg',
   ]
 }
