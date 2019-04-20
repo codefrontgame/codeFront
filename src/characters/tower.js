@@ -17,7 +17,7 @@ export default class Tower extends Entity {
   }
 
   groundDraw ({ sketch, assets, board }) {
-    super.draw({ sketch, assets, board })
+    super.groundDraw({ sketch, assets, board })
 
     if (this.isMouseOver({ sketch, assets, board })) {
       sketch.strokeWeight(6)

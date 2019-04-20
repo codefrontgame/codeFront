@@ -32,12 +32,4 @@ export default class WoodenTower extends Tower {
   static assetPaths = [
     'assets/wooden-tower.svg',
   ]
-
-  groundDraw ({ sketch, assets, board }) {
-    super.groundDraw({ sketch, assets, board })
-    /* this.hitBoxes().forEach((hitbox) => {
-      drawHitbox(sketch, board, hitbox)
-    })
-    */
-  }
 }

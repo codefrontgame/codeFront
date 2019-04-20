@@ -3,8 +3,6 @@ import { functionDefinition, callDefinition, enumDefinition, engine } from '@/ut
 import moveActuator from '@/utility/actuators/move'
 
 export default class Zombie extends Character {
-  size//= 80
-
   constructor (x, y, size, initHealth) {
     super(x, y, 0.009 * size, 0.007 * size, initHealth)
     this.size = size
@@ -107,12 +105,5 @@ export default class Zombie extends Character {
         },
       },
     },
-  }
-  groundDraw ({ sketch, assets, board }) {
-    super.groundDraw({ sketch, assets, board })
-    /* this.hitBoxes().forEach((hitbox) => {
-      drawHitbox(sketch, board, hitbox)
-    })
-    */
   }
 }

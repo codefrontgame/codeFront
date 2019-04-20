@@ -32,12 +32,4 @@ export default class StoneTower extends Tower {
   static assetPaths = [
     'assets/stone-tower.svg',
   ]
-
-  groundDraw ({ sketch, assets, board }) {
-    super.groundDraw({ sketch, assets, board })
-    /* this.hitBoxes().forEach((hitbox) => {
-      drawHitbox(sketch, board, hitbox)
-    })
-    */
-  }
 }

@@ -20,12 +20,4 @@ export default class Log extends RectangularObstacle {
   static assetPaths = [
     'assets/log.svg',
   ]
-
-  groundDraw ({ sketch, assets, board }) {
-    super.groundDraw({ sketch, assets, board })
-    /* this.hitBoxes().forEach((hitbox) => {
-      drawHitbox(sketch, board, hitbox)
-    })
-    */
-  }
 }

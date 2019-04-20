@@ -44,12 +44,4 @@ export default class FireBat extends Character {
       },
     },
   }
-
-  groundDraw ({ sketch, assets, board }) {
-    super.groundDraw({ sketch, assets, board })
-    /* this.hitBoxes().forEach((hitbox) => {
-      drawHitbox(sketch, board, hitbox)
-    })
-    */
-  }
 }

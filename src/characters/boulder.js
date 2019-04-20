@@ -19,12 +19,4 @@ export default class Boulder extends RectangularObstacle {
   static assetPaths = [
     'assets/rock.svg',
   ]
-
-  groundDraw ({ sketch, assets, board }) {
-    super.groundDraw({ sketch, assets, board })
-    /* this.hitBoxes().forEach((hitbox) => {
-      drawHitbox(sketch, board, hitbox)
-    })
-    */
-  }
 }
