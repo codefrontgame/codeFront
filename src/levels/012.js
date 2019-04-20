@@ -17,10 +17,10 @@ export default new Level(
     'Tror du våra vänner klarar sig förbi dem?',
   ],
   [ // Entities
-    new WoodenTower(1, 10, 1, 1, 100),
-    new WoodenTower(9, 10, 1, 1, 100),
-    new Zombie(3, 0, 1, 1, 100),
-    new FireBat(7, 0, 1, 1, 100, true),
+    new WoodenTower(1, 10, 150, 100),
+    new WoodenTower(9, 10, 150, 100),
+    new Zombie(3, 0, 60, 100),
+    new FireBat(7, 0, 100, 100, true),
   ],
   [] // Obstacles
 )

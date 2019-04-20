@@ -17,9 +17,9 @@ export default new Level(
     'Du kommer behöva lära firebat hur hen ska gå helt från början. Men detta problem har vi väl sett tidigare...',
   ],
   [ // Entities
-    new FireBat(5, 0, 1, 1, 100, false),
+    new FireBat(5, 0, 100, 20, false),
   ],
   [ // Obstacles
-    new Boulder(5, 6, 1, 1),
+    new Boulder(5, 6, 150),
   ]
 )

@@ -17,9 +17,9 @@ export default new Level(
     'Du måste hjälpa hen att gå runt stocken istället!',
   ],
   [ // Entities
-    new Zombie(5, 0, 1, 1, 100),
+    new Zombie(5, 0, 60, 100),
   ],
   [ // Obstacles
-    new Log(5, 6, 1, 1),
+    new Log(5, 6, 150),
   ]
 )

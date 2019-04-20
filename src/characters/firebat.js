@@ -8,9 +8,10 @@ import WoodenTower from './wooden-tower'
 export default class FireBat extends Character {
   size//= 120
 
-  constructor (x, y, size, initHealth) {
+  constructor (x, y, size, initHealth, flying) {
     super(x, y, 0.012 * size, 0.0048 * size, initHealth)
     this.size = size
+    this.flying = flying
   }
   imageAnchor = {
     x: 0.5,

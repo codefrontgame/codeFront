@@ -16,11 +16,11 @@ export default new Level(
     'Visst kan du hjälpa dessa två att komma framåt?',
   ],
   [ // Entities
-    new FireBat(3, 0, 1, 1, 100, false),
-    new FireBat(7, 0, 1, 1, 100, false),
+    new FireBat(3, 0, 100, 20, false),
+    new FireBat(7, 0, 100, 20, false),
   ],
   [ // Obstacles
-    new Boulder(3, 6, 1, 1),
-    new Log(7, 6, 1, 1),
+    new Boulder(3, 6, 150),
+    new Log(7, 6, 200),
   ]
 )

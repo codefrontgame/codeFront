@@ -22,9 +22,9 @@ export default new Level(
     'Testa dig gärna fram. Du kan alltid återställa koden om det skulle behövas',
   ],
   [ // Entities
-    new Zombie(5, 0, 1, 1, 100),
+    new Zombie(5, 0, 70, 100),
   ],
   [ // Obstacles
-    new Boulder(5, 5, 1, 1),
+    new Boulder(5, 5, 100),
   ]
 )

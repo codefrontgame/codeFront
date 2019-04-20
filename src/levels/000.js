@@ -15,7 +15,7 @@ export default new Level(
     'För att komma framåt måste vi tillsammans berätta för våra vänner vart de ska gå. Denna gången är det bara att säga åt vår vänn at gå.',
   ],
   [ // Entities
-    new Zombie(5, 0, 1, 1, 100),
+    new Zombie(5, 0, 70, 100),
   ],
   [] // Obstacles
 )

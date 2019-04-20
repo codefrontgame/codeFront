@@ -17,15 +17,11 @@ export default new Level(
     'flyga över hindren.',
   ],
   [ // Entities
-    new FireBat(5, 0, 1, 1, 100, true),
+    new FireBat(5, 0, 150, 100, true),
   ],
   [ // Obstacles
-    new Log(2, 6, 1, 1),
-    new Log(3, 6, 1, 1),
-    new Log(4, 6, 1, 1),
-    new Log(5, 6, 1, 1),
-    new Log(6, 6, 1, 1),
-    new Log(7, 6, 1, 1),
-    new Log(8, 6, 1, 1),
+    new Log(2, 6, 250),
+    new Log(5, 6, 250),
+    new Log(8, 6, 250),
   ]
 )
