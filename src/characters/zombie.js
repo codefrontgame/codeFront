@@ -6,6 +6,8 @@ import Log from '@/characters/log'
 import WoodenTower from './wooden-tower'
 
 export default class Zombie extends Character {
+
+  static name = 'zombie' // prototype.name has been buggy
   constructor (x, y, size, initHealth) {
     super(x, y, 0.009 * size, 0.007 * size, initHealth)
     this.size = size

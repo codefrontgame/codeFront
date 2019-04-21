@@ -14,7 +14,7 @@ import Log from './characters/log'
 
 Vue.use(Vuex)
 
-let startLevel = process.env.VUE_APP_STARTING_LEVEL
+let startLevel = Number(process.env.VUE_APP_STARTING_LEVEL)
 
 let initialGameObjects = [ // List of all game objects
   Zombie,
@@ -75,7 +75,7 @@ export default new Vuex.Store({
       // Stop game
       Vue.set(state, 'running', false)
       // Increase level
-      Vue.set(state, 'level', Number(state.level) + 1)
+      Vue.set(state, 'level', state.level + 1)
       // Populate with entities
       // Make sure to clone the initial entities
       Vue.set(state, 'entities', clone(state.levels[state.level].entities))

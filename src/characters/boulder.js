@@ -3,6 +3,7 @@ import RectangularObstacle from './rectangular-obstacle'
 export default class Boulder extends RectangularObstacle {
   size //= 100
 
+  static name = 'boulder' // prototype.name has been buggy
   constructor (x, y, size) {
     super(x, y, 0.012 * size, 0.007 * size)
     this.size = size

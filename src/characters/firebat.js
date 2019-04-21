@@ -8,6 +8,7 @@ import WoodenTower from './wooden-tower'
 export default class FireBat extends Character {
   size//= 120
 
+  static name = 'fielbat' // prototype.name has been buggy
   constructor (x, y, size, initHealth, flying) {
     super(x, y, 0.012 * size, 0.0048 * size, initHealth)
     this.size = size

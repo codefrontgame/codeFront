@@ -3,6 +3,7 @@ import Tower from './tower'
 export default class WoodenTower extends Tower {
   size//= 200
 
+  static name = 'wooden-tower' // prototype.name has been buggy
   constructor (x, y, size, initHealth) {
     super(x, y, 0.009 * size, 0.008 * size, initHealth)
     this.size = size

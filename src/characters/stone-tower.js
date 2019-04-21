@@ -3,6 +3,7 @@ import Tower from './tower'
 export default class StoneTower extends Tower {
   size//= 200
 
+  static name = 'stone-tower' // prototype.name has been buggy
   constructor (x, y, size, initHealth) {
     super(x, y, 0.009 * size, 0.0076 * size, initHealth)
     this.size = size
