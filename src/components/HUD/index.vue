@@ -142,7 +142,7 @@ export default {
 .hint-button {
   position: absolute;
   bottom: 20px;
-  right: 10vh;
+  right: 100px;
   transition: all 0.2s ease;
   &:hover {
     cursor: pointer;
