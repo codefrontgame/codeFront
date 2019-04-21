@@ -7,12 +7,10 @@ import WoodenTower from '../characters/wooden-tower'
 
 export default new Level(
   11, // Id
-  { // Hints
-    move: [
-      'Vad kan du göra om du inte kan flyga över tornet?',
-      'Zombien kanske behöver nya instuktioner nu när det finns ett nytt hinder?',
-    ],
-  },
+  [ // Hints
+    'Vad kan du göra om du inte kan flyga över tornet?',
+    'Zombien kanske behöver nya instuktioner nu när det finns ett nytt hinder?',
+  ],
   [ // Helptexts
     'Oj vilka stora torn! Jag vet inte om firebat kommer kunna flyga över dem.',
     'Och glöm inte att be zombien att kolla efter torn med!',

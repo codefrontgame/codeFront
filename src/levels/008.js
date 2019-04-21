@@ -5,12 +5,10 @@ import FireBat from '../characters/firebat'
 
 export default new Level(
   8, // Id
-  { // Hints
-    move: [
-      'Du kan kolla i boken om du behöver hjälp att komma ihåg hur \'elif\' fungerar',
-      'Kan du få firebat att göra olika saker beroende på vilken typ av hinder hen har framför sig?',
-    ],
-  },
+  [ // Hints
+    'Du kan kolla i boken om du behöver hjälp att komma ihåg hur \'elif\' fungerar',
+    'Kan du få firebat att göra olika saker beroende på vilken typ av hinder hen har framför sig?',
+  ],
   [ // Helptexts
     'Titta vad dem kan!',
     'Här kommer alla dessa hinder igen. Nog kan vi få firebat att klara dessa med!',

@@ -4,13 +4,11 @@ import Log from '../characters/log'
 
 export default new Level(
   2, // Id
-  { // Hints
-    move: [
-      'Vad är det som är annorlunda på denna banan?',
-      'Vad är det zombien behöver akta sig för nu?',
-      'Stämmer villkoret denna gången? Kan du prova ett annat?',
-    ],
-  },
+  [ // Hints
+    'Vad är det som är annorlunda på denna banan?',
+    'Vad är det zombien behöver akta sig för nu?',
+    'Stämmer villkoret denna gången? Kan du prova ett annat?',
+  ],
   [ // Helptexts
     'Härligt! Nu har vi kommit närmare.',
     'Åh nej! Nu är det något annat framför zombien. Hen vet tyvärr bara hur man går runt stenar...',

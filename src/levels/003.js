@@ -5,12 +5,10 @@ import Boulder from '../characters/boulder'
 
 export default new Level(
   3, // Id
-  { // Hints
-    move: [
-      'Nyckelordet \'or\' är ordet \'eller\' på engelska. Du kan använda det på ungefär samma sätt som när du pratar',
-      'Du kan be zombien göra något visst OM villkor x ELLER villkor y är uppfyllda',
-    ],
-  },
+  [ // Hints
+    'Nyckelordet \'or\' är ordet \'eller\' på engelska. Du kan använda det på ungefär samma sätt som när du pratar',
+    'Du kan be zombien göra något visst OM villkor x ELLER villkor y är uppfyllda',
+  ],
   [ // Helptexts
     'Bra gjort!',
     'Titta, denna gången har vi två zombies med oss!',

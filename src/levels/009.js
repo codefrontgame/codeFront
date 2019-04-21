@@ -4,12 +4,10 @@ import FireBat from '../characters/firebat'
 
 export default new Level(
   9, // Id
-  { // Hints
-    move: [
-      'Karaktärerna kommer att följa den kod du gett dem, oavsett om det är nödvändigt eller ej',
-      'Behöver du kolla om det finns några stockar ivägen?',
-    ],
-  },
+  [ // Hints
+    'Karaktärerna kommer att följa den kod du gett dem, oavsett om det är nödvändigt eller ej',
+    'Behöver du kolla om det finns några stockar ivägen?',
+  ],
   [ // Helptexts
     'Bra jobbat!',
     'Firebat känner sig nu redo att börja flyga, så framöver kommer dem att kunna flyga över hinder!',

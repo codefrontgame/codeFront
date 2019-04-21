@@ -6,12 +6,10 @@ import FireBat from '../characters/firebat'
 
 export default new Level(
   10, // Id
-  { // Hints
-    move: [
-      'Om du vill att firebat ska flyga över hinder behöver du inte titta om det finns några ivägen, ' +
-      'eller så kan du be hen flyga framåt även om det gör det',
-    ],
-  },
+  [ // Hints
+    'Om du vill att firebat ska flyga över hinder behöver du inte titta om det finns några ivägen, ' +
+    'eller så kan du be hen flyga framåt även om det gör det',
+  ],
   [ // Helptexts
     'Härligt!',
     'Här kommer vi kunna se skillnaden mellan zombie och firebat. Alla har sina olika styrkor.',

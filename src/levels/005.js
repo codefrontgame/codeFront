@@ -5,13 +5,11 @@ import Boulder from '../characters/boulder'
 
 export default new Level(
   5, // Id
-  { // Hints
-    move: [
-      'Det spelar ingen roll i vilken ordning du skrivit koden, varje zombie kommer använda den kod som ' +
-      'gäller vid det hinder den kommit fram till',
-      'Din kod från förra nivån kanske räcker för att leda dem förbi hindren?',
-    ],
-  },
+  [ // Hints
+    'Det spelar ingen roll i vilken ordning du skrivit koden, varje zombie kommer använda den kod som ' +
+    'gäller vid det hinder den kommit fram till',
+    'Din kod från förra nivån kanske räcker för att leda dem förbi hindren?',
+  ],
   [ // Helptexts
     'Härligt!',
     'Denna gången har vi två zombies. Tror du dem klara av att ta sig förbi hindren båda två?',

@@ -4,13 +4,11 @@ import FireBat from '../characters/firebat'
 
 export default new Level(
   6, // Id
-  { // Hints
-    move: [
-      'Kommer du ihåg hur en \'if-stats\' ser ut?',
-      'Du kan kolla i boken om du behöver hjälp att komma ihåg',
-      'Detta är samma problem som du löste för zombien på nivå 1',
-    ],
-  },
+  [ // Hints
+    'Kommer du ihåg hur en \'if-stats\' ser ut?',
+    'Du kan kolla i boken om du behöver hjälp att komma ihåg',
+    'Detta är samma problem som du löste för zombien på nivå 1',
+  ],
   [ // Helptexts
     'Vilken bra kod du gjort som klarade av den banan med!',
     'Här har vi en ny vän. Detta är detta är en firebat och hen är helt ny.',

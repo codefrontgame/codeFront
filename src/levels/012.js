@@ -5,12 +5,10 @@ import FireBat from '../characters/firebat'
 
 export default new Level(
   12, // Id
-  { // Hints
-    move: [
-      'Om du går förbi tornen tillräckligt fort kommer du att klara dig',
-      'Försök att springa förbi så fort som möjligt',
-    ],
-  },
+  [ // Hints
+    'Om du går förbi tornen tillräckligt fort kommer du att klara dig',
+    'Försök att springa förbi så fort som möjligt',
+  ],
   [ // Help-texts
     'Bra gjort! Vi kom förbi där med.',
     'Det är något annorlunda med de här tornen. Jag tror att de som stal mina kodkrafter har beväpnat dem.',

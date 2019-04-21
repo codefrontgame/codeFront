@@ -3,12 +3,10 @@ import Zombie from '@/characters/zombie'
 
 export default new Level(
   0, // Id
-  { // Hints
-    move: [
-      'Det är bara att köra',
-      'Tryck på \'Starta\'-knappen',
-    ],
-  },
+  [ // Hints
+    'Det är bara att köra',
+    'Tryck på \'Starta\'-knappen',
+  ],
   [ // Help-texts
     'Välkommen till codeFront! Det är jag som kodAnkan. Jag kommer att finnas här nere i vänstra hörnet för att hjälpa dig.',
     'Min kodkraft har blivit stulen och finns nu i det rosa kristallslottet. Jag behöer din hjälp för att återfå kraften.',

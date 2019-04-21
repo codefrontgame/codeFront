@@ -5,13 +5,11 @@ import Boulder from '../characters/boulder'
 
 export default new Level(
   4, // Id
-  { // Hints
-    move: [
-      'Vilka nya möjligheter ger \'elif\' dig?',
-      'Med \'elif\' kan du be zombien göra olika saker beroende vilken typ av hinder den har framför sig',
-      'Vad behöver zombien göra när den kommer fram till en stock och vad behöver den göra när den sedan stöter på stenen?',
-    ],
-  },
+  [ // Hints
+    'Vilka nya möjligheter ger \'elif\' dig?',
+    'Med \'elif\' kan du be zombien göra olika saker beroende vilken typ av hinder den har framför sig',
+    'Vad behöver zombien göra när den kommer fram till en stock och vad behöver den göra när den sedan stöter på stenen?',
+  ],
   [ // Helptexts TODO:Fixa så texten blir snygg
     'Med din hjälp kommer jag snart få tillbaka mina kodkrafter!',
     'Här behöver vi hjälpa denna zombien att komma igenom alla dessa hinder. Det är så många!',
