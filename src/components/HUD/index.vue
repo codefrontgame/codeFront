@@ -5,9 +5,7 @@
     </div>
     <LevelTransition />
     <button class="button hint-button" @click="getHint">Ledtråd</button>
-    <button class="button book-button" @click="toggleBook">
-      <font-awesome-icon icon="book" size="3x"/>
-    </button>
+    <img class="book-button" src="assets/book-icon.svg" @click="toggleBook">
     <Duck
       :hidden="duckHidden"
       @clicked="duckClicked"
@@ -15,6 +13,7 @@
     <SpeechBubble
       v-if="speechBubbleText != null"
       class="box"
+      :class="{'story': showingStory}"
       :text="speechBubbleText"
       :hasPrevious="showingStory && storyHasPrevious"
       @previous="previousSpeechBubbleText"
@@ -142,18 +141,32 @@ export default {
   }
 .hint-button {
   position: absolute;
-  bottom: 5px;
-  left: 70vh;
+  bottom: 20px;
+  right: 10vh;
+  transition: all 0.2s ease;
+  &:hover {
+    cursor: pointer;
+    transform: scale(1.1);
+  }
 }
 .box {
   position: absolute;
   bottom: 5px;
-  left: 25vh;
+  left: 24vh;
+  &.story {
+    bottom: 4vh;
+  }
 }
 .book-button {
   position: absolute;
-  bottom: 15px;
-  right: 15px;
+  bottom: 5px;
+  right: 17px;
+  width: 70px;
+  transition: all 0.2s ease;
+  &:hover {
+    cursor: pointer;
+    transform: scale(1.1);
+  }
 }
 .book {
   position: absolute;
