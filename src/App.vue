@@ -29,6 +29,10 @@ body {
   text-decoration: none;
   display: inline-block;
   font-size: 16px;
+  &:hover {
+    cursor: pointer;
+    filter: brightness(110%);
+  }
 }
 
 </style>

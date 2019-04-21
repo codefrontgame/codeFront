@@ -86,6 +86,9 @@ export default {
 }
 .icon {
   float: right;
+  &:hover {
+    cursor: pointer;
+  }
 }
 .error {
   color: red;

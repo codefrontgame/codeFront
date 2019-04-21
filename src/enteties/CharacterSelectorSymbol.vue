@@ -30,6 +30,10 @@ export default {
     text-align: center;
     border: 1px solid black;
   }
+  &:hover {
+    cursor: pointer;
+    filter: brightness(110%);
+  }
 }
 .image {
   display: block;
