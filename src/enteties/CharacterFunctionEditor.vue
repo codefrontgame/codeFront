@@ -14,7 +14,7 @@
         :function-name="func.name"
         :parameters="func.parameters"
       ></function-editor>
-      {{ errorMessage() }}
+      <div class="error">{{ errorMessage }}</div>
     </div>
   </transition>
   <button class="button" v-bind:class="{ 'disabled' : disabled }" @click="resetUserCode">
@@ -34,7 +34,7 @@ export default {
     func: Object,
     disabled: Boolean,
   },
-  methods: {
+  computed: {
     /**
      * Returns the error message from last execution of user code
      * @return {string} with error message
@@ -43,9 +43,11 @@ export default {
       if (this.func == null || this.func.error == null) {
         return ''
       } else {
-        return this.func.error.lineNumber + ': ' + this.func.error.description
+        return this.func.error
       }
     },
+  },
+  methods: {
     updateUserCode (code) {
       this.$emit('update:userCode', code)
     },
@@ -84,5 +86,10 @@ export default {
 }
 .icon {
   float: right;
+}
+.error {
+  color: red;
+  margin-top: 5px;
+  margin-bottom: 5px;
 }
 </style>

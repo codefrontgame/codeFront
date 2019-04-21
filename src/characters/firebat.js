@@ -58,7 +58,7 @@ export default class FireBat extends Character {
   airDraw (parameters) {
     super.draw(parameters)
   }
-  
+
   draw ({ sketch, assets, board }) { }
 
   static assetPaths = [
@@ -89,7 +89,6 @@ export default class FireBat extends Character {
             STOP: 'stop',
             ROTATE: 'rotate',
           })
-          let preFunctionLines = code.split('\n').length - 1
           code += functionDefinition(this.name, this.parameters, this.userCode)
           code += callDefinition(
             this.name,
@@ -101,7 +100,6 @@ export default class FireBat extends Character {
             this.error = null
             return result
           } catch (e) {
-            e.lineNumber -= preFunctionLines
             this.error = e
             throw e
           }
@@ -130,7 +128,6 @@ export default class FireBat extends Character {
             STOP: 'stop',
             ROTATE: 'rotate',
           })
-          let preFunctionLines = code.split('\n').length - 1
           code += functionDefinition(this.name, this.parameters, this.userCode)
           code += callDefinition(
             this.name,
@@ -143,7 +140,6 @@ export default class FireBat extends Character {
             this.error = null
             return result
           } catch (e) {
-            e.lineNumber -= preFunctionLines
             this.error = e
             throw e
           }
@@ -174,7 +170,6 @@ export default class FireBat extends Character {
             STOP: 'stop',
             ROTATE: 'rotate',
           })
-          let preFunctionLines = code.split('\n').length - 1
           code += functionDefinition(this.name, this.parameters, this.userCode)
           code += callDefinition(
             this.name,
@@ -187,7 +182,6 @@ export default class FireBat extends Character {
             this.error = null
             return result
           } catch (e) {
-            e.lineNumber -= preFunctionLines
             this.error = e
             throw e
           }
@@ -215,7 +209,6 @@ export default class FireBat extends Character {
             STOP: 'stop',
             ROTATE: 'rotate',
           })
-          let preFunctionLines = code.split('\n').length - 1
           code += functionDefinition(this.name, this.parameters, this.userCode)
           code += callDefinition(
             this.name,
@@ -228,7 +221,6 @@ export default class FireBat extends Character {
             this.error = null
             return result
           } catch (e) {
-            e.lineNumber -= preFunctionLines
             this.error = e
             throw e
           }
@@ -256,7 +248,6 @@ export default class FireBat extends Character {
             STOP: 'stop',
             ROTATE: 'rotate',
           })
-          let preFunctionLines = code.split('\n').length - 1
           code += functionDefinition(this.name, this.parameters, this.userCode)
           code += callDefinition(this.name)
           try {
@@ -265,7 +256,6 @@ export default class FireBat extends Character {
             this.error = null
             return result
           } catch (e) {
-            e.lineNumber -= preFunctionLines
             this.error = e
             throw e
           }
@@ -293,7 +283,6 @@ export default class FireBat extends Character {
             STOP: 'stop',
             ROTATE: 'rotate',
           })
-          let preFunctionLines = code.split('\n').length - 1
           code += functionDefinition(this.name, this.parameters, this.userCode)
           code += callDefinition(
             this.name,
@@ -305,7 +294,6 @@ export default class FireBat extends Character {
             this.error = null
             return result
           } catch (e) {
-            e.lineNumber -= preFunctionLines
             this.error = e
             throw e
           }
@@ -333,7 +321,6 @@ export default class FireBat extends Character {
             STOP: 'stop',
             ROTATE: 'rotate',
           })
-          let preFunctionLines = code.split('\n').length - 1
           code += functionDefinition(this.name, this.parameters, this.userCode)
           code += callDefinition(
             this.name,
@@ -345,7 +332,6 @@ export default class FireBat extends Character {
             this.error = null
             return result
           } catch (e) {
-            e.lineNumber -= preFunctionLines
             this.error = e
             throw e
           }

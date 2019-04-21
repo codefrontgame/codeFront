@@ -89,7 +89,6 @@ export default {
             (e) => e instanceof Entity && e.health > 0
           )
         } catch (e) {
-          console.log('User error: ', e)
           this.$store.commit('setRunStatus', false) // Stop game
         }
       }
@@ -155,9 +154,7 @@ export default {
 
       assets.forEach((path) => {
         this.assets[path] = sketch.loadImage(
-          path,
-          () => console.log('Loaded asset: ' + path),
-          (err) => console.log('Failed to load asset: ' + path, err)
+          path
         )
       })
     },

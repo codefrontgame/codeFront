@@ -48,7 +48,6 @@ export default class Zombie extends Character {
             STOP: 'stop',
             ROTATE: 'rotate',
           })
-          let preFunctionLines = code.split('\n').length - 1
           code += functionDefinition(this.name, this.parameters, this.userCode)
           code += callDefinition(this.name)
           try {
@@ -57,7 +56,6 @@ export default class Zombie extends Character {
             this.error = null
             return result
           } catch (e) {
-            e.lineNumber -= preFunctionLines
             this.error = e
             throw e
           }
@@ -91,7 +89,6 @@ export default class Zombie extends Character {
             STOP: 'stop',
             ROTATE: 'rotate',
           })
-          let preFunctionLines = code.split('\n').length - 1
           code += functionDefinition(this.name, this.parameters, this.userCode)
           code += callDefinition(this.name, me.isInFrontOf(Boulder, obstacles) ? 'True' : 'False')
           try {
@@ -100,7 +97,6 @@ export default class Zombie extends Character {
             this.error = null
             return result
           } catch (e) {
-            e.lineNumber -= preFunctionLines
             this.error = e
             throw e
           }
@@ -131,7 +127,6 @@ export default class Zombie extends Character {
             STOP: 'stop',
             ROTATE: 'rotate',
           })
-          let preFunctionLines = code.split('\n').length - 1
           code += functionDefinition(this.name, this.parameters, this.userCode)
           code += callDefinition(
             this.name,
@@ -144,7 +139,6 @@ export default class Zombie extends Character {
             this.error = null
             return result
           } catch (e) {
-            e.lineNumber -= preFunctionLines
             this.error = e
             throw e
           }
@@ -175,7 +169,6 @@ export default class Zombie extends Character {
             STOP: 'stop',
             ROTATE: 'rotate',
           })
-          let preFunctionLines = code.split('\n').length - 1
           code += functionDefinition(this.name, this.parameters, this.userCode)
           code += callDefinition(
             this.name,
@@ -188,7 +181,6 @@ export default class Zombie extends Character {
             this.error = null
             return result
           } catch (e) {
-            e.lineNumber -= preFunctionLines
             this.error = e
             throw e
           }
@@ -221,7 +213,6 @@ export default class Zombie extends Character {
             STOP: 'stop',
             ROTATE: 'rotate',
           })
-          let preFunctionLines = code.split('\n').length - 1
           code += functionDefinition(this.name, this.parameters, this.userCode)
           code += callDefinition(
             this.name,
@@ -234,7 +225,6 @@ export default class Zombie extends Character {
             this.error = null
             return result
           } catch (e) {
-            e.lineNumber -= preFunctionLines
             this.error = e
             throw e
           }
@@ -267,7 +257,6 @@ export default class Zombie extends Character {
             STOP: 'stop',
             ROTATE: 'rotate',
           })
-          let preFunctionLines = code.split('\n').length - 1
           code += functionDefinition(this.name, this.parameters, this.userCode)
           code += callDefinition(
             this.name,
@@ -280,7 +269,6 @@ export default class Zombie extends Character {
             this.error = null
             return result
           } catch (e) {
-            e.lineNumber -= preFunctionLines
             this.error = e
             throw e
           }
@@ -313,7 +301,6 @@ export default class Zombie extends Character {
             STOP: 'stop',
             ROTATE: 'rotate',
           })
-          let preFunctionLines = code.split('\n').length - 1
           code += functionDefinition(this.name, this.parameters, this.userCode)
           code += callDefinition(
             this.name,
@@ -327,7 +314,6 @@ export default class Zombie extends Character {
             this.error = null
             return result
           } catch (e) {
-            e.lineNumber -= preFunctionLines
             this.error = e
             throw e
           }
@@ -360,7 +346,6 @@ export default class Zombie extends Character {
             STOP: 'stop',
             ROTATE: 'rotate',
           })
-          let preFunctionLines = code.split('\n').length - 1
           code += functionDefinition(this.name, this.parameters, this.userCode)
           code += callDefinition(
             this.name,
@@ -374,7 +359,6 @@ export default class Zombie extends Character {
             this.error = null
             return result
           } catch (e) {
-            e.lineNumber -= preFunctionLines
             this.error = e
             throw e
           }
@@ -407,7 +391,6 @@ export default class Zombie extends Character {
             STOP: 'stop',
             ROTATE: 'rotate',
           })
-          let preFunctionLines = code.split('\n').length - 1
           code += functionDefinition(this.name, this.parameters, this.userCode)
           code += callDefinition(
             this.name,
@@ -421,7 +404,6 @@ export default class Zombie extends Character {
             this.error = null
             return result
           } catch (e) {
-            e.lineNumber -= preFunctionLines
             this.error = e
             throw e
           }

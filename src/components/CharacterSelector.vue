@@ -1,7 +1,7 @@
 <template>
 <div class="character-selector">
   <div :key="key" v-for="(character, key) in characters" @click="select(character)">
-    <character-selector-symbol :name="character.name" :image="character.avatar" :withBorder="character === selected"/>
+    <character-selector-symbol :name="character.name" :image="character.avatar" :notices="errors(character)" :withBorder="character === selected"/>
   </div>
 </div>
 </template>
@@ -22,6 +22,9 @@ export default {
   methods: {
     select (character) {
       this.$emit('update:selected', character)
+    },
+    errors (character) {
+      return Object.values(this.$store.getters.getUserFunctions[character.name]).filter((uf) => uf.error != null).length
     },
   },
   components: { CharacterSelectorSymbol },
