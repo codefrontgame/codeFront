@@ -1,3 +1,5 @@
+let FaviconsWebpackPlugin = require('favicons-webpack-plugin')
+
 module.exports = {
   configureWebpack: {
     module: {
@@ -8,5 +10,8 @@ module.exports = {
         },
       ],
     },
+    plugins: [
+      new FaviconsWebpackPlugin('./public/assets/logo.png'),
+    ],
   },
 }
