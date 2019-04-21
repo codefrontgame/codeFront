@@ -5,10 +5,10 @@
       :character="selectedCharacter"
       :disabled="running"
     />
-    <button class="button" @click="runBtn">{{ runBtnText }}</button>
-    <br>
   </div>
-  <character-selector :selected.sync="selectedCharacter" />
+  <character-selector :selected.sync="selectedCharacter" >
+    <button class="button" @click="runBtn">{{ runBtnText }}</button>
+  </character-selector>
 </div>
 
 </template>
@@ -50,7 +50,7 @@ export default {
   }
   .button { // Lägger knappen längst ner till höger
     position: absolute;
-    bottom: 5px;
-    right: 5px;
+    bottom: 0px;
+    width: 100%;
   }
 </style>
