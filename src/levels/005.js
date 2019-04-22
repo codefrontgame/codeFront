@@ -12,7 +12,7 @@ export default new Level(
   ],
   [ // Helptexts
     'Härligt!',
-    'Denna gången har vi två zombies. Tror du dem klara av att ta sig förbi hindren båda två?',
+    'Denna gången har vi två zombies. Tror du att båda två klarar av att ta sig förbi hindren?',
   ],
   [ // Entities
     new Zombie(2, 0, 60, 100),
