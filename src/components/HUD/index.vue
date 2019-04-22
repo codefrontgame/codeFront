@@ -4,8 +4,8 @@
       <slot />
     </div>
     <LevelTransition />
-    <img class="hint-button" src="assets/glass.svg" @click="getHint">Ledtråd</img>
-    <img class="book-button" src="assets/book-icon.svg" @click="toggleBook">
+    <img class="hint-button" v-tooltip="'Ledtråd'" src="assets/glass.svg" @click="getHint">Ledtråd</img>
+    <img class="book-button" v-tooltip="'KodBok'" src="assets/book-icon.svg" @click="toggleBook">
     <Duck
       :hidden="duckHidden"
       @clicked="duckClicked"

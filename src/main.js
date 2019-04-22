@@ -9,6 +9,9 @@ import { faWindowMinimize, faWindowMaximize, faTimes, faChevronRight, faChevronL
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 
 import Vuebar from 'vuebar'
+import VTooltip from 'v-tooltip'
+
+Vue.use(VTooltip)
 
 library.add(faWindowMinimize, faWindowMaximize, faTimes, faChevronRight, faChevronLeft, faBook)
 Vue.use(Vuebar)

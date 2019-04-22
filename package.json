@@ -15,6 +15,7 @@
     "babel-runtime": "^6.26.0",
     "esper.js": "^0.3.0",
     "skulpty": "git://github.com/codecombat/skulpty.git",
+    "v-tooltip": "^2.0.1",
     "vue": "^2.6.10",
     "vue-markdown": "^2.2.4",
     "vue-p5": "^0.7.1",
