@@ -5,8 +5,10 @@
     <font-awesome-icon class="icon" :icon="expanded ? 'window-minimize' : 'window-maximize'"></font-awesome-icon>
   </div>
   <transition name="fade">
-    <div v-if="expanded">
-      {{ func.description }}
+    <div v-if="expanded" class="function">
+      <div class="description">
+        {{ func.description }}
+      </div>
       <function-editor
         :disabled="disabled"
         :user-code="func.userCode"
@@ -15,11 +17,11 @@
         :parameters="func.parameters"
       ></function-editor>
       <div class="error">{{ errorMessage }}</div>
+      <button class="button" v-bind:class="{ 'disabled' : disabled }" @click="resetUserCode">
+        Återställ
+      </button>
     </div>
   </transition>
-  <button class="button" v-bind:class="{ 'disabled' : disabled }" @click="resetUserCode">
-    Återställ
-  </button>
 </div>
 </template>
 
@@ -69,7 +71,11 @@ export default {
   margin-top: 5px;
   margin-bottom: 5px;
   padding: 3px;
-  background: lightgray;
+  color: aliceblue;
+  background-color: rgba(50, 20, 0, 0.9);
+  &:hover {
+    cursor: pointer;
+  }
 }
 .editor {
   margin-top: 5px;
@@ -94,5 +100,15 @@ export default {
   color: red;
   margin-top: 5px;
   margin-bottom: 5px;
+}
+.character-function-editor {
+  background-color: rgba(50, 20, 0, 0.4);
+  .function {
+    color: aliceblue;
+    .description {
+      padding-bottom: 10px;
+    }
+    padding: 6px;
+  }
 }
 </style>
