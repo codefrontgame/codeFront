@@ -18,9 +18,9 @@ export default new Level(
   ],
   [ // Obstacles
     new Log(5, 6, 100),
-    new Log(2, 9, 110),
-    new Log(8, 9, 110),
-    new Boulder(3, 10, 70),
-    new Boulder(7, 10, 70),
+    new Log(3, 8, 110),
+    new Log(7, 8, 110),
+    new Boulder(4, 9, 70),
+    new Boulder(6, 9, 70),
   ]
 )

@@ -21,15 +21,15 @@ export default new Level(
 
   ],
   [ // Obstacles
-    new Log(0, 9, 110),
-    new Log(4, 9, 110),
-    new Boulder(1, 10, 80),
-    new Boulder(3, 10, 80),
+    new Log(0, 8, 110),
+    new Log(4, 8, 110),
+    new Boulder(1, 9, 80),
+    new Boulder(3, 9, 80),
 
-    new Boulder(6, 9, 100),
-    new Boulder(10, 9, 100),
-    new Log(7, 10, 100),
-    new Log(9, 10, 100),
+    new Boulder(6, 8, 100),
+    new Boulder(10, 8, 100),
+    new Log(7, 9, 100),
+    new Log(9, 9, 100),
 
     // TODO: make sure attack and obscure the path in both obstacles and entities!!
     new WoodenTower(2, 6, 90, 100),

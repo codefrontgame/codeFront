@@ -6,11 +6,11 @@ import Boulder from './boulder'
 import WoodenTower from './wooden-tower'
 
 export default class FireBat extends Character {
-  size//= 120
+  size = 120
 
-  static name = 'fielbat' // prototype.name has been buggy
+  static name = 'firebat' // prototype.name has been buggy
   constructor (x, y, size, initHealth, flying) {
-    super(x, y, 0.012 * size, 0.0048 * size, initHealth)
+    super(x, y, 0.0058 * size, 0.0048 * size, initHealth)
     this.size = size
     this.flying = flying
   }
