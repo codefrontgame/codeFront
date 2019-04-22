@@ -20,6 +20,8 @@ export default {
   @media (max-width: 1100px) {
     display: block;
   }
-  grid-template-columns: 87vh auto;
+  grid-template-columns: 95vh auto;
+  background-image: url("/assets/background.png");
+  background-size: cover;
 }
 </style>

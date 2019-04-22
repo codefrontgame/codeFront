@@ -27,7 +27,6 @@ export default {
 .speech-bubble {
   min-width: 20vh;
   min-height: 7vh;
-  max-width: 40vh;
   background-color: dimgrey;
   color: whitesmoke;
   border-style: solid;

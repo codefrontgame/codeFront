@@ -6,7 +6,7 @@
       :disabled="running"
     />
   </div>
-  <character-selector :selected.sync="selectedCharacter" >
+  <character-selector :selectedCharacterName="selectedCharacter.name" @selected="select">
     <button class="button" @click="runBtn">{{ runBtnText }}</button>
   </character-selector>
 </div>
@@ -38,6 +38,9 @@ export default {
   methods: {
     runBtn () {
       this.$store.commit('setRunStatus', !this.running)
+    },
+    select (character) {
+      this.selectedCharacter = character
     },
   },
 }

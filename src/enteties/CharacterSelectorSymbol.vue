@@ -1,17 +1,16 @@
 <template>
   <div class="character-selector-symbol">
     <div v-if="notices > 0" class="notices">{{ notices }}</div>
-    <img :src="image" width="75" height="75" class="image" v-bind:class="{ 'border': withBorder }">
+    <img :src="image" >
   </div>
 </template>
 <script>
 export default {
   name: 'CharacterSelectorSymbol',
   props: {
-    name: String,
     image: String,
-    withBorder: Boolean,
     notices: Number,
+    name: String,
   },
 }
 </script>
@@ -34,15 +33,13 @@ export default {
     cursor: pointer;
     filter: brightness(110%);
   }
-}
-.image {
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-  margin-top: 10px;
-  &.border {
-    border-style: solid;
-    border-width: 5px;
+
+  img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10px;
+    width: 100%;
   }
 }
 </style>

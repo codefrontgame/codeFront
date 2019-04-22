@@ -20,7 +20,7 @@ export default {
         value: this.code,
         mode: 'ace/mode/python',
         theme: 'ace/theme/monokai',
-        fontSize: '18pt',
+        fontSize: '12pt',
         tabSize: '2',
         useSoftTabs: false,
       },

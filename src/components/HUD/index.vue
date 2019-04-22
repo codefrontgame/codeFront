@@ -3,6 +3,7 @@
     <div @click="closeHelpSystems" class="game">
       <slot />
     </div>
+    <div class="level">Nivå {{level}}</div>
     <LevelTransition />
     <img class="hint-button" v-tooltip="'Ledtråd'" src="assets/glass.svg" @click="getHint">Ledtråd</img>
     <img class="book-button" v-tooltip="'KodBok'" src="assets/book-icon.svg" @click="toggleBook">
@@ -144,7 +145,7 @@ export default {
 .hint-button {
   position: absolute;
   bottom: 10px;
-  right: 100px;
+  right: calc(70px + 8vh);
   width: 70px;
   transition: all 0.2s ease;
   &:hover {
@@ -155,7 +156,8 @@ export default {
 .box {
   position: absolute;
   bottom: 5px;
-  left: 24vh;
+  left: 22vh;
+  margin-right: calc(70px * 2 + 10vh);
   &.story {
     bottom: 4vh;
   }
@@ -163,7 +165,7 @@ export default {
 .book-button {
   position: absolute;
   bottom: 5px;
-  right: 17px;
+  right: 6vh;
   width: 70px;
   transition: all 0.2s ease;
   &:hover {
@@ -175,5 +177,13 @@ export default {
   position: absolute;
   left: 0;
   top: 0;
+}
+.level {
+  position: absolute;
+  left: 0;
+  top: 0;
+  padding: 5px;
+  font-size: 36px;
+  text-shadow: #f9f491 1px 0 10px;
 }
 </style>

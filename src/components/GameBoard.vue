@@ -14,6 +14,8 @@
 import VueP5 from 'vue-p5'
 import Entity from '@/characters/entity'
 import HUD from '@/components/HUD'
+import { drawHitbox } from '@/utility/graphics'
+import HitBox from '@/utility/hitbox'
 
 export default {
   name: 'GameBoard',
@@ -24,10 +26,10 @@ export default {
       board: { // Game board definition
         xTiles: 10, // Width
         yTiles: 15, // Height
-        closeHCover: 0.91, // How much of the width the board covers in the close end
-        farHCover: 0.55, // How much of the width the board covers in the far end
-        start: 0.085, // Where the board starts, given in percentage from the bottom
-        end: 0.71, // Where the board ends, given in percentage from the bottom
+        closeHCover: 0.61, // How much of the width the board covers in the close end
+        farHCover: 0.35, // How much of the width the board covers in the far end
+        start: 0.2, // Where the board starts, given in percentage from the bottom
+        end: 0.69, // Where the board ends, given in percentage from the bottom
       },
       mousePos: {
         x: 0,
@@ -56,14 +58,12 @@ export default {
      * @param sketch The p5.js sketch object
      */
     draw (sketch) {
-      // Reset canvas with background image
-      sketch.background(this.assets['assets/background.png'])
+      // Reset canvas
+      sketch.clear()
 
-      let level = this.$store.getters['getLevel']
-      sketch.textAlign(sketch.LEFT, sketch.TOP)
-      sketch.textSize(42)
-      sketch.stroke(0)
-      sketch.text('Nivå: ' + level, 10, 10)
+      if (process.env.VUE_APP_SHOW_BORDERS === 'true') {
+        drawHitbox(sketch, this.board, new HitBox(0.00001, this.board.xTiles - 0.00001, 0.00001, this.board.yTiles - 0.00001))
+      }
 
       // Get the current framerate
       let fr = sketch.getFrameRate()
@@ -168,7 +168,6 @@ export default {
       sketch.setFrameRate(this.fr)
       // Cover 100 % of height
       sketch.createCanvas(sketch.windowHeight * 0.86, sketch.windowHeight)
-      sketch.background(200)
       this.duckHidden = false
     },
     handleResize () {

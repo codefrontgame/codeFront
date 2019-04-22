@@ -66,7 +66,8 @@ export default class FireBat extends Character {
     'assets/firebat.png',
   ]
 
-  static avatar = 'assets/firebat.png'
+  static avatar = 'assets/selector/firebat.png'
+  static selectedAvatar = 'assets/selector/firebat-selected.png'
 
   static userFunctionsMap = {
     6: {

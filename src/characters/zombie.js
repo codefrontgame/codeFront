@@ -25,7 +25,8 @@ export default class Zombie extends Character {
     'assets/zombie.svg',
   ]
 
-  static avatar = 'assets/zombie.png'
+  static avatar = 'assets/selector/zombie.png'
+  static selectedAvatar = 'assets/selector/zombie-selected.png'
 
   static userFunctionsMap = {
     0: {

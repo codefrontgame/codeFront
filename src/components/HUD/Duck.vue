@@ -19,7 +19,7 @@ export default {
 <style scoped lang="scss">
   .duck {
     position: absolute;
-    left: 2vh;
+    left: 1vh;
     bottom: 1vh;
     width: 20vh;
     height: 20vh;
