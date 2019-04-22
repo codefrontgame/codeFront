@@ -116,6 +116,8 @@ export default {
     level () {
       this.closeHelpSystems()
       this.showingStory = true
+      this.storyIndex = 0
+      this.hintIndex = -1
     },
     gameRunning (val) {
       if (val) {
