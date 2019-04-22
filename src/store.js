@@ -25,8 +25,9 @@ let initialGameObjects = [ // List of all game objects
   StoneTower,
 ]
 
-export default new Vuex.Store({
+const store = new Vuex.Store({
   state: {
+    gameCompleted: false, // Whether you have completed the game or not
     running: false, // Whither game is running or not
     entities: clone(levels[startLevel].entities), // Entities currently on thr gameboard
     levels, // List of all levels
@@ -63,6 +64,7 @@ export default new Vuex.Store({
     selectedChapter: state => state.selectedChapter,
     getHelpTexts: state => state.levels[state.level].helpTexts,
     getLevelCharacters: state => [...new Set(state.entities.filter(entity => entity instanceof Character).map(character => character.constructor))],
+    gameCompleted: state => state.gameCompleted,
   },
   mutations: {
     setUserCode (state, { character, f, code }) {
@@ -71,11 +73,10 @@ export default new Vuex.Store({
       Vue.set(state, 'userFunctions', getFunctions(state.gameObjects, state.level))
     },
     resetUserCode: resetUserCode,
-    incLevel (state) {
-      // Stop game
-      Vue.set(state, 'running', false)
+    incLevel: incLevel,
+    setLevel (state, level) {
       // Increase level
-      Vue.set(state, 'level', state.level + 1)
+      Vue.set(state, 'level', level)
       // Populate with entities
       // Make sure to clone the initial entities
       Vue.set(state, 'entities', clone(state.levels[state.level].entities))
@@ -104,9 +105,14 @@ export default new Vuex.Store({
       Vue.set(state, 'selectedPage', null)
       Vue.set(state, 'selectedChapter', chapter)
     },
+    gameCompleted (state, gameCompleted) {
+      Vue.set(state, 'gameCompleted', gameCompleted)
+    },
   },
   actions: {},
 })
+
+export default store
 
 function getFunctions (gameObjects, level) {
   let functions = {}
@@ -141,4 +147,16 @@ function getInitialFunctions (gameObjects, level) {
     })
   })
   return functions
+}
+
+function incLevel (state) {
+  // Stop game
+  Vue.set(state, 'running', false)
+
+  if (state.level === levels.length - 1) {
+    // Mark game completed
+    Vue.set(state, 'gameCompleted', true)
+  } else {
+    store.commit('setLevel', state.level + 1)
+  }
 }

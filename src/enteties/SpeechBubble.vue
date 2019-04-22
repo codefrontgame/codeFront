@@ -1,6 +1,6 @@
 <template>
   <div class="speech-bubble" @click="next">
-    <p>{{text}}</p>
+    <VueMarkdown :source="text"></VueMarkdown>
     <font-awesome-icon v-if="hasPrevious" @click.stop="$emit('previous')" class="left-icon" icon="chevron-left"/>
     <font-awesome-icon v-if="hasNext" @click.stop="next" class="right-icon" icon="chevron-right"/>
     <font-awesome-icon @click.stop="$emit('close')" class="close-icon" icon="times"/>
@@ -8,6 +8,7 @@
 </template>
 
 <script>
+import VueMarkdown from 'vue-markdown'
 export default {
   name: 'SpeechBubble',
   props: {
@@ -20,8 +21,21 @@ export default {
       if (this.hasNext) this.$emit('next')
     },
   },
+  components: {
+    VueMarkdown,
+  },
 }
 </script>
+
+<style lang="scss">
+.speech-bubble p {
+  user-select: none;
+  code {
+    font-family: "DejaVu Sans Mono", monospace;
+    background-color: rgba(0, 0, 0, 0.2);
+  }
+}
+</style>
 
 <style scoped lang="scss">
 .speech-bubble {
@@ -37,6 +51,12 @@ export default {
   padding-left: 10px;
   padding-right: 25px;
   padding-bottom: 10px;
+  p {
+    user-select: none;
+    code {
+
+    }
+  }
   :before {
     content: '';
     position: absolute;

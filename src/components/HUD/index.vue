@@ -5,6 +5,7 @@
     </div>
     <div class="level">Nivå {{level}}</div>
     <LevelTransition />
+    <GameCompleted />
     <img class="hint-button" v-tooltip="'Ledtråd'" src="assets/glass.svg" @click="getHint">Ledtråd</img>
     <img class="book-button" v-tooltip="'KodBok'" src="assets/book-icon.svg" @click="toggleBook">
     <Duck
@@ -34,6 +35,7 @@ import SpeechBubble from '@/enteties/SpeechBubble'
 import LevelTransition from './LevelTransition'
 import Book from './Book'
 import Duck from './Duck'
+import GameCompleted from './GameCompleted'
 
 export default {
   name: 'HUD',
@@ -131,6 +133,7 @@ export default {
     LevelTransition,
     SpeechBubble,
     Book,
+    GameCompleted,
   },
 }
 </script>

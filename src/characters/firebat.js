@@ -5,6 +5,14 @@ import Log from '@/characters/log'
 import Boulder from './boulder'
 import WoodenTower from './wooden-tower'
 
+const moveDescription = 'För att säga åt firebat vilket håll den ' +
+  'ska röra sig åt skriver man till exempel `return Response.NORTH`. Istället för `NORTH` kan man skriva ' +
+  '`EAST`, `WEST` eller `SOUTH`'
+
+const flyDescription = 'För att säga åt firebat vilket håll den ' +
+  'ska flyga skriver man till exempel `return Response.NORTH`. Istället för `NORTH` kan man skriva ' +
+  '`EAST`, `WEST` eller `SOUTH`'
+
 export default class FireBat extends Character {
   size = 120
 
@@ -74,9 +82,7 @@ export default class FireBat extends Character {
       move: {
         cn: 'Gå',
         name: 'move',
-        description: 'Få firebat:en att röra sig ända till slutet av fältet. För att säga åt firebat:en vilket håll den ' +
-          'ska röra sig åt skriver man till exempel return response.north. istället för north kan man skriva ' +
-          'east, west eller south',
+        description: moveDescription,
         parameters: ['isInFrontOfRock'],
         error: null,
         userCode: '',
@@ -112,9 +118,7 @@ export default class FireBat extends Character {
       move: {
         cn: 'Gå',
         name: 'move',
-        description: 'Få firebat:en att röra sig ända till slutet av fältet. För att säga åt firebat:en vilket håll den ' +
-          'ska röra sig åt skriver man till exempel return response.north. istället för north kan man skriva ' +
-          'east, west eller south',
+        description: moveDescription,
         parameters: ['isInFrontOfRock', 'isInFrontOfLog'],
         error: null,
         userCode: '\tif isInFrontOfRock:\n' +
@@ -152,9 +156,7 @@ export default class FireBat extends Character {
       move: {
         cn: 'Gå',
         name: 'move',
-        description: 'Få firebat:en att röra sig ända till slutet av fältet. För att säga åt firebat:en vilket håll den ' +
-          'ska röra sig åt skriver man till exempel return response.north. istället för north kan man skriva ' +
-          'east, west eller south',
+        description: moveDescription,
         parameters: ['isInFrontOfRock', 'isInFrontOfLog'],
         error: null,
         userCode: '\tif isInFrontOfLog or isInFrontOfRock:\n' +
@@ -194,9 +196,7 @@ export default class FireBat extends Character {
       move: {
         cn: 'Flyg',
         name: 'fly',
-        description: 'Få firebat:en att flyga ända till slutet av fältet. För att säga åt firebat:en vilket håll den ' +
-          'ska flyga åt skriver man till exempel return response.north. istället för north kan man skriva ' +
-          'east, west eller south',
+        description: flyDescription,
         parameters: ['isInFrontOfRock', 'isInFrontOfLog'],
         error: null,
         userCode: '',
@@ -233,9 +233,7 @@ export default class FireBat extends Character {
       move: {
         cn: 'Flyg',
         name: 'fly',
-        description: 'Få firebat:en att flyga ända till slutet av fältet. För att säga åt firebat:en vilket håll den ' +
-          'ska flyga åt skriver man till exempel return response.north. istället för north kan man skriva ' +
-          'east, west eller south',
+        description: flyDescription,
         parameters: [],
         error: null,
         userCode: '\treturn Response.NORTH',
@@ -268,9 +266,7 @@ export default class FireBat extends Character {
       move: {
         cn: 'Flyg',
         name: 'fly',
-        description: 'Få firebat:en att flyga ända till slutet av fältet. För att säga åt firebat:en vilket håll den ' +
-          'ska flyga åt skriver man till exempel return response.north. istället för north kan man skriva ' +
-          'east, west eller south',
+        description: flyDescription,
         parameters: ['isInFrontOfTower'],
         error: null,
         userCode: '\treturn Response.NORTH',
@@ -306,9 +302,7 @@ export default class FireBat extends Character {
       move: {
         cn: 'Flyg',
         name: 'fly',
-        description: 'Få firebat:en att flyga ända till slutet av fältet. För att säga åt firebat:en vilket håll den ' +
-          'ska flyga åt skriver man till exempel return response.north. istället för north kan man skriva ' +
-          'east, west eller south',
+        description: flyDescription,
         parameters: ['isInFrontOfTower'],
         error: null,
         userCode: '\treturn Response.NORTH',

@@ -7,7 +7,7 @@ import FireBat from '../characters/firebat'
 export default new Level(
   10, // Id
   [ // Hints
-    'Om du vill att firebat ska flyga över hinder behöver du inte titta om det finns några ivägen, ' +
+    'Om du vill att firebat ska flyga över hinder behöver du inte titta om det finns några i vägen, ' +
     'eller så kan du be hen flyga framåt även om det gör det',
   ],
   [ // Helptexts

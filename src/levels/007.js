@@ -6,7 +6,7 @@ import FireBat from '../characters/firebat'
 export default new Level(
   7, // Id
   [ // Hints
-    'Kommer du ihåg vilka olika nyckelord du kan använda i en \'if-sats\'?',
+    'Kommer du ihåg vilka olika nyckelord du kan använda i en `if`-sats?',
     'Du kan alltid kolla i boken om du behöver hjälp att komma ihåg',
   ],
   [ // Helptexts
