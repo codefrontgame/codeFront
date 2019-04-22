@@ -5,6 +5,10 @@ import Boulder from '@/characters/boulder'
 import Log from '@/characters/log'
 import WoodenTower from './wooden-tower'
 
+const moveDescription = 'För att säga åt zombien vilket håll den ' +
+  'ska röra sig åt skriver man till exempel `return Response.NORTH`. Istället för `NORTH` kan man skriva ' +
+  '`EAST`, `WEST` eller `SOUTH`'
+
 export default class Zombie extends Character {
   static name = 'zombie' // prototype.name has been buggy
   constructor (x, y, size, initHealth) {
@@ -32,9 +36,7 @@ export default class Zombie extends Character {
       move: {
         cn: 'Gå',
         name: 'move',
-        description: 'Få zombien att röra sig ända till slutet av fältet. För att säga åt zombien vilket håll den ' +
-          'ska röra sig åt skriver man till exempel return Response.NORTH. Istället för NORTH kan man skriva ' +
-          'EAST, WEST eller SOUTH',
+        description: moveDescription,
         parameters: [],
         error: null,
         userCode: null,
@@ -67,9 +69,7 @@ export default class Zombie extends Character {
       move: {
         cn: 'Gå',
         name: 'move',
-        description: 'Få zombien att röra sig ända till slutet av fältet. För att säga åt zombien vilket håll den ' +
-          'ska röra sig åt skriver man till exempel return response.north. istället för north kan man skriva ' +
-          'east, west eller south',
+        description: moveDescription,
         parameters: ['isInFrontOfRock'],
         error: null,
         userCode: '\tif isInFrontOfRock:\n' +
@@ -108,9 +108,7 @@ export default class Zombie extends Character {
       move: {
         cn: 'Gå',
         name: 'move',
-        description: 'Få zombien att röra sig ända till slutet av fältet. För att säga åt zombien vilket håll den ' +
-          'ska röra sig åt skriver man till exempel return response.north. istället för north kan man skriva ' +
-          'east, west eller south',
+        description: moveDescription,
         parameters: ['isInFrontOfRock', 'isInFrontOfLog'],
         error: null,
         userCode: '\tif isInFrontOfLog:\n' +
@@ -150,9 +148,7 @@ export default class Zombie extends Character {
       move: {
         cn: 'Gå',
         name: 'move',
-        description: 'Få zombien att röra sig ända till slutet av fältet. För att säga åt zombien vilket håll den ' +
-          'ska röra sig åt skriver man till exempel return response.north. istället för north kan man skriva ' +
-          'east, west eller south',
+        description: moveDescription,
         parameters: ['isInFrontOfRock', 'isInFrontOfLog'],
         error: null,
         userCode: '\tif isInFrontOfLog or isInFrontOfRock:\n' +
@@ -192,9 +188,7 @@ export default class Zombie extends Character {
       move: {
         cn: 'Gå',
         name: 'move',
-        description: 'Få zombien att röra sig ända till slutet av fältet. För att säga åt zombien vilket håll den ' +
-          'ska röra sig åt skriver man till exempel return response.north. istället för north kan man skriva ' +
-          'east, west eller south',
+        description: moveDescription,
         parameters: ['isInFrontOfRock', 'isInFrontOfLog'],
         error: null,
         userCode: '\tif isInFrontOfLog:\n' +
@@ -236,9 +230,7 @@ export default class Zombie extends Character {
       move: {
         cn: 'Gå',
         name: 'move',
-        description: 'Få zombien att röra sig ända till slutet av fältet. För att säga åt zombien vilket håll den ' +
-          'ska röra sig åt skriver man till exempel return response.north. istället för north kan man skriva ' +
-          'east, west eller south',
+        description: moveDescription,
         parameters: ['isInFrontOfRock', 'isInFrontOfLog'],
         error: null,
         userCode: '\tif isInFrontOfLog:\n' +
@@ -280,9 +272,7 @@ export default class Zombie extends Character {
       move: {
         cn: 'Gå',
         name: 'move',
-        description: 'Få zombien att röra sig ända till slutet av fältet. För att säga åt zombien vilket håll den ' +
-          'ska röra sig åt skriver man till exempel return response.north. istället för north kan man skriva ' +
-          'east, west eller south',
+        description: moveDescription,
         parameters: ['isInFrontOfRock', 'isInFrontOfLog', 'isInFrontOfTower'],
         error: null,
         userCode: '\tif isInFrontOfLog:\n' +
@@ -325,9 +315,7 @@ export default class Zombie extends Character {
       move: {
         cn: 'Gå',
         name: 'move',
-        description: 'Få zombien att röra sig ända till slutet av fältet. För att säga åt zombien vilket håll den ' +
-          'ska röra sig åt skriver man till exempel return response.north. istället för north kan man skriva ' +
-          'east, west eller south',
+        description: moveDescription,
         parameters: ['isInFrontOfRock', 'isInFrontOfLog', 'isInFrontOfTower'],
         error: null,
         userCode: '\tif isInFrontOfLog:\n' +
@@ -370,9 +358,7 @@ export default class Zombie extends Character {
       move: {
         cn: 'Gå',
         name: 'move',
-        description: 'Få zombien att röra sig ända till slutet av fältet. För att säga åt zombien vilket håll den ' +
-          'ska röra sig åt skriver man till exempel return response.north. istället för north kan man skriva ' +
-          'east, west eller south',
+        description: moveDescription,
         parameters: ['isInFrontOfRock', 'isInFrontOfLog', 'isInFrontOfTower'],
         error: null,
         userCode: '\tif isInFrontOfTower:\n' +

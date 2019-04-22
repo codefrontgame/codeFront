@@ -6,7 +6,7 @@
   </div>
   <transition name="fade">
     <div v-if="expanded">
-      {{ func.description }}
+      <VueMarkdown :source="func.description" class="description" />
       <function-editor
         :disabled="disabled"
         :user-code="func.userCode"
@@ -24,10 +24,11 @@
 </template>
 
 <script>
+import VueMarkdown from 'vue-markdown'
 import FunctionEditor from './FunctionEditor'
 export default {
   name: 'CharacterFunctionEditor',
-  components: { FunctionEditor },
+  components: { FunctionEditor, VueMarkdown },
   props: {
     character: Function,
     expanded: Boolean,
@@ -63,7 +64,18 @@ export default {
 }
 </script>
 
+<style lang="scss">
+.description p code {
+  font-family: "DejaVu Sans Mono", monospace;
+  background-color: rgba(0, 0, 0, 0.2);
+}
+</style>
+
 <style lang="scss" scoped>
+.description {
+  padding-right: 10px;
+  padding-left: 10px;
+}
 .title {
   font-size: 18pt;
   margin-top: 5px;
