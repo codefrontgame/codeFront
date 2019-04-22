@@ -25,7 +25,7 @@ let initialGameObjects = [ // List of all game objects
   StoneTower,
 ]
 
-export default new Vuex.Store({
+const store = new Vuex.Store({
   state: {
     gameCompleted: false, // Whether you have completed the game or not
     running: false, // Whither game is running or not
@@ -112,6 +112,8 @@ export default new Vuex.Store({
   actions: {},
 })
 
+export default store
+
 function getFunctions (gameObjects, level) {
   let functions = {}
   let characters = gameObjects.filter(Obj => (new Obj()) instanceof Character)
@@ -155,6 +157,6 @@ function incLevel (state) {
     // Mark game completed
     Vue.set(state, 'gameCompleted', true)
   } else {
-    this.$store.commit('setLevel', { state: state, level: state.level + 1 })
+    store.commit('setLevel', state.level + 1)
   }
 }
