@@ -16,8 +16,7 @@ export default {
   },
   computed: {
     characters () {
-      let uf = this.$store.getters.getUserFunctions
-      return this.$store.getters['getCharacters'].filter((c) => Object.keys(uf[c.name]).length > 0)
+      return this.$store.getters['getLevelCharacters']
     },
   },
   methods: {
@@ -32,6 +31,14 @@ export default {
     },
   },
   components: { CharacterSelectorSymbol },
+  watch: {
+    characters (val) {
+      let selectedExists = val.some((char) => char.name === this.selectedCharacterName)
+      if (!selectedExists) {
+        this.select(val[0])
+      }
+    },
+  },
 }
 </script>
 

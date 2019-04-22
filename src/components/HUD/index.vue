@@ -6,7 +6,7 @@
     <div class="level">Nivå {{level}}</div>
     <LevelTransition />
     <GameCompleted />
-    <img class="hint-button" v-tooltip="'Ledtråd'" src="assets/glass.svg" @click="getHint">Ledtråd</img>
+    <img class="hint-button" v-tooltip="'Ledtråd'" src="assets/glass.svg" @click="getHint">
     <img class="book-button" v-tooltip="'KodBok'" src="assets/book-icon.svg" @click="toggleBook">
     <Duck
       :hidden="duckHidden"
