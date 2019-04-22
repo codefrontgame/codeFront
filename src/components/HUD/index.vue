@@ -4,7 +4,7 @@
       <slot />
     </div>
     <LevelTransition />
-    <button class="button hint-button" @click="getHint">Ledtråd</button>
+    <img class="hint-button" src="assets/glass.svg" @click="getHint">Ledtråd</img>
     <img class="book-button" src="assets/book-icon.svg" @click="toggleBook">
     <Duck
       :hidden="duckHidden"
@@ -143,8 +143,9 @@ export default {
   }
 .hint-button {
   position: absolute;
-  bottom: 20px;
+  bottom: 10px;
   right: 100px;
+  width: 70px;
   transition: all 0.2s ease;
   &:hover {
     cursor: pointer;

@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="200.56873mm"
+   height="194.52319mm"
+   viewBox="0 0 200.56873 194.5232"
+   version="1.1"
+   id="svg8"
+   sodipodi:docname="Glass.svg"
+   inkscape:version="0.92.4 (5da689c313, 2019-01-14)">
+  <defs
+     id="defs2">
+    <linearGradient
+       inkscape:collect="always"
+       id="linearGradient4824">
+      <stop
+         style="stop-color:#000000;stop-opacity:1;"
+         offset="0"
+         id="stop4820" />
+      <stop
+         style="stop-color:#000000;stop-opacity:0;"
+         offset="1"
+         id="stop4822" />
+    </linearGradient>
+    <linearGradient
+       inkscape:collect="always"
+       id="linearGradient4799">
+      <stop
+         style="stop-color:#000000;stop-opacity:1;"
+         offset="0"
+         id="stop4795" />
+      <stop
+         style="stop-color:#000000;stop-opacity:0;"
+         offset="1"
+         id="stop4797" />
+    </linearGradient>
+    <linearGradient
+       inkscape:collect="always"
+       id="linearGradient4760">
+      <stop
+         style="stop-color:#ffffff;stop-opacity:1"
+         offset="0"
+         id="stop4756" />
+      <stop
+         style="stop-color:#e9e9e9;stop-opacity:0;"
+         offset="1"
+         id="stop4758" />
+    </linearGradient>
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient4760"
+       id="linearGradient4762"
+       x1="100.16448"
+       y1="104.24168"
+       x2="-46.247406"
+       y2="281.33124"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="matrix(-0.98741121,0.15817434,0.15817434,0.98741121,184.79417,-15.730262)" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient4799"
+       id="linearGradient4801"
+       x1="124.22334"
+       y1="173.73895"
+       x2="135.04941"
+       y2="163.37868"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="matrix(-0.90433082,0.14486561,0.14787807,0.92313624,175.90173,-7.4406179)" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient4824"
+       id="linearGradient4826"
+       x1="118.09366"
+       y1="301.33075"
+       x2="113.85682"
+       y2="69.286362"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="translate(-15.615598,-1.336347)" />
+  </defs>
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="0.49497475"
+     inkscape:cx="374.28788"
+     inkscape:cy="534.35929"
+     inkscape:document-units="mm"
+     inkscape:current-layer="layer2"
+     showgrid="false"
+     inkscape:window-width="1920"
+     inkscape:window-height="1057"
+     inkscape:window-x="-8"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1"
+     showguides="false" />
+  <metadata
+     id="metadata5">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:groupmode="layer"
+     id="layer2"
+     inkscape:label="Behind"
+     transform="translate(2.8853253,-46.833721)">
+    <path
+       style="fill:#4f4f4f;fill-opacity:1;stroke:#000000;stroke-width:1.46500003;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m 114.47781,74.079216 c 6.82421,-0.516481 13.84859,0.693977 19.92038,3.915994 5.21784,2.764001 9.80498,6.745152 13.19462,11.586137 2.94423,4.352702 4.50048,9.540526 4.90572,14.753393 0.31405,3.86576 0.0272,7.75287 -0.44286,11.59378 -0.81629,6.08073 -2.84744,12.04998 -6.28226,17.15941 -3.46518,5.21973 -7.9187,9.74785 -12.90856,13.51942 -3.98538,2.97111 -8.484,5.34881 -13.34917,6.47765 -5.30529,1.28194 -10.8251,1.37986 -16.24258,0.93892 -4.492576,-0.40709 -8.929236,-1.8064 -12.705086,-4.30287 -1.55263,-1.00141 -2.955821,-2.20856 -4.32333,-3.44514 -2.585008,-2.29236 -5.059274,-4.74655 -7.083372,-7.55703 -1.446457,-2.14756 -2.25214,-4.63241 -3.156946,-7.03638 -0.96589,-2.70916 -1.669892,-5.52542 -1.890436,-8.39913 -0.331687,-3.37504 -0.1553,-6.79052 0.449089,-10.12531 1.164264,-6.8199 3.846245,-13.380076 7.836491,-19.035226 3.895779,-5.601273 8.927924,-10.449206 14.831044,-13.897379 4.198416,-2.466362 8.769956,-4.297045 13.504826,-5.430033 1.23692,-0.291539 2.48588,-0.526865 3.74243,-0.716206 z"
+       id="path4751"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="ccccccccccccccccccccc"
+       inkscape:export-xdpi="150"
+       inkscape:export-ydpi="150"
+       inkscape:export-filename="C:\Users\Andersson\flowRoot4809.png" />
+    <path
+       style="opacity:0.66000001;fill:url(#linearGradient4826);fill-opacity:1;stroke:#000000;stroke-width:6.37799978;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       d="m 90.75353,50.19881 c -3.21419,0.371094 -6.42838,0.742188 -9.64257,1.113282 -3.116537,0.683593 -6.233068,1.367187 -9.349605,2.050781 -2.246745,0.666015 -4.493489,1.332031 -6.740234,1.998047 -2.994141,1.192057 -5.988282,2.384114 -8.982422,3.576173 -2.85612,1.47526 -5.71224,2.95052 -8.568359,4.42578 -2.689454,1.74414 -5.378907,3.488281 -8.06836,5.232422 -2.496746,1.995442 -4.99349,3.990885 -7.490235,5.986328 -2.278646,2.227213 -4.557292,4.454427 -6.835938,6.68164 -2.03776,2.43685 -4.075521,4.873699 -6.11328,7.310548 -1.776042,2.621094 -3.552083,5.242192 -5.328125,7.863286 -1.497396,2.77994 -2.994792,5.559883 -4.4921882,8.339833 -1.203776,2.91146 -2.407552,5.82292 -3.611328,8.73438 -0.897135,3.01302 -1.79427,6.02604 -2.691406,9.03906 -0.582682,3.08463 -1.165364,6.16928 -1.748047,9.25391 -0.26171895,3.12566 -0.52343695,6.25131 -0.78515595,9.37696 0.0612,3.13541 0.122396,6.27083 0.183594,9.40625 0.384765,3.11328 0.76953095,6.22656 1.15429695,9.33984 0.703125,3.0612 1.40625,6.1224 2.109375,9.1836 0.684895,2.11263 1.369791,4.22526 2.054687,6.33789 1.229818,2.90104 2.459636,5.80208 3.689453,8.70312 1.5221362,2.76758 3.0442712,5.53516 4.5664072,8.30274 1.799479,2.60612 3.598958,5.21224 5.398436,7.81836 2.059245,2.41927 4.11849,4.83854 6.177734,7.25781 2.298828,2.20833 4.597657,4.41666 6.896485,6.625 2.514323,1.97461 5.028646,3.94922 7.542969,5.92383 2.705079,1.72135 5.410157,3.4427 8.115235,5.16406 2.869141,1.45117 5.738281,2.90234 8.607422,4.35351 3.004557,1.16667 6.009114,2.33334 9.013672,3.5 3.109375,0.87045 6.21875,1.74089 9.328125,2.61133 3.183595,0.56446 6.367182,1.12891 9.550782,1.69336 3.2259,0.25456 6.45181,0.50912 9.67772,0.76367 3.23633,-0.0592 6.47266,-0.11849 9.70899,-0.17773 3.21354,-0.37175 6.42708,-0.74349 9.64062,-1.11524 3.15951,-0.68099 6.31901,-1.36197 9.47852,-2.04296 2.18099,-0.66276 4.36198,-1.32553 6.54297,-1.98829 2.99414,-1.19075 5.98828,-2.38151 8.98242,-3.57226 2.85677,-1.47461 5.71354,-2.94922 8.57031,-4.42383 2.69075,-1.74284 5.38151,-3.48568 8.07227,-5.22852 2.49739,-1.99479 4.99479,-3.98958 7.49218,-5.98437 2.2793,-2.22656 4.5586,-4.45312 6.83789,-6.67969 2.03841,-2.43554 4.07683,-4.87109 6.11524,-7.30664 1.77734,-2.62109 3.55469,-5.24219 5.33203,-7.86328 1.4987,-2.7793 2.99739,-5.55859 4.49609,-8.33789 1.20443,-2.91081 2.40886,-5.82161 3.61328,-8.73242 0.89844,-3.01237 1.79688,-6.02474 2.69532,-9.03711 0.58398,-3.08464 1.16797,-6.16927 1.75195,-9.25391 0.26302,-3.12565 0.52604,-6.2513 0.78906,-9.37695 -0.0605,-3.13542 -0.12109,-6.27083 -0.18164,-9.40625 -0.38281,-3.11393 -0.76562,-6.22787 -1.14844,-9.3418 -0.70247,-3.06121 -1.40494,-6.1224 -2.10742,-9.1836 -0.68424,-2.11263 -1.36849,-4.22526 -2.05273,-6.33789 -1.22787,-2.90169 -2.45573,-5.80339 -3.6836,-8.70508 -1.52148,-2.76758 -3.04296,-5.535153 -4.56445,-8.302727 -1.79883,-2.60742 -3.59766,-5.214846 -5.39648,-7.822268 -2.05795,-2.419922 -4.11589,-4.839844 -6.17383,-7.259767 -2.29753,-2.208984 -4.59505,-4.417968 -6.89258,-6.626953 -2.51367,-1.97526 -5.02734,-3.950521 -7.54102,-5.925781 -2.70507,-1.722656 -5.41015,-3.445312 -8.11523,-5.167969 -2.86849,-1.452473 -5.73698,-2.904947 -8.60547,-4.357421 -3.00391,-1.167318 -6.00781,-2.334636 -9.01172,-3.501954 -3.10937,-0.871745 -6.21875,-1.743489 -9.32812,-2.615234 -3.18295,-0.565755 -6.36589,-1.131511 -9.54883,-1.697266 -3.22591,-0.255859 -6.45182,-0.511718 -9.67774,-0.767578 -3.23632,0.05794 -6.47265,0.115886 -9.70898,0.173828 z"
+       id="path4817"
+       inkscape:connector-curvature="0"
+       inkscape:export-xdpi="150"
+       inkscape:export-ydpi="150"
+       inkscape:export-filename="C:\Users\Andersson\flowRoot4809.png" />
+  </g>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(2.8853253,-46.833721)">
+    <path
+       style="fill:url(#linearGradient4762);fill-opacity:1;stroke:#000000;stroke-width:1.96500003;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m 121.36423,76.34465 c 8.19746,-0.768662 16.56929,2.483468 22.42194,8.206141 5.77642,5.624184 8.72874,13.621001 9.3869,21.544739 0.59277,7.25489 -0.52765,14.70879 -3.70658,21.29093 -2.5544,5.39091 -6.23024,10.19715 -10.39443,14.44257 -5.68081,5.70139 -12.87525,10.11725 -20.8611,11.58736 -6.0049,1.14733 -12.27599,1.04198 -18.214556,-0.42947 -5.78636,-1.54146 -10.98302,-5.06825 -14.622426,-9.81589 -4.979077,-6.31333 -7.313582,-14.55705 -6.615167,-22.54854 0.926956,-12.07827 7.067968,-23.45831 15.972093,-31.552991 7.376746,-6.706357 16.721216,-11.374026 26.633326,-12.724849 z"
+       id="path4747"
+       inkscape:connector-curvature="0"
+       inkscape:export-xdpi="150"
+       inkscape:export-ydpi="150"
+       inkscape:export-filename="C:\Users\Andersson\flowRoot4809.png" />
+    <path
+       style="fill:#4f4f4f;fill-opacity:1;stroke:#000000;stroke-width:0.24482794px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 95.203784,152.15135 c -13.14346,17.76814 -26.827076,35.07965 -39.970531,52.84779 -4.366327,0.12377 -6.987566,-1.4565 -7.602792,-4.99564 13.210298,-17.65618 26.765827,-34.59949 39.976135,-52.25568 5.114648,3.59134 6.374078,3.9299 7.597188,4.40353 z"
+       id="path4764"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="ccccc"
+       inkscape:export-xdpi="150"
+       inkscape:export-ydpi="150"
+       inkscape:export-filename="C:\Users\Andersson\flowRoot4809.png" />
+  </g>
+  <g
+     inkscape:groupmode="layer"
+     id="layer3"
+     inkscape:label="Over"
+     transform="translate(2.8853253,-46.833721)">
+    <path
+       style="fill:url(#linearGradient4801);fill-opacity:1;stroke:none;stroke-width:0.24521349;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m 95.203784,152.15135 c -13.14346,17.76814 -26.827076,35.07965 -39.970531,52.84779 -3.939266,-0.12755 -7.803361,-0.33738 -7.602792,-4.99564 13.210298,-17.65618 27.030711,-35.65416 40.241008,-53.31034 5.114665,3.59134 6.109205,4.98456 7.332315,5.45819 z"
+       id="path4764-5"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="ccccc"
+       inkscape:export-xdpi="150"
+       inkscape:export-ydpi="150"
+       inkscape:export-filename="C:\Users\Andersson\flowRoot4809.png" />
+    <path
+       style="opacity:0.66000001;fill:#060606;fill-opacity:1;stroke:none;stroke-width:0.24521349;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       d="m 88.274709,147.09657 c 0.294767,0.18596 0.509585,0.46655 0.763795,0.70018 0.44903,0.44526 0.90307,0.88562 1.37878,1.30254 0.51472,0.45266 0.96857,0.97967 1.54844,1.35382 0.63565,0.4194 1.38075,0.61368 2.09217,0.86169 0.2455,0.0607 0.47059,0.19008 0.64168,0.37698 0.18055,0.18639 0.39074,0.3882 0.3925,0.66736 0.0215,0.24 -0.10211,0.48906 -0.32147,0.59721 -0.25955,0.1429 -0.56346,0.16187 -0.85175,0.19791 -0.61096,0.0623 -1.23606,0.0328 -1.82761,-0.14068 -0.71582,-0.19528 -1.40628,-0.48247 -2.05622,-0.83943 -0.5437,-0.30647 -1.06087,-0.66469 -1.521054,-1.08717 -0.4036,-0.38324 -0.746612,-0.83143 -1.006821,-1.3237 -0.173712,-0.39308 -0.203411,-0.83675 -0.15231,-1.25935 0.05101,-0.40124 0.220641,-0.77362 0.411048,-1.12608 0.107373,-0.15642 0.288527,-0.47377 0.50878,-0.28126 z"
+       id="path4806"
+       inkscape:connector-curvature="0"
+       inkscape:export-xdpi="150"
+       inkscape:export-ydpi="150"
+       inkscape:export-filename="C:\Users\Andersson\flowRoot4809.png" />
+  </g>
+  <g
+     inkscape:groupmode="layer"
+     id="layer4"
+     inkscape:label="Text"
+     transform="translate(9.0871644,3.2072341)" />
+</svg>
