@@ -14,7 +14,7 @@ export default {
   name: 'GameCompleted',
   data () {
     return {
-      gameCompleted: true,
+      gameCompleted: false,
     }
   },
   methods: {
