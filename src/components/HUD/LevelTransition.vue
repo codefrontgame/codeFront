@@ -40,10 +40,13 @@ export default {
     top: 200px;
     height: 200px;
     width: 300px;
-    background-color: white;
+    background-color: floralwhite;
     text-align: center;
-    padding-top: 70px;
-    border-style: solid;
-    border-width: thin;
+    padding: 70px 10px 10px;
+    border-style: double;
+    border-radius: 0px;
+    border-width: thick;
+    border-color: goldenrod;
+    color:darkslategrey;
   }
 </style>
