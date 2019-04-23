@@ -6,7 +6,7 @@
       <source src="assets/video.mp4" type="video/mp4">
       Det går inte att visa videon i din webbläsare.
     </video>-->
-    <router-link to="Game" tag="button" class="button to-game">Till spelet!</router-link>
+    <router-link to="Game" tag="button" class="button to-game">Börja!</router-link>
   </div>
 </template>
 
