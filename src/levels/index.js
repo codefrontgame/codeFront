@@ -10,7 +10,7 @@ import level8 from './008'
 import level9 from './009'
 import level10 from './010'
 import level11 from './011'
-import level12 from './012'
+// import level12 from './012'
 
 export default [
   level0,
@@ -25,5 +25,5 @@ export default [
   level9,
   level10,
   level11,
-  level12,
+  // level12,
 ]

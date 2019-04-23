@@ -37,7 +37,7 @@ export default class Entity extends RectangularObstacle {
 
   draw ({ sketch, assets, board }) {
     super.draw({ sketch, assets, board })
-    this.showHealth({ sketch, assets, board })
+    // this.showHealth({ sketch, assets, board })
   }
 
   /**
