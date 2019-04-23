@@ -14,7 +14,7 @@ export default {
   name: 'GameCompleted',
   data () {
     return {
-      gameCompleted: false,
+      gameCompleted: true,
     }
   },
   methods: {
@@ -43,13 +43,14 @@ export default {
     top: 200px;
     height: 200px;
     width: 300px;
-    background-color: dimgrey;
+    background-color: rgba(180,180,180,0.7);
     text-align: center;
+    // text-shadow: -1px 1px black;
     padding: 70px 10px 10px;
-    border-style: solid;
-    border-radius: 15px;
-    border-width: medium;
-    border-color: black;
-    color: whitesmoke;
+    border-style: outset;
+    border-radius: 3px;
+    border-width: thick;
+    border-color: palegoldenrod;
+    color: black;
   }
 </style>
