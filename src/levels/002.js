@@ -11,7 +11,7 @@ export default new Level(
   ],
   [ // Helptexts
     'Härligt! Nu har vi kommit närmare.',
-    'Åh nej! Nu är det något annat framför zombien. Hen vet tyvärr bara hur man går runt **stenar**...',
+    'Men nej! Nu är det något annat framför zombien. Hen vet tyvärr bara hur man går runt **stenar**...',
     'Du måste hjälpa hen att gå runt stocken istället!',
   ],
   [ // Entities

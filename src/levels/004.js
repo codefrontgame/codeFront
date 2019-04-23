@@ -8,6 +8,10 @@ export default new Level(
   [ // Hints
     'Vilka nya möjligheter ger `elif` dig?',
     'Med `elif` kan du be zombien göra olika saker beroende vilken typ av hinder den har framför sig',
+    'Denna ordningen skrivs det i\n' +
+    '`if villkor:`\n' +
+    '`elif villkor:`\n' +
+    '`else:`',
     'Vad behöver zombien göra när den kommer fram till en stock och vad behöver den göra när den sedan stöter på stenen?',
   ],
   [ // Helptexts TODO:Fixa så texten blir snygg

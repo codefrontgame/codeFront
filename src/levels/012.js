@@ -6,8 +6,8 @@ import FireBat from '../characters/firebat'
 export default new Level(
   12, // Id
   [ // Hints
+    'Stanna inte i tornens räckvidd för länge',
     'Om du går förbi tornen tillräckligt fort kommer du att klara dig',
-    'Försök att springa förbi så fort som möjligt',
   ],
   [ // Help-texts
     'Bra gjort! Vi kom förbi där med.',

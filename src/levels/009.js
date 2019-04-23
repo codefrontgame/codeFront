@@ -11,8 +11,6 @@ export default new Level(
   [ // Helptexts
     'Bra jobbat!',
     'Firebat känner sig nu redo att börja flyga, så framöver kommer firebat att kunna flyga över vissa hinder!',
-    'Du kan fortfarande be firebat att gå åt sidan om det finns en stock framför, men du kan också låta hen ' +
-    'flyga över hindren.',
   ],
   [ // Entities
     new FireBat(5, 0, 150, 100, true),

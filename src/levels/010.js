@@ -13,6 +13,10 @@ export default new Level(
   [ // Helptexts
     'Härligt!',
     'Här kommer vi kunna se skillnaden mellan zombie och firebat. Alla har sina olika styrkor.',
+    'Varje typ av karaktär har sina egna instruktioner som de följer.',
+    'Du kan ändra om du vill ge instruktioner till firebats eller zombies genom att klicka på knapparna som finns ' +
+    'uppe till höger.',
+
   ],
   [ // Entities
     new Zombie(2, 0, 70, 100),

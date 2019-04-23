@@ -12,7 +12,7 @@ export default new Level(
   [ // Helptexts
     'Vilken bra kod du gjort som klarade av den banan med!',
     'Här har vi en ny vän. Detta är en firebat och hen är helt ny.',
-    'Du kommer behöva lära firebat hur hen ska gå helt från början. Men detta problem har vi väl sett tidigare...',
+    'Du kommer behöva lära firebat hur hen ska gå helt från början. Men detta problem har vi väl sett tidigare?',
   ],
   [ // Entities
     new FireBat(5, 0, 100, 20, false),

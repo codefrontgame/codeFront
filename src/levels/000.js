@@ -8,9 +8,11 @@ export default new Level(
     'Tryck på \'Starta\'-knappen',
   ],
   [ // Help-texts
-    '**Välkommen till codeFront!** Det är jag som är kodAnkan. Jag kommer att finnas här nere i vänstra hörnet för att hjälpa dig.',
-    'Min kodkraft har blivit stulen och finns nu i det rosa kristallslottet. Jag behöver **din** hjälp för att återfå kraften.',
-    'För att komma framåt måste vi tillsammans berätta för våra vänner vart de ska gå. Denna gången är det bara att säga åt vår vänn att gå.',
+    '**Välkommen till codeFront!** Vad bra att du är här!',
+    'Det är jag som är kodAnkan och min kodkraft har blivit stulen och finns nu i det rosa kristallslottet. Jag behöver **din** hjälp för att återfå kraften.',
+    'Jag kommer att finnas här nere i vänstra hörnet för att hjälpa dig med det jag kan.',
+    'För att komma framåt måste vi tillsammans berätta för våra vänner hur de ska gå.',
+    'Denna zombien kommer ihåg hur man går framåt, så denna första nivån är det bara be hen att börja gå',
   ],
   [ // Entities
     new Zombie(5, 0, 70, 100),
