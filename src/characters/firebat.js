@@ -86,7 +86,7 @@ export default class FireBat extends Character {
         parameters: ['isInFrontOfRock'],
         error: null,
         userCode: '',
-        originalUserCode: () => '',
+        originalUserCode: () => '\t',
         actuate: moveActuator,
         execute ({ me, entities, board, obstacles }) {
           let code = enumDefinition('Response', {

@@ -44,7 +44,7 @@ export default {
       if (this.func == null || this.func.error == null) {
         return ''
       } else {
-        return this.func.error.replace('4', '2')
+        return this.func.error// .replace('4', '2')
       }
     },
   },
