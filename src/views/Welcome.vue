@@ -6,7 +6,7 @@
       <source src="assets/video.mp4" type="video/mp4">
       Det går inte att visa videon i din webbläsare.
     </video>-->
-    <router-link to="Game" tag="button" class="button to-game">Till spelet!</router-link>
+    <router-link to="Game" tag="button" class="button to-game">Börja!</router-link>
   </div>
 </template>
 
@@ -20,6 +20,11 @@ export default {
 .welcome {
   height: 100vh;
   text-align: center;
+  background-color: aliceblue;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 .video{
   width: 50vw;
