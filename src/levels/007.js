@@ -10,7 +10,7 @@ export default new Level(
     'Du kan alltid kolla i boken om du behöver hjälp att komma ihåg',
   ],
   [ // Helptexts
-    'Bra, firebat börjar lära sig! Men det verkar som att hen kan behöva lite mer övning.',
+    'Bra, firebat börjar lära sig! Men det verkar som att det kan behövas lite mer övning.',
     'Visst kan du hjälpa dessa två att komma framåt?',
   ],
   [ // Entities
