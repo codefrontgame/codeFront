@@ -20,6 +20,11 @@ export default {
 .welcome {
   height: 100vh;
   text-align: center;
+  background-color: aliceblue;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 .video{
   width: 50vw;
