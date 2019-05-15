@@ -1,5 +1,5 @@
 <template>
-<div class="game">
+<div class="game" :style="{ backgroundImage: 'url(assets/background.png)' }">
   <game-board />
   <i-d-e />
 </div>
@@ -21,7 +21,6 @@ export default {
     display: block;
   }
   grid-template-columns: 95vh auto;
-  background-image: url("/assets/background.png");
   background-size: cover;
 }
 </style>

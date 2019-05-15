@@ -14,4 +14,7 @@ module.exports = {
       new FaviconsWebpackPlugin('./public/assets/logo.png'),
     ],
   },
+  publicPath: process.env.NODE_ENV == null
+    ? './'
+    : process.env.VUE_APP_PUBLIC_PATH,
 }
